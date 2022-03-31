@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "next": "12.1.2",
+    "pretendard": "^1.2.2",
     "react": "18.0.0",
     "react-dom": "18.0.0"
   },

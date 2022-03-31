@@ -1,7 +1,7 @@
 import React from "react";
 
 const HeroSection = () => {
-  return <div>HeroSection</div>;
+  return <section></section>;
 };
 
 export default HeroSection;

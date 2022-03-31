@@ -9,29 +9,29 @@ const submenu = {
 };
 
 const Header = () => {
-  const [isOpen, setIsOpen] = useState(true);
+  const [isOpen, setIsOpen] = useState(false);
 
   const toggleDrawer = () => setIsOpen((value) => !value);
 
   return (
     <header>
-      <nav className="p-3 pl-0 bg-[#fff] flex flex-col shadow-md">
+      <nav className="p-3 pl-0 bg-[#fff] flex flex-col sm:flex-row shadow-md">
         <div className="flex">
           <Link href="/">
             <a className="flex items-center">
               <Image src="/logo.png" alt="mahe" width={160} height={50} />
             </a>
           </Link>
-          <div className="ml-auto flex items-center">
+          <div className="ml-auto flex items-center sm:hidden">
             <button onClick={toggleDrawer}>
               <AiOutlineMenu size="2rem" />
             </button>
           </div>
         </div>
-        <div className={`${!isOpen && "hidden"}`}>
-          <ul className="flex flex-col items-end gap-2 mt-2 text-xl">
+        <div className={`${!isOpen && "hidden"} sm:ml-auto sm:block`}>
+          <ul className="flex flex-col sm:flex-row items-end gap-2 mt-2 text-xl">
             {Object.entries(submenu).map(([key, value]) => (
-              <li key={key} className="py-2">
+              <li key={key} className="py-2 hover:text-gray-500">
                 <Link href={`#${key}`}>
                   <a className="p-2">{value}</a>
                 </Link>

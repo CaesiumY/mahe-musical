@@ -17,7 +17,7 @@ const Footer = () => {
               size="2.5rem"
             />
           </a>
-          <a href="mailto:dbs2636@gmail.com">
+          <a href="https://www.instagram.com/mahe_musical/">
             <AiOutlineInstagram
               className="inline rounded-full bg-gray-600 p-2 hover:bg-gray-400 hover:text-gray-600 ml-2"
               size="2.5rem"

@@ -1,11 +1,11 @@
 import Image from "next/image";
 import Link from "next/link";
 import React, { useState } from "react";
-import { AiOutlineMenu } from "react-icons/ai";
+import { AiOutlineClose, AiOutlineMenu } from "react-icons/ai";
 
 const submenu = {
-  submenu1: "서브메뉴1",
-  submenu2: "서브메뉴2",
+  book_detail: "예매 상세보기",
+  book_check: "예매 확인하기",
 };
 
 const Header = () => {
@@ -15,28 +15,47 @@ const Header = () => {
 
   return (
     <header>
-      <nav className="p-3 pl-0 bg-[#fff] flex flex-col sm:flex-row shadow-md">
-        <div className="flex">
+      <nav
+        className={`transition-all duration-300 p-5 flex flex-col sm:flex-row ${
+          isOpen ? "bg-[#EFEFEF]" : "bg-transparent"
+        }`}
+      >
+        <div className="flex text-[#667080]">
           <Link href="/">
-            <a className="flex items-center">
-              <Image src="/logo.png" alt="mahe" width={160} height={50} />
+            <a className="flex items-center font-bold text-3xl">
+              {/* <Image src="/logo.png" alt="mahe" width={160} height={50} /> */}
+              MA:HE
             </a>
           </Link>
           <div className="ml-auto flex items-center sm:hidden">
             <button onClick={toggleDrawer}>
-              <AiOutlineMenu size="2rem" />
+              {isOpen ? (
+                <AiOutlineClose size="2rem" />
+              ) : (
+                <AiOutlineMenu size="2rem" />
+              )}
             </button>
           </div>
         </div>
+
         <div className={`${!isOpen && "hidden"} sm:ml-auto sm:block`}>
-          <ul className="flex flex-col sm:flex-row items-end gap-2 mt-2 text-xl">
+          <ul className="flex flex-col sm:flex-row items-end gap-1 mt-6 sm:mt-0 text-xl">
             {Object.entries(submenu).map(([key, value]) => (
-              <li key={key} className="py-2 hover:text-gray-500">
+              <li
+                key={key}
+                className="py-2 hover:text-gray-500 text-[#111111] font-medium"
+              >
                 <Link href={`#${key}`}>
-                  <a className="p-2">{value}</a>
+                  <a className="py-2">{value}</a>
                 </Link>
               </li>
             ))}
+            <div className="bg-black w-full h-px sm:hidden" />
+            <li className="py-2 hover:text-gray-500 text-[#111111] font-medium">
+              <Link href={`#coming-soon`}>
+                <a className="py-2">팜플렛(Coming Soon!)</a>
+              </Link>
+            </li>
           </ul>
         </div>
       </nav>

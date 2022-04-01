@@ -1,4 +1,3 @@
-import Image from "next/image";
 import Link from "next/link";
 import React, { useState } from "react";
 import { AiOutlineClose, AiOutlineMenu } from "react-icons/ai";
@@ -22,10 +21,7 @@ const Header = () => {
       >
         <div className="flex text-[#667080]">
           <Link href="/">
-            <a className="flex items-center font-bold text-3xl">
-              {/* <Image src="/logo.png" alt="mahe" width={160} height={50} /> */}
-              MA:HE
-            </a>
+            <a className="flex items-center font-bold text-3xl">MA:HE</a>
           </Link>
           <div className="ml-auto flex items-center sm:hidden">
             <button onClick={toggleDrawer}>
@@ -39,19 +35,16 @@ const Header = () => {
         </div>
 
         <div className={`${!isOpen && "hidden"} sm:ml-auto sm:block`}>
-          <ul className="flex flex-col sm:flex-row items-end gap-1 mt-6 sm:mt-0 text-xl">
+          <ul className="flex flex-col sm:flex-row items-end gap-1 sm:gap-4 mt-6 sm:mt-0 text-xl text-black font-semibold">
             {Object.entries(submenu).map(([key, value]) => (
-              <li
-                key={key}
-                className="py-2 hover:text-gray-500 text-[#111111] font-medium"
-              >
+              <li key={key} className="py-2 hover:text-gray-500">
                 <Link href={`#${key}`}>
                   <a className="py-2">{value}</a>
                 </Link>
               </li>
             ))}
             <div className="bg-black w-full h-px sm:hidden" />
-            <li className="py-2 hover:text-gray-500 text-[#111111] font-medium">
+            <li className="py-2 hover:text-gray-500">
               <Link href={`#coming-soon`}>
                 <a className="py-2">팜플렛(Coming Soon!)</a>
               </Link>

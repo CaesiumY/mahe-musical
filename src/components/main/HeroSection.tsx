@@ -11,9 +11,8 @@ const HeroSection = () => {
           src="/images/poster.jpg"
           objectFit="cover"
           layout="fill"
-          width="100%"
-          height="100%"
           className="brightness-50"
+          priority
         />
         <div className="absolute w-3/4 text-[#f7e7f5] text-center text-md sm:text-lg top-1/2 left-1/2 translate-x-[-50%] translate-y-[-50%] select-none border-2 bg-transparent p-5 rounded-lg">
           <p className="text-[#ecca4b] tracking-widest">M U S I C A L</p>

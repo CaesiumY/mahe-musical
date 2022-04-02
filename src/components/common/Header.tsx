@@ -14,12 +14,12 @@ const Header = () => {
 
   return (
     <header>
-      <nav
-        className={`transition-all duration-300 p-5 flex flex-col sm:flex-row ${
-          isOpen ? "bg-[#EFEFEF]" : "bg-transparent"
-        }`}
-      >
-        <div className="flex text-[#667080]">
+      <nav className="transition-all duration-300 xl:w-3/4 xl:mx-auto flex flex-col sm:flex-row">
+        <div
+          className={`flex text-[#667080] p-4 z-50 ${
+            isOpen ? "bg-[#EFEFEF]" : "bg-[#ffe3e3]"
+          }`}
+        >
           <Link href="/">
             <a className="flex items-center font-bold text-3xl">MA:HE</a>
           </Link>
@@ -33,9 +33,12 @@ const Header = () => {
             </button>
           </div>
         </div>
-
-        <div className={`${!isOpen && "hidden"} sm:ml-auto sm:block`}>
-          <ul className="flex flex-col sm:flex-row items-end gap-1 sm:gap-4 mt-6 sm:mt-0 text-xl text-black font-semibold">
+        <div
+          className={`${
+            isOpen ? "" : "translate-y-[-400px] sm:translate-y-0"
+          } sm:ml-auto transition-transform absolute sm:static top-[68px] left-[0] right-[0] z-40 bg-[#EFEFEF] sm:bg-inherit p-4`}
+        >
+          <ul className="flex flex-col sm:flex-row items-end gap-1 sm:gap-4 sm:mt-0 text-xl text-black font-semibold">
             {Object.entries(submenu).map(([key, value]) => (
               <li key={key} className="py-2 hover:text-gray-500">
                 <Link href={`/${key}`}>

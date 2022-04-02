@@ -12,6 +12,8 @@ const Header = () => {
 
   const toggleDrawer = () => setIsOpen((value) => !value);
 
+  const closeDrawer = () => setIsOpen(false);
+
   return (
     <header>
       <nav className="transition-all duration-300 xl:w-3/4 xl:mx-auto flex flex-col sm:flex-row">
@@ -21,7 +23,12 @@ const Header = () => {
           }`}
         >
           <Link href="/">
-            <a className="flex items-center font-bold text-3xl">MA:HE</a>
+            <a
+              className="flex items-center font-bold text-3xl"
+              onClick={closeDrawer}
+            >
+              MA:HE
+            </a>
           </Link>
           <div className="ml-auto flex items-center sm:hidden">
             <button onClick={toggleDrawer}>
@@ -42,14 +49,18 @@ const Header = () => {
             {Object.entries(submenu).map(([key, value]) => (
               <li key={key} className="py-2 hover:text-gray-500">
                 <Link href={`/${key}`}>
-                  <a className="py-2">{value}</a>
+                  <a className="py-2" onClick={closeDrawer}>
+                    {value}
+                  </a>
                 </Link>
               </li>
             ))}
             <div className="bg-black w-full h-px sm:hidden" />
             <li className="py-2 hover:text-gray-500">
               <Link href={`/comingSoon`}>
-                <a className="py-2">팜플렛(Coming Soon!)</a>
+                <a className="py-2" onClick={closeDrawer}>
+                  팜플렛(Coming Soon!)
+                </a>
               </Link>
             </li>
           </ul>

@@ -18,7 +18,7 @@ const IconGroup = () => {
         ),
       },
       youtube: {
-        link: "",
+        link: "/",
         icon: (
           <AiOutlineYoutube
             className="inline rounded-full bg-[#ffe3e3] p-2 hover:bg-red-300 hover:text-[#ffe3e3] ml-2"
@@ -27,7 +27,7 @@ const IconGroup = () => {
         ),
       },
       twitter: {
-        link: "",
+        link: "https://twitter.com/mahe_musical?s=20&t=ePxaexbLvttJ-iaJ40DYVg",
         icon: (
           <AiOutlineTwitter
             className="inline rounded-full bg-[#ffe3e3] p-2 hover:bg-red-300 hover:text-[#ffe3e3] ml-2"

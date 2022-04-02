@@ -18,7 +18,7 @@ const IconGroup = () => {
         ),
       },
       youtube: {
-        link: "/",
+        link: "https://www.youtube.com/channel/UCC3lh11eUPm-MdGPxARenug",
         icon: (
           <AiOutlineYoutube
             className="inline rounded-full bg-[#ffe3e3] p-2 hover:bg-red-300 hover:text-[#ffe3e3] ml-2"

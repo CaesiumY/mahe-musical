@@ -39,10 +39,7 @@ const Footer = () => {
   return (
     <footer className="text-gray-600 bg-white">
       <div className="px-5 py-5 sm:p-16 flex flex-col gap-4">
-        <div
-          className="basis-2/3 text-center text-sm"
-          style={{ wordBreak: "keep-all" }}
-        >
+        <div className="basis-2/3 text-center text-sm">
           <p>
             연세대학교 뮤지컬 소모임 ma:he 봄 공연 뮤지컬 &lt;어쩌면
             해피엔딩&gt;

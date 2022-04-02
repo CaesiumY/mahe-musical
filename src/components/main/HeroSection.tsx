@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import React from "react";
+import IconGroup from "../common/IconGroup";
 
 const HeroSection = () => {
   return (
@@ -21,13 +22,22 @@ const HeroSection = () => {
           </h2>
           <p>연세대학교 뮤지컬 소모임 ma:he </p>
           <p>봄 공연 뮤지컬</p>
+          <p className="text-xl font-semibold underline decoration-wavy">
+            2022.05.12 - 2022.05.15
+          </p>
+          <p className="text-xl font-semibold underline decoration-wavy">
+            북아현아트홀
+          </p>
 
-          <div className="mt-10 mb-3">
+          <div className="mt-10 ">
             <Link href="/">
-              <a className="py-3 px-8 rounded-full border-2 text-2xl font-bold hover:bg-gradient-to-r from-[#fbd4d4] to-[#848ac1] hover:text-gray-800 transition-colors">
+              <a className="w-full py-3 px-12 rounded-full border-2 text-3xl font-bold hover:bg-gradient-to-r from-[#fbd4d4] to-[#848ac1] hover:text-gray-800 transition-colors">
                 예매하기
               </a>
             </Link>
+            <div className="mt-10">
+              <IconGroup />
+            </div>
           </div>
         </div>
       </div>

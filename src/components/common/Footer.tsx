@@ -1,39 +1,5 @@
 import React from "react";
-import {
-  AiOutlineInstagram,
-  AiOutlineTwitter,
-  AiOutlineYoutube,
-} from "react-icons/ai";
-
-const iconSet = {
-  instagram: {
-    link: "https://www.instagram.com/mahe_musical/",
-    icon: (
-      <AiOutlineInstagram
-        className="inline rounded-full bg-[#ffe3e3] p-2 hover:bg-red-300 hover:text-[#ffe3e3] ml-2"
-        size="2.5rem"
-      />
-    ),
-  },
-  youtube: {
-    link: "",
-    icon: (
-      <AiOutlineYoutube
-        className="inline rounded-full bg-[#ffe3e3] p-2 hover:bg-red-300 hover:text-[#ffe3e3] ml-2"
-        size="2.5rem"
-      />
-    ),
-  },
-  twitter: {
-    link: "",
-    icon: (
-      <AiOutlineTwitter
-        className="inline rounded-full bg-[#ffe3e3] p-2 hover:bg-red-300 hover:text-[#ffe3e3] ml-2"
-        size="2.5rem"
-      />
-    ),
-  },
-};
+import IconGroup from "./IconGroup";
 
 const Footer = () => {
   return (
@@ -51,13 +17,7 @@ const Footer = () => {
           </p>
         </div>
 
-        <div className="basis-1/3 text-center text-2xl">
-          {Object.entries(iconSet).map(([key, value]) => (
-            <a key={key} href={value.link}>
-              {value.icon}
-            </a>
-          ))}
-        </div>
+        <IconGroup />
       </div>
     </footer>
   );

@@ -1,0 +1,9 @@
+# *
+User-agent: *
+Allow: /
+
+# Host
+Host: https://musical-ticketing.vercel.app
+
+# Sitemaps
+Sitemap: https://musical-ticketing.vercel.app/sitemap.xml

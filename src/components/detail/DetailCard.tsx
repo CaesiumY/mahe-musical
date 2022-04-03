@@ -10,7 +10,7 @@ const carouselList = {
 
 const DetailCard = () => {
   return (
-    <section>
+    <section className="m-3 sm:m-10">
       <article className="max-w-md mx-auto">
         <Flicking
           hideBeforeInit={true}
@@ -32,10 +32,12 @@ const DetailCard = () => {
           ))}
         </Flicking>
 
-        <div className="mt-[-7px] p-5 bg-white rounded-b-lg">
-          <h1>어쩌면 해피엔딩</h1>
+        <div className="mt-[-7px] p-5 bg-white rounded-b-lg text-gray-700">
+          <h1 className="text-4xl font-bold mb-2">어쩌면 해피엔딩</h1>
           <p>연세대학교 뮤지컬 소모임 ma:he 마헤</p>
-          <p>2022.05.12 - 2022.05.15 북아현아트홀</p>
+          <p className="font-semibold underline ">
+            2022.05.12 - 2022.05.15 북아현아트홀
+          </p>
         </div>
       </article>
     </section>

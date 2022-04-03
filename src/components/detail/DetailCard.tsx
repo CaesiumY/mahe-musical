@@ -16,7 +16,6 @@ const DetailCard = () => {
           hideBeforeInit={true}
           circular={true}
           align="center"
-          bound={true}
           className="rounded-t-lg"
         >
           {Object.entries(carouselList).map(([key, value]) => (

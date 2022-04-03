@@ -16,7 +16,7 @@ const MetaTags = ({ subTitle, pathname }: MetaTagsProps) => {
     process.env.SITE_URL || "https://musical-ticketing.vercel.app";
 
   const DEFAULT_DESCRIPTION =
-    "연세대학교 뮤지컬 소모임 ma:he 봄 공연 뮤지컬 어쩌면 해피엔딩 2022.05.12 - 2022.05.15 북아현아트홀";
+    "연세대학교 뮤지컬 소모임 ma:he 마헤 봄 공연 뮤지컬 어쩌면 해피엔딩 2022.05.12 - 2022.05.15 북아현아트홀";
 
   return (
     <Head>

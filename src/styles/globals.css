@@ -12,6 +12,7 @@ body {
     sans-serif;
   background-color: #ffe3e3;
   word-break: keep-all;
+  scroll-behavior: smooth;
 }
 
 a {

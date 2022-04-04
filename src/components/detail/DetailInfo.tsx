@@ -55,6 +55,7 @@ const DetailInfo = () => {
         <Image
           src={infoTabs[currentTab].image}
           alt={infoTabs[currentTab].alt}
+          priority
         />
       </article>
     </section>

@@ -27,9 +27,9 @@ const MetaTags = ({ subTitle, pathname }: MetaTagsProps) => {
       <meta property="og:title" content={title} />
       <meta property="og:description" content={DEFAULT_DESCRIPTION}></meta>
       <meta property="og:url" content={siteUrl + pathname} />
-      <meta property="og:image" content={siteUrl + "/images/front.jpg"} />
+      <meta property="og:image" content={siteUrl + "/images/preview.jpg"} />
 
-      <link rel="icon" href="/favicon.ico" />
+      <link rel="icon" href="/favicon.png" />
     </Head>
   );
 };

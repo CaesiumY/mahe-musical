@@ -55,7 +55,10 @@ const Header = () => {
           >
             <ul className="flex flex-col sm:flex-row items-end gap-1 sm:gap-6 sm:mt-0 text-lg text-navy sm:text-ivory sm:font-semibold">
               {Object.entries(submenu).map(([key, value]) => (
-                <li key={key} className="py-2 sm:hover:text-gold">
+                <li
+                  key={key}
+                  className="py-2 sm:hover:text-gold transition-colors"
+                >
                   <Link href={`/${key}`}>
                     <a className="py-2" onClick={closeDrawer}>
                       {value}
@@ -66,7 +69,10 @@ const Header = () => {
               <div className="bg-[#c9ccd0] w-full h-px sm:hidden" />
               <li className="py-2">
                 <Link href={`/comingSoon`}>
-                  <a className="py-2 sm:hover:text-gold" onClick={closeDrawer}>
+                  <a
+                    className="py-2 sm:hover:text-gold transition-colors"
+                    onClick={closeDrawer}
+                  >
                     팜플렛
                   </a>
                 </Link>

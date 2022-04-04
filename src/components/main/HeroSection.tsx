@@ -3,39 +3,49 @@ import Link from "next/link";
 import React from "react";
 import IconGroup from "../common/IconGroup";
 
+import bgMain from "@/images/background_main.jpg";
+import musical from "@/images/musical.png";
+import line from "@/images/line.png";
+import title from "@/images/title.png";
+import location from "@/images/location.png";
+
 const HeroSection = () => {
   return (
     <section>
       <div className="relative h-screen">
         <Image
           alt="마헤_포스터"
-          src="/images/poster.jpg"
+          src={bgMain}
           objectFit="cover"
           layout="fill"
-          className="brightness-50"
           priority
+          quality={100}
+          className="object-bottom sm:object-center"
         />
-        <div className="absolute w-3/4 text-[#f7e7f5] text-center text-md sm:text-lg top-1/2 left-1/2 translate-x-[-50%] translate-y-[-50%] select-none border-2 bg-transparent p-5 rounded-lg">
-          <p className="text-[#ecca4b] tracking-widest">M U S I C A L</p>
-          <h2 className="text-6xl sm:text-8xl font-bold my-5 text-transparent bg-gradient-to-r from-[#fbd4d4] to-[#848ac1] bg-clip-text">
-            어쩌면 해피엔딩
-          </h2>
-          <p>연세대학교 뮤지컬 소모임 ma:he </p>
-          <p>봄 공연 뮤지컬</p>
-          <p className="text-xl font-semibold underline decoration-wavy">
-            2022.05.12 - 2022.05.15
+        <div className="absolute w-full text-ivory text-center text-md sm:text-lg top-[35%] left-1/2 translate-x-[-50%] translate-y-[-50%] select-none">
+          <p className="text-sm font-light">
+            연세대학교 뮤지컬 소모임 ma:he 봄 공연
           </p>
-          <p className="text-xl font-semibold underline decoration-wavy">
-            북아현아트홀
-          </p>
+          <div className="my-3">
+            <Image src={line} alt="line" quality={100} />
+          </div>
+          <div className="mx-24 my-5">
+            <Image src={musical} alt="musical" quality={100} />
+          </div>
+          <div className="mx-12 my-5">
+            <Image src={title} alt="title" quality={100} priority />
+          </div>
+          <div className="mx-20">
+            <Image src={location} alt="location" quality={100} />
+          </div>
 
           <div className="mt-10 ">
             <Link href="/">
-              <a className="w-full py-3 px-12 rounded-full border-2 text-3xl font-bold hover:bg-gradient-to-r from-[#fbd4d4] to-[#848ac1] hover:text-gray-800 transition-colors">
+              <a className="bg-ivory hover:bg-red-300 transition-colors bg-opacity-30 text-ivory font-bold px-16 py-3 rounded-lg">
                 예매하기
               </a>
             </Link>
-            <div className="mt-10">
+            <div className="mt-7">
               <IconGroup />
             </div>
           </div>

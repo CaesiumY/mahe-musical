@@ -4,11 +4,11 @@ import React from "react";
 import IconGroup from "../common/IconGroup";
 
 import bgMain from "@/images/background_main.jpg";
-import playInfo from "@/images/play_info.png";
-import line from "@/images/line.png";
-import musical from "@/images/musical.png";
-import title from "@/images/title.png";
-import location from "@/images/location.png";
+import playInfo from "@/images/play_info.svg";
+import line from "@/images/line.svg";
+import musical from "@/images/musical.svg";
+import title from "@/images/title.svg";
+import location from "@/images/location.svg";
 
 const HeroSection = () => {
   return (

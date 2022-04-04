@@ -53,9 +53,9 @@ const Header = () => {
               isOpen ? "" : "translate-y-[-250px] sm:translate-y-0"
             } sm:ml-auto transition-transform absolute sm:static top-[68px] left-[0] right-[0] z-40 bg-white sm:bg-inherit px-8 pb-4 sm:p-4 rounded-b-3xl`}
           >
-            <ul className="flex flex-col sm:flex-row items-end gap-1 sm:gap-4 sm:mt-0 text-xl text-navy sm:text-ivory font-normal">
+            <ul className="flex flex-col sm:flex-row items-end gap-1 sm:gap-6 sm:mt-0 text-lg text-navy sm:text-ivory sm:font-semibold">
               {Object.entries(submenu).map(([key, value]) => (
-                <li key={key} className="py-2">
+                <li key={key} className="py-2 sm:hover:text-gold">
                   <Link href={`/${key}`}>
                     <a className="py-2" onClick={closeDrawer}>
                       {value}
@@ -66,7 +66,7 @@ const Header = () => {
               <div className="bg-[#c9ccd0] w-full h-px sm:hidden" />
               <li className="py-2">
                 <Link href={`/comingSoon`}>
-                  <a className="py-2" onClick={closeDrawer}>
+                  <a className="py-2 sm:hover:text-gold" onClick={closeDrawer}>
                     팜플렛
                   </a>
                 </Link>

@@ -8,6 +8,7 @@ module.exports = {
       colors: {
         ivory: "#fffbef",
         navy: "#193052",
+        gold: "#f2cb03",
       },
     },
   },

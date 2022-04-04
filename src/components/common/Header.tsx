@@ -62,7 +62,7 @@ const Header = () => {
               {Object.entries(submenu).map(([key, value]) => (
                 <li
                   key={key}
-                  className="py-2 sm:hover:text-gold transition-colors"
+                  className="py-2 sm:hover:text-pink transition-colors"
                 >
                   <Link href={`/${key}`}>
                     <a className="py-2" onClick={closeDrawer}>
@@ -75,7 +75,7 @@ const Header = () => {
               <li className="py-2">
                 <Link href={`/comingSoon`}>
                   <a
-                    className="py-2 sm:hover:text-gold transition-colors"
+                    className="py-2 sm:hover:text-pink transition-colors"
                     onClick={closeDrawer}
                   >
                     팜플렛

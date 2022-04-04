@@ -13,9 +13,9 @@ const BookDetail = () => {
     <>
       <MetaTags subTitle="예매 상세" pathname={pathname} />
       <ScrollUpButton />
-      <DetailCard />
+      {/* <DetailCard /> */}
       <DetailInfo />
-      <BookButton />
+      {/* <BookButton /> */}
     </>
   );
 };

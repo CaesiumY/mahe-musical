@@ -1,9 +1,9 @@
 import Image from "next/image";
 import React, { useState } from "react";
-import seatTable from "@/images/좌석배치도.png";
-import discountTable from "@/images/discount_table.png";
-import introduction from "@/images/introduction.png";
-import coronaRule from "@/images/corona_rule.png";
+import seatTable from "@/images/좌석배치도.jpg";
+import discountTable from "@/images/discount_table.jpg";
+import introduction from "@/images/introduction.jpg";
+import coronaRule from "@/images/corona_rule.jpg";
 
 const infoTabs = {
   introduction: {
@@ -51,11 +51,11 @@ const DetailInfo = () => {
           ))}
         </div>
       </div>
-      <article className="text-center mt-8">
+      <article className="text-center mt-8 mx-auto max-w-sm">
         <Image
           src={infoTabs[currentTab].image}
           alt={infoTabs[currentTab].alt}
-          priority
+          quality={100}
         />
       </article>
     </section>

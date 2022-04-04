@@ -1,3 +1,4 @@
+import Footer from "@/components/common/Footer";
 import MetaTags from "@/components/common/MetaTags";
 import HeroSection from "@/components/main/HeroSection";
 import { NextPage } from "next";
@@ -10,6 +11,7 @@ const Home: NextPage = () => {
     <>
       <MetaTags pathname={pathname} />
       <HeroSection />
+      <Footer />
     </>
   );
 };

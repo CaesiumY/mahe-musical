@@ -1,5 +1,4 @@
 import React from "react";
-import Footer from "../common/Footer";
 import Header from "../common/Header";
 
 interface LayoutProps {
@@ -12,8 +11,6 @@ const Layout = ({ children }: LayoutProps) => {
       <Header />
 
       <main className="sm:mx-auto">{children}</main>
-
-      <Footer />
     </>
   );
 };

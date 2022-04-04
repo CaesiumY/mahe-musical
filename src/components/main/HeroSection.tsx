@@ -46,7 +46,7 @@ const HeroSection = () => {
 
           <div className="mt-10 ">
             <Link href="/">
-              <a className="bg-ivory hover:bg-red-300 transition-colors bg-opacity-30 text-ivory font-bold px-16 py-3 rounded-lg">
+              <a className="bg-ivory hover:bg-pink transition-colors bg-opacity-30 text-ivory font-bold px-16 py-3 rounded-lg">
                 예매하기
               </a>
             </Link>

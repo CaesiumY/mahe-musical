@@ -12,7 +12,7 @@ const IconGroup = () => {
         link: "https://www.instagram.com/mahe_musical/",
         icon: (
           <AiOutlineInstagram
-            className="inline rounded-full p-2 hover:bg-red-300 ml-2 transition-colors"
+            className="inline rounded-full p-2 hover:bg-pink ml-2 transition-colors"
             size="2.5rem"
           />
         ),
@@ -21,7 +21,7 @@ const IconGroup = () => {
         link: "https://twitter.com/mahe_musical?s=20&t=ePxaexbLvttJ-iaJ40DYVg",
         icon: (
           <AiOutlineTwitter
-            className="inline rounded-full p-2 hover:bg-red-300 ml-2 transition-colors"
+            className="inline rounded-full p-2 hover:bg-pink ml-2 transition-colors"
             size="2.5rem"
           />
         ),
@@ -30,7 +30,7 @@ const IconGroup = () => {
         link: "https://www.youtube.com/channel/UCC3lh11eUPm-MdGPxARenug",
         icon: (
           <AiFillYoutube
-            className="inline rounded-full p-2 hover:bg-red-300 ml-2 transition-colors"
+            className="inline rounded-full p-2 hover:bg-pink ml-2 transition-colors"
             size="2.5rem"
           />
         ),

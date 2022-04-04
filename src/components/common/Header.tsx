@@ -1,10 +1,12 @@
+import Image from "next/image";
 import Link from "next/link";
 import React, { useState } from "react";
-import { AiOutlineClose, AiOutlineMenu } from "react-icons/ai";
+import logoIvory from "@/images/logo_ivory.png";
+import logoNavy from "@/images/logo_navy.png";
 
 const submenu = {
-  bookDetail: "예매 상세보기",
-  bookCheck: "예매 확인하기",
+  bookDetail: "예매하기",
+  bookCheck: "예매내역 확인",
 };
 
 const Header = () => {
@@ -15,58 +17,71 @@ const Header = () => {
   const closeDrawer = () => setIsOpen(false);
 
   return (
-    <header>
-      <nav className="transition-all duration-300 xl:w-3/4 xl:mx-auto flex flex-col sm:flex-row">
-        <div
-          className={`flex text-[#667080] p-4 z-50 ${
-            isOpen ? "bg-[#EFEFEF]" : "bg-[#ffe3e3]"
-          }`}
-        >
-          <Link href="/">
-            <a
-              className="flex items-center font-bold text-3xl"
-              onClick={closeDrawer}
-            >
-              MA:HE
-            </a>
-          </Link>
-          <div className="ml-auto flex items-center sm:hidden">
-            <button onClick={toggleDrawer}>
-              {isOpen ? (
-                <AiOutlineClose size="2rem" />
-              ) : (
-                <AiOutlineMenu size="2rem" />
-              )}
-            </button>
+    <>
+      <header className="fixed top-0 left-0 right-0 z-50">
+        <nav className="transition-all duration-500 xl:w-3/4 xl:mx-auto flex flex-col sm:flex-row">
+          <div
+            className={`flex text-[#667080] px-8 py-6 sm:p-4 z-50 ${
+              isOpen ? "bg-white" : "bg-transparent"
+            }`}
+          >
+            <Link href="/">
+              <a
+                className="flex items-center font-bold text-3xl"
+                onClick={closeDrawer}
+              >
+                <Image src={isOpen ? logoNavy : logoIvory} alt="logo" />
+              </a>
+            </Link>
+            <div className="ml-auto flex items-center sm:hidden">
+              <button className="flex" onClick={toggleDrawer}>
+                {isOpen ? (
+                  <Image
+                    src="/ui/close.png"
+                    alt="close"
+                    width={24}
+                    height={24}
+                  />
+                ) : (
+                  <Image src="/ui/menu.png" alt="menu" width={24} height={24} />
+                )}
+              </button>
+            </div>
           </div>
-        </div>
-        <div
-          className={`${
-            isOpen ? "" : "translate-y-[-400px] sm:translate-y-0"
-          } sm:ml-auto transition-transform absolute sm:static top-[68px] left-[0] right-[0] z-40 bg-[#EFEFEF] sm:bg-inherit p-4`}
-        >
-          <ul className="flex flex-col sm:flex-row items-end gap-1 sm:gap-4 sm:mt-0 text-xl text-black font-semibold">
-            {Object.entries(submenu).map(([key, value]) => (
-              <li key={key} className="py-2 hover:text-gray-500">
-                <Link href={`/${key}`}>
+          <div
+            className={`${
+              isOpen ? "" : "translate-y-[-250px] sm:translate-y-0"
+            } sm:ml-auto transition-transform absolute sm:static top-[68px] left-[0] right-[0] z-40 bg-white sm:bg-inherit px-8 pb-4 sm:p-4 rounded-b-3xl`}
+          >
+            <ul className="flex flex-col sm:flex-row items-end gap-1 sm:gap-4 sm:mt-0 text-xl text-navy sm:text-ivory font-normal">
+              {Object.entries(submenu).map(([key, value]) => (
+                <li key={key} className="py-2">
+                  <Link href={`/${key}`}>
+                    <a className="py-2" onClick={closeDrawer}>
+                      {value}
+                    </a>
+                  </Link>
+                </li>
+              ))}
+              <div className="bg-[#c9ccd0] w-full h-px sm:hidden" />
+              <li className="py-2">
+                <Link href={`/comingSoon`}>
                   <a className="py-2" onClick={closeDrawer}>
-                    {value}
+                    팜플렛
                   </a>
                 </Link>
               </li>
-            ))}
-            <div className="bg-black w-full h-px sm:hidden" />
-            <li className="py-2 hover:text-gray-500">
-              <Link href={`/comingSoon`}>
-                <a className="py-2" onClick={closeDrawer}>
-                  팜플렛(Coming Soon!)
-                </a>
-              </Link>
-            </li>
-          </ul>
-        </div>
-      </nav>
-    </header>
+            </ul>
+          </div>
+        </nav>
+      </header>
+      {isOpen && (
+        <div
+          className="absolute top-0 bottom-0 left-0 right-0 bg-black z-40 opacity-60"
+          onClick={closeDrawer}
+        />
+      )}
+    </>
   );
 };
 

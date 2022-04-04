@@ -1,8 +1,8 @@
 import Image from "next/image";
 import Link from "next/link";
 import React, { useState } from "react";
-import logoIvory from "@/images/logo_ivory.png";
-import logoNavy from "@/images/logo_navy.png";
+import logoIvory from "@/images/logo_ivory.svg";
+import logoNavy from "@/images/logo_navy.svg";
 
 const submenu = {
   bookDetail: "예매하기",
@@ -30,20 +30,25 @@ const Header = () => {
                 className="flex items-center font-bold text-3xl"
                 onClick={closeDrawer}
               >
-                <Image src={isOpen ? logoNavy : logoIvory} alt="logo" />
+                <Image src={isOpen ? logoNavy : logoIvory} alt="마헤 로고" />
               </a>
             </Link>
             <div className="ml-auto flex items-center sm:hidden">
               <button className="flex" onClick={toggleDrawer}>
                 {isOpen ? (
                   <Image
-                    src="/ui/close.png"
-                    alt="close"
+                    src="/ui/close.svg"
+                    alt="닫기"
                     width={24}
                     height={24}
                   />
                 ) : (
-                  <Image src="/ui/menu.png" alt="menu" width={24} height={24} />
+                  <Image
+                    src="/ui/menu.svg"
+                    alt="메뉴 열기"
+                    width={24}
+                    height={24}
+                  />
                 )}
               </button>
             </div>

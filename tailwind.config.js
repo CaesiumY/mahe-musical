@@ -10,6 +10,7 @@ module.exports = {
         navy: "#193052",
         gold: "#f2cb03",
         pink: "#f4cede",
+        lightGray: "#c9ccd0",
       },
     },
   },

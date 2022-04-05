@@ -9,7 +9,11 @@ const submenu = {
   bookCheck: "예매내역 확인",
 };
 
-const Header = () => {
+interface HeaderProps {
+  color?: "ivory" | "navy";
+}
+
+const Header = ({ color = "ivory" }: HeaderProps) => {
   const [isOpen, setIsOpen] = useState(false);
 
   const toggleDrawer = () => setIsOpen((value) => !value);
@@ -30,7 +34,12 @@ const Header = () => {
                 className="flex items-center font-bold text-3xl"
                 onClick={closeDrawer}
               >
-                <Image src={isOpen ? logoNavy : logoIvory} alt="마헤 로고" />
+                <Image
+                  src={
+                    isOpen ? logoNavy : color === "ivory" ? logoIvory : logoNavy
+                  }
+                  alt="마헤 로고"
+                />
               </a>
             </Link>
             <div className="ml-auto flex items-center sm:hidden">
@@ -44,7 +53,9 @@ const Header = () => {
                   />
                 ) : (
                   <Image
-                    src="/ui/menu.svg"
+                    src={
+                      color === "ivory" ? "/ui/menu.svg" : "/ui/menu_navy.svg"
+                    }
                     alt="메뉴 열기"
                     width={24}
                     height={24}

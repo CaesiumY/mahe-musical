@@ -69,11 +69,15 @@ const Header = ({ color = "ivory" }: HeaderProps) => {
               isOpen ? "" : "translate-y-[-250px] sm:translate-y-0"
             } sm:ml-auto transition-transform absolute sm:static top-[68px] left-[0] right-[0] z-40 bg-white sm:bg-inherit px-8 pb-4 sm:p-4 rounded-b-3xl`}
           >
-            <ul className="flex flex-col sm:flex-row items-end gap-1 sm:gap-6 sm:mt-0 text-lg text-navy sm:text-ivory sm:font-semibold">
+            <ul
+              className={`flex flex-col sm:flex-row items-end gap-1 sm:gap-6 sm:mt-0 text-lg text-navy ${
+                color === "ivory" ? "sm:text-ivory" : "sm:text-navy"
+              } sm:font-semibold`}
+            >
               {Object.entries(submenu).map(([key, value]) => (
                 <li
                   key={key}
-                  className="py-2 sm:hover:text-pink transition-colors"
+                  className="py-2 sm:hover:text-gold transition-colors"
                 >
                   <Link href={`/${key}`}>
                     <a className="py-2" onClick={closeDrawer}>
@@ -86,7 +90,7 @@ const Header = ({ color = "ivory" }: HeaderProps) => {
               <li className="py-2">
                 <Link href={`/comingSoon`}>
                   <a
-                    className="py-2 sm:hover:text-pink transition-colors"
+                    className="py-2 sm:hover:text-gold transition-colors"
                     onClick={closeDrawer}
                   >
                     팜플렛

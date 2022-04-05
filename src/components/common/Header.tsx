@@ -1,6 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import logoIvory from "@/images/logo_ivory.svg";
 import logoNavy from "@/images/logo_navy.svg";
 
@@ -19,6 +19,12 @@ const Header = ({ color = "ivory" }: HeaderProps) => {
   const toggleDrawer = () => setIsOpen((value) => !value);
 
   const closeDrawer = () => setIsOpen(false);
+
+  useEffect(() => {
+    isOpen
+      ? document.body.classList.add("isOpen")
+      : document.body.classList.remove("isOpen");
+  }, [isOpen]);
 
   return (
     <>
@@ -103,7 +109,7 @@ const Header = ({ color = "ivory" }: HeaderProps) => {
       </header>
       {isOpen && (
         <div
-          className="absolute top-0 bottom-0 left-0 right-0 bg-black z-40 opacity-60"
+          className="fixed top-0 bottom-0 left-0 right-0 bg-black z-40 opacity-60"
           onClick={closeDrawer}
         />
       )}

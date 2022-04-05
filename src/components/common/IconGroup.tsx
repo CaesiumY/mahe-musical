@@ -46,7 +46,7 @@ const IconGroup = ({ color }: IconGroupProps) => {
   return (
     <div
       className={`basis-1/3 text-center text-2xl ${
-        color ? `text-${color}` : "text-ivory"
+        color === "lightGray" ? `text-lightGray` : "text-ivory"
       }`}
     >
       {Object.entries(iconSet).map(([key, value]) => (

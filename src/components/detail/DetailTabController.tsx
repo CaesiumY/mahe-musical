@@ -17,7 +17,7 @@ const DetailTabController = () => {
   const onClickButton = (key: tabsType) => setSelected(key);
 
   return (
-    <section className="m-[30px]">
+    <section className="m-[30px] sm:m-24">
       <div className="flex flex-row gap-9 text-sm sm:text-xl">
         {(Object.keys(tabs) as tabsType[]).map((key) => (
           <button

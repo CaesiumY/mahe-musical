@@ -8,17 +8,17 @@ import oliver2 from "@/images/castings/oliver2.png";
 import james from "@/images/castings/james.png";
 
 const castings = {
-  이예빈: claire,
-  이예진: claire2,
-  표영후: oliver,
   최현우: oliver2,
+  표영후: oliver,
   김예준: james,
+  이예진: claire2,
+  이예빈: claire,
 };
 
 const CastingPlan = () => {
   return (
     <section>
-      <div className="flex flex-row flex-wrap gap-3">
+      <div className="flex flex-row flex-wrap-reverse gap-3">
         {Object.entries(castings).map(([key, value]) => (
           <div key={key} className="basis-1/4 sm:basis-1/6">
             <Image src={value} alt={key} quality={100} placeholder="blur" />

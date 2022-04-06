@@ -29,7 +29,7 @@ const Header = ({ color = "ivory" }: HeaderProps) => {
   return (
     <>
       <header className="fixed top-0 left-0 right-0 z-50">
-        <nav className="transition-all duration-500 xl:w-3/4 xl:mx-auto flex flex-col sm:flex-row">
+        <nav className="transition-all duration-500 xl:mx-24 flex flex-col sm:flex-row">
           <div
             className={`flex text-[#667080] px-8 py-6 sm:p-4 z-50 ${
               isOpen ? "bg-white" : "bg-transparent"

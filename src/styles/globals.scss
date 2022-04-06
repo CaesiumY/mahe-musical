@@ -26,3 +26,14 @@ a {
 * {
   box-sizing: border-box;
 }
+
+ul {
+  list-style: disc;
+  margin-left: 16px;
+}
+
+li {
+  & {
+    margin-bottom: 7px;
+  }
+}

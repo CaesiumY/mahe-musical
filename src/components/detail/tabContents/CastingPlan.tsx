@@ -25,7 +25,7 @@ const CastingPlan = () => {
           </div>
         ))}
       </div>
-      <div className="mt-14 text-navy font-bold">
+      <div className="mt-14 text-navy font-bold max-w-screen-md">
         <div className="pb-3 mb-3 border-b-2 border-lightGray flex flex-row">
           <span className="basis-1/3">5/12(목)</span>
           <div className="flex flex-col sm:flex-row gap-3 flex-grow">

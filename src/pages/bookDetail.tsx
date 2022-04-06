@@ -1,3 +1,4 @@
+import BookButton from "@/components/common/BookButton";
 import Header from "@/components/common/Header";
 import MetaTags from "@/components/common/MetaTags";
 import ScrollUpButton from "@/components/common/ScrollUpButton";
@@ -16,6 +17,7 @@ const BookDetail = () => {
       <ScrollUpButton />
       <DetailTicketInfo />
       <DetailTabController />
+      <BookButton />
     </>
   );
 };

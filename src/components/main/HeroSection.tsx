@@ -22,6 +22,7 @@ const HeroSection = () => {
           priority
           quality={100}
           className="object-bottom sm:object-center"
+          placeholder="blur"
         />
         <div className="absolute w-full text-ivory text-center text-md sm:text-lg top-[35%] left-1/2 translate-x-[-50%] translate-y-[-50%] select-none">
           <div className="mx-24">

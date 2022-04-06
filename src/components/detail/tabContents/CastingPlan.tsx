@@ -21,7 +21,7 @@ const CastingPlan = () => {
       <div className="flex flex-row flex-wrap gap-3">
         {Object.entries(castings).map(([key, value]) => (
           <div key={key} className="basis-1/4 sm:basis-1/6">
-            <Image src={value} alt={key} />
+            <Image src={value} alt={key} quality={100} placeholder="blur" />
           </div>
         ))}
       </div>

@@ -15,7 +15,14 @@ const DetailContainer = () => {
       <DetailTicketInfo />
       <DetailTabController />
       <BottomDrawer isOpen={isOpen} onClose={closeDrawer} />
-      <BookButton onClick={openDrawer} />
+
+      <div
+        className={`text-center bg-white py-4 sticky bottom-0 z-40 ${
+          !isOpen && "rounded-t-xl shadow-[0_-20px_25px_-5px_rgb(0,0,0,0.1)]"
+        }`}
+      >
+        <BookButton onClick={openDrawer} />
+      </div>
     </>
   );
 };

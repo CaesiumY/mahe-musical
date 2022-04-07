@@ -1,8 +1,6 @@
-import BookButton from "@/components/common/BookButton";
 import MetaTags from "@/components/common/MetaTags";
 import ScrollUpButton from "@/components/common/ScrollUpButton";
-import DetailTabController from "@/components/detail/DetailTabController";
-import DetailTicketInfo from "@/components/detail/DetailTicketInfo";
+import DetailContainer from "@/components/detail/DetailContainer";
 import { useRouter } from "next/router";
 import React from "react";
 
@@ -13,9 +11,7 @@ const BookDetail = () => {
     <>
       <MetaTags subTitle="예매 상세" pathname={pathname} />
       <ScrollUpButton />
-      <DetailTicketInfo />
-      <DetailTabController />
-      <BookButton />
+      <DetailContainer />
     </>
   );
 };

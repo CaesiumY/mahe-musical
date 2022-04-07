@@ -3,6 +3,7 @@ import Link from "next/link";
 import React, { useEffect, useState } from "react";
 import logoIvory from "@/images/logo_ivory.svg";
 import logoNavy from "@/images/logo_navy.svg";
+import OverlayCurtain from "./OverlayCurtain";
 
 const submenu = {
   bookDetail: "예매하기",
@@ -107,12 +108,7 @@ const Header = ({ color = "ivory" }: HeaderProps) => {
           </div>
         </nav>
       </header>
-      {isOpen && (
-        <div
-          className="fixed top-0 bottom-0 left-0 right-0 bg-black z-40 opacity-60"
-          onClick={closeDrawer}
-        />
-      )}
+      {isOpen && <OverlayCurtain onClick={closeDrawer} />}
     </>
   );
 };

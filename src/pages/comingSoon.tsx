@@ -16,7 +16,7 @@ const ComingSoon = () => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <section className="flex items-center justify-center h-screen text-center">
-        <div className="text-8xl font-bold rounded-full bg-white px-5 py-10 select-none">
+        <div className="text-8xl font-bold rounded-full bg-pink px-5 py-10 select-none">
           Coming Soon!
         </div>
       </section>

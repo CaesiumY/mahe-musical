@@ -1,5 +1,4 @@
 import BookButton from "@/components/common/BookButton";
-import Header from "@/components/common/Header";
 import MetaTags from "@/components/common/MetaTags";
 import ScrollUpButton from "@/components/common/ScrollUpButton";
 import DetailTabController from "@/components/detail/DetailTabController";
@@ -13,7 +12,6 @@ const BookDetail = () => {
   return (
     <>
       <MetaTags subTitle="예매 상세" pathname={pathname} />
-      <Header color="navy" />
       <ScrollUpButton />
       <DetailTicketInfo />
       <DetailTabController />

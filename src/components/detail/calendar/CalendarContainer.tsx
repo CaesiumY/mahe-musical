@@ -1,4 +1,5 @@
 import React from "react";
+import ButtonGroup from "./ButtonGroup";
 import OtherInfo from "./OtherInfo";
 
 const CalendarContainer = () => {
@@ -6,7 +7,7 @@ const CalendarContainer = () => {
     <section>
       <div>
         calendar
-        <div>button group</div>
+        <ButtonGroup />
       </div>
 
       <OtherInfo />

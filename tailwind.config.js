@@ -11,6 +11,8 @@ module.exports = {
         gold: "#f2cb03",
         pink: "#f4cede",
         lightGray: "#c9ccd0",
+        "pink-bg": "#f9f0f4",
+        "ivory-bg": "#fffdf9",
       },
     },
   },

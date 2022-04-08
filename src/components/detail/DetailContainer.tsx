@@ -10,6 +10,14 @@ const DetailContainer = () => {
   const openDrawer = () => setIsOpen(true);
   const closeDrawer = () => setIsOpen(false);
 
+  const onClickMakeBook = () => {
+    if (!isOpen) return openDrawer();
+
+    // TODO - 예약 로직 추가
+    console.log("make book");
+    closeDrawer();
+  };
+
   return (
     <>
       <DetailTicketInfo />
@@ -21,7 +29,7 @@ const DetailContainer = () => {
           !isOpen && "rounded-t-xl shadow-[0_-20px_25px_-5px_rgb(0,0,0,0.1)]"
         }`}
       >
-        <BookButton onClick={openDrawer} />
+        <BookButton onClick={onClickMakeBook} />
       </div>
     </>
   );

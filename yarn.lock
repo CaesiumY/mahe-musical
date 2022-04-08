@@ -138,10 +138,10 @@
   resolved "https://registry.yarnpkg.com/@next/env/-/env-12.1.4.tgz#5af629b43075281ecd7f87938802b7cf5b67e94b"
   integrity sha512-7gQwotJDKnfMxxXd8xJ2vsX5AzyDxO3zou0+QOXX8/unypA6icw5+wf6A62yKZ6qQ4UZHHxS68pb6UV+wNneXg==
 
-"@next/eslint-plugin-next@12.1.2":
-  version "12.1.2"
-  resolved "https://registry.yarnpkg.com/@next/eslint-plugin-next/-/eslint-plugin-next-12.1.2.tgz#5757064bbfaba467c1a5647f0ef25793514f4016"
-  integrity sha512-XqYRh6d98dpv2ynoOEC3VeNv99hxRGBuanRDKASfntdAZD9Zp4n+AugmNF0qwOQEHYgG1uvZW3A4Fi6Y/+kCQw==
+"@next/eslint-plugin-next@12.1.4":
+  version "12.1.4"
+  resolved "https://registry.yarnpkg.com/@next/eslint-plugin-next/-/eslint-plugin-next-12.1.4.tgz#9c52637af8eecab24dac3f2e5098376f6fc2dff4"
+  integrity sha512-BRy565KVK6Cdy8LHaHTiwctLqBu/RT84RLpESug70BDJzBlV8QBvODyx/j7wGhvYqp9kvstM05lyb6JaTkSCcQ==
   dependencies:
     glob "7.1.7"
 
@@ -924,12 +924,12 @@ escape-string-regexp@^4.0.0:
   resolved "https://registry.yarnpkg.com/escape-string-regexp/-/escape-string-regexp-4.0.0.tgz#14ba83a5d373e3d311e5afca29cf5bfad965bf34"
   integrity sha512-TtpcNJ3XAzx3Gq8sWRzJaVajRs0uVxA2YAkdb1jm2YkPz4G6egUFAyA3n5vtEIZefPk5Wa4UXbKuS5fKkJWdgA==
 
-eslint-config-next@12.1.2:
-  version "12.1.2"
-  resolved "https://registry.yarnpkg.com/eslint-config-next/-/eslint-config-next-12.1.2.tgz#be3c974598a5697bfde3f8dc19eaa85760bb871a"
-  integrity sha512-nJgSIB5lXoOsS2yY90i5L5ucI1uko+ykhcQkGkydXqs5GdPprY8Y1NKWW3N0OEzQvFyBcf7GHb/ohB21HoeEsg==
+eslint-config-next@^12.1.4:
+  version "12.1.4"
+  resolved "https://registry.yarnpkg.com/eslint-config-next/-/eslint-config-next-12.1.4.tgz#939ea2ff33034763300bf1e62482cea91212d274"
+  integrity sha512-Uj0jrVjoQbg9qerxRjSHoOOv3PEzoZxpb8G9LYct25fsflP8xIiUq0l4WEu2KSB5owuLv5hie7wSMqPEsHj+bQ==
   dependencies:
-    "@next/eslint-plugin-next" "12.1.2"
+    "@next/eslint-plugin-next" "12.1.4"
     "@rushstack/eslint-patch" "1.0.8"
     "@typescript-eslint/parser" "5.10.1"
     eslint-import-resolver-node "0.3.4"
@@ -1761,10 +1761,10 @@ natural-compare@^1.4.0:
   resolved "https://registry.yarnpkg.com/natural-compare/-/natural-compare-1.4.0.tgz#4abebfeed7541f2c27acfb29bdbbd15c8d5ba4f7"
   integrity sha1-Sr6/7tdUHywnrPspvbvRXI1bpPc=
 
-next-sitemap@^2.5.17:
-  version "2.5.17"
-  resolved "https://registry.yarnpkg.com/next-sitemap/-/next-sitemap-2.5.17.tgz#1d1360a0ae188adb13ae8e3ea47351c4284805fd"
-  integrity sha512-L0zwaqt5WBm8FL/mraA08YbsJD+dnc2gYO1FeawBVUDvFKDXhYXQBTAT2AbkXwCnKinM94/VvBQvw3n8LC9TpA==
+next-sitemap@^2.5.19:
+  version "2.5.19"
+  resolved "https://registry.yarnpkg.com/next-sitemap/-/next-sitemap-2.5.19.tgz#740643b23e7523a3f507a6c3c477a91f0c9df32b"
+  integrity sha512-skcjmCO9ZEDxUmfaSz9FGWt/TRhXvfwvJzuMj8NRCd46vhMNzsLu+2lq2T4KJp5kNYEp3ISajtVNxJ+iegcDDg==
   dependencies:
     "@corex/deepmerge" "^2.6.148"
     minimist "^1.2.6"
@@ -2252,10 +2252,10 @@ safe-buffer@~5.1.0, safe-buffer@~5.1.1:
   resolved "https://registry.yarnpkg.com/safe-buffer/-/safe-buffer-5.1.2.tgz#991ec69d296e0313747d59bdfd2b745c35f8828d"
   integrity sha512-Gd2UZBJDkXlY7GbJxfsE8/nvKkUEU1G38c1siN6QP6a9PT9MmHB8GnpscSmMJSoF8LOIrt8ud/wPtojys4G6+g==
 
-sass@^1.49.11:
-  version "1.49.11"
-  resolved "https://registry.yarnpkg.com/sass/-/sass-1.49.11.tgz#1ffeb77faeed8b806a2a1e021d7c9fd3fc322cb7"
-  integrity sha512-wvS/geXgHUGs6A/4ud5BFIWKO1nKd7wYIGimDk4q4GFkJicILActpv9ueMT4eRGSsp1BdKHuw1WwAHXbhsJELQ==
+sass@^1.50.0:
+  version "1.50.0"
+  resolved "https://registry.yarnpkg.com/sass/-/sass-1.50.0.tgz#3e407e2ebc53b12f1e35ce45efb226ea6063c7c8"
+  integrity sha512-cLsD6MEZ5URXHStxApajEh7gW189kkjn4Rc8DQweMyF+o5HF5nfEz8QYLMlPsTOD88DknatTmBWkOcw5/LnJLQ==
   dependencies:
     chokidar ">=3.0.0 <4.0.0"
     immutable "^4.0.0"

@@ -1,6 +1,7 @@
 import React from "react";
 import BookButton from "../common/BookButton";
 import OverlayCurtain from "../common/OverlayCurtain";
+import CalendarContainer from "./calendar/CalendarContainer";
 
 interface BottomDrawerProps {
   isOpen: boolean;
@@ -17,7 +18,9 @@ const BottomDrawer = ({ isOpen, onClose }: BottomDrawerProps) => {
         }`}
       >
         <div className="relative">
-          <div className="mb-5">bottom drawer</div>
+          <div className="mb-5">
+            <CalendarContainer />
+          </div>
         </div>
       </section>
     </>

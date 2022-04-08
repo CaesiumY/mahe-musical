@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import BookButton from "../common/BookButton";
 import BottomDrawer from "./BottomDrawer";
 import DetailTabController from "./DetailTabController";
@@ -17,6 +17,12 @@ const DetailContainer = () => {
     console.log("make book");
     closeDrawer();
   };
+
+  useEffect(() => {
+    isOpen
+      ? document.body.classList.add("isOpen")
+      : document.body.classList.remove("isOpen");
+  }, [isOpen]);
 
   return (
     <>

@@ -18,7 +18,7 @@ const ButtonGroup = () => {
       />
       <label
         htmlFor="1400"
-        className={`basis-1/2 border-2 rounded-lg text-center py-3 ${
+        className={`cursor-pointer basis-1/2 border-2 rounded-lg text-center py-3 ${
           selected === 1400
             ? "text-navy border-navy"
             : "text-lightGray border-lightGray"
@@ -36,7 +36,7 @@ const ButtonGroup = () => {
       />
       <label
         htmlFor="1900"
-        className={`basis-1/2 border-2 rounded-lg text-center py-3 ${
+        className={`cursor-pointer basis-1/2 border-2 rounded-lg text-center py-3 ${
           selected === 1900
             ? "text-navy border-navy"
             : "text-lightGray border-lightGray"

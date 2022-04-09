@@ -6,11 +6,8 @@ import OtherInfo from "./OtherInfo";
 const CalendarContainer = () => {
   return (
     <section>
-      <div>
-        <Calendar />
-        <ButtonGroup />
-      </div>
-
+      <Calendar />
+      <ButtonGroup />
       <OtherInfo />
     </section>
   );

@@ -9,17 +9,17 @@ const tabs = {
   "캐스팅 일정": <CastingPlan />,
 };
 
-type tabsType = keyof typeof tabs;
+type TabsType = keyof typeof tabs;
 
 const DetailTabController = () => {
-  const [selected, setSelected] = useState<tabsType>("관람안내");
+  const [selected, setSelected] = useState<TabsType>("관람안내");
 
-  const onClickButton = (key: tabsType) => setSelected(key);
+  const onClickButton = (key: TabsType) => setSelected(key);
 
   return (
     <section className="m-[30px] sm:m-24">
       <div className="flex flex-row gap-9 text-sm sm:text-xl">
-        {(Object.keys(tabs) as tabsType[]).map((key) => (
+        {(Object.keys(tabs) as TabsType[]).map((key) => (
           <button
             key={key}
             className={`font-semibold pb-2 border-black ${

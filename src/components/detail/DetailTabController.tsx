@@ -32,7 +32,7 @@ const DetailTabController = () => {
         ))}
       </div>
 
-      <article className="my-11">{tabs[selected]}</article>
+      <article className="my-11 max-w-3xl">{tabs[selected]}</article>
     </section>
   );
 };

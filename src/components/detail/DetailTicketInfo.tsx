@@ -2,6 +2,8 @@ import Image from "next/image";
 import React from "react";
 import IconGroup from "../common/IconGroup";
 import poster from "@/images/poster_mini.jpg";
+import CalendarContainer from "./calendar/CalendarContainer";
+import BookButton from "../common/BookButton";
 
 const ticketInfo = {
   장소: "북아현아트홀",
@@ -15,7 +17,7 @@ const ticketInfo = {
 const DetailTicketInfo = () => {
   return (
     <section className="mt-20">
-      <div className="flex flex-col sm:flex-row m-[30px] sm:m-24 sm:gap-5 justify-evenly">
+      <div className="flex flex-col sm:flex-row m-7 sm:m-10 xl:m-24 sm:gap-5 justify-evenly">
         <div className="max-w-sm sm:mt-7 basis-1/3">
           <Image
             src={poster}
@@ -27,7 +29,8 @@ const DetailTicketInfo = () => {
             placeholder="blur"
           />
         </div>
-        <div>
+
+        <div className="basis-1/3">
           <article className="py-6 border-b-[1px] border-b-gray-300 mb-7">
             <h1 className="font-bold text-xl mb-7">
               뮤지컬 어쩌면 해피엔딩 by. ma:he
@@ -42,6 +45,13 @@ const DetailTicketInfo = () => {
             </div>
           </article>
           <IconGroup color="lightGray" />
+        </div>
+
+        <div className="hidden lg:block border-gray-400 border rounded-xl p-7 bg-white sticky top-20 basis-1/3 self-start max-w-sm h-auto">
+          <CalendarContainer />
+          <div className="mt-5">
+            <BookButton />
+          </div>
         </div>
       </div>
     </section>

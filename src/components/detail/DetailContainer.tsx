@@ -10,14 +10,6 @@ const DetailContainer = () => {
   const openDrawer = () => setIsOpen(true);
   const closeDrawer = () => setIsOpen(false);
 
-  const onClickMakeBook = () => {
-    if (!isOpen) return openDrawer();
-
-    // TODO - 예약 로직 추가
-    console.log("make book");
-    closeDrawer();
-  };
-
   useEffect(() => {
     isOpen
       ? document.body.classList.add("isOpen")
@@ -28,15 +20,7 @@ const DetailContainer = () => {
     <>
       <DetailTicketInfo />
       <DetailTabController />
-      <BottomDrawer isOpen={isOpen} onClose={closeDrawer} />
-
-      <div
-        className={`text-center bg-white py-4 px-7 w-full sticky bottom-0 z-40 ${
-          !isOpen && "rounded-t-xl shadow-[0_-20px_25px_-5px_rgb(0,0,0,0.1)]"
-        }`}
-      >
-        <BookButton onClick={onClickMakeBook} />
-      </div>
+      <BottomDrawer isOpen={isOpen} onClose={closeDrawer} onOpen={openDrawer} />
     </>
   );
 };

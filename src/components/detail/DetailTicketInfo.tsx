@@ -47,7 +47,7 @@ const DetailTicketInfo = () => {
           <IconGroup color="lightGray" />
         </div>
 
-        <div className="hidden lg:block border-gray-400 border rounded-xl p-7 bg-white sticky top-20 basis-1/3 self-start max-w-sm h-auto">
+        <div className="hidden lg:block mt-5 border-gray-400 border rounded-xl p-7 bg-white sticky top-28 basis-1/3 self-start max-w-sm h-auto">
           <CalendarContainer />
           <div className="mt-5">
             <BookButton />

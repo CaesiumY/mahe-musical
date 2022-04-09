@@ -14,7 +14,7 @@ const ticketInfo = {
 
 const DetailTicketInfo = () => {
   return (
-    <section className="mt-20">
+    <section className="mt-20 px-7 sm:p-0">
       <div className="flex flex-col sm:flex-row justify-evenly">
         <div className="max-w-sm sm:mt-7 basis-1/3">
           <Image

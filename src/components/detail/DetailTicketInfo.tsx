@@ -2,8 +2,6 @@ import Image from "next/image";
 import React from "react";
 import IconGroup from "../common/IconGroup";
 import poster from "@/images/poster_mini.jpg";
-import CalendarContainer from "./calendar/CalendarContainer";
-import BookButton from "../common/BookButton";
 
 const ticketInfo = {
   장소: "북아현아트홀",
@@ -17,7 +15,7 @@ const ticketInfo = {
 const DetailTicketInfo = () => {
   return (
     <section className="mt-20">
-      <div className="flex flex-col sm:flex-row m-7 sm:m-10 xl:m-24 sm:gap-5 justify-evenly">
+      <div className="flex flex-col sm:flex-row justify-evenly">
         <div className="max-w-sm sm:mt-7 basis-1/3">
           <Image
             src={poster}
@@ -39,19 +37,12 @@ const DetailTicketInfo = () => {
               {Object.entries(ticketInfo).map(([key, value]) => (
                 <p className="flex flex-row" key={key}>
                   <span className="font-bold basis-1/3">{key}</span>
-                  <span>{value}</span>
+                  <span className="basis-2/3">{value}</span>
                 </p>
               ))}
             </div>
           </article>
           <IconGroup color="lightGray" />
-        </div>
-
-        <div className="hidden lg:block mt-5 border-gray-400 border rounded-xl p-7 bg-white sticky top-28 basis-1/3 self-start max-w-sm h-auto">
-          <CalendarContainer />
-          <div className="mt-5">
-            <BookButton />
-          </div>
         </div>
       </div>
     </section>

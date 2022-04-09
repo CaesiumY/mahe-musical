@@ -47,7 +47,11 @@
         border-radius: 9rem;
         padding: 0.5rem 0.6125rem;
 
-        @media screen and (min-width: 640px) {
+        @media screen and (min-width: 1023px) {
+          padding: 0.25rem;
+        }
+
+        @media screen and (min-width: 1280px) {
           padding: 0.4125rem;
         }
       }

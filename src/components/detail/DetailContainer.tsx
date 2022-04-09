@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import BookButton from "../common/BookButton";
 import BottomDrawer from "./BottomDrawer";
 import DetailTabController from "./DetailTabController";
 import DetailTicketInfo from "./DetailTicketInfo";
@@ -17,11 +16,11 @@ const DetailContainer = () => {
   }, [isOpen]);
 
   return (
-    <>
+    <div>
       <DetailTicketInfo />
       <DetailTabController />
       <BottomDrawer isOpen={isOpen} onClose={closeDrawer} onOpen={openDrawer} />
-    </>
+    </div>
   );
 };
 

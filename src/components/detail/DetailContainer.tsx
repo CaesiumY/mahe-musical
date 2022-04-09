@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
-import BookButton from "../common/BookButton";
 import BottomDrawer from "./BottomDrawer";
 import DetailTabController from "./DetailTabController";
 import DetailTicketInfo from "./DetailTicketInfo";
+import RightSticker from "./RightSticker";
 
 const DetailContainer = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -17,11 +17,19 @@ const DetailContainer = () => {
   }, [isOpen]);
 
   return (
-    <>
-      <DetailTicketInfo />
-      <DetailTabController />
-      <BottomDrawer isOpen={isOpen} onClose={closeDrawer} onOpen={openDrawer} />
-    </>
+    <section className="flex flex-row justify-center">
+      <div>
+        <DetailTicketInfo />
+        <DetailTabController />
+        <BottomDrawer
+          isOpen={isOpen}
+          onClose={closeDrawer}
+          onOpen={openDrawer}
+        />
+      </div>
+
+      <RightSticker />
+    </section>
   );
 };
 

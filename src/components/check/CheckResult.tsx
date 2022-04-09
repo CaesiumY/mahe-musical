@@ -1,4 +1,5 @@
 import React from "react";
+import StatusBanner from "./StatusBanner";
 
 const CheckResult = () => {
   return (
@@ -33,7 +34,7 @@ const CheckResult = () => {
       </div>
       <div className="flex flex-row w-full px-8">
         <span className="basis-1/2 font-semibold">예매 현황</span>
-        <span className="basis-1/2 font-bold text-[#D72629]">입금대기</span>
+        <StatusBanner status="waiting" />
       </div>
     </article>
   );

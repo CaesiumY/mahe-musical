@@ -27,9 +27,7 @@ const BottomDrawer = ({ isOpen, onClose, onOpen }: BottomDrawerProps) => {
         }`}
       >
         <div className="relative">
-          <div className="mb-5">
-            <CalendarContainer />
-          </div>
+          <div className="mb-5">{isOpen && <CalendarContainer />}</div>
         </div>
       </section>
       <div

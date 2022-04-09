@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import BottomDrawer from "./BottomDrawer";
 import DetailTabController from "./DetailTabController";
 import DetailTicketInfo from "./DetailTicketInfo";
+import RightSticker from "./RightSticker";
 
 const DetailContainer = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -16,11 +17,19 @@ const DetailContainer = () => {
   }, [isOpen]);
 
   return (
-    <div>
-      <DetailTicketInfo />
-      <DetailTabController />
-      <BottomDrawer isOpen={isOpen} onClose={closeDrawer} onOpen={openDrawer} />
-    </div>
+    <section className="flex flex-row justify-center">
+      <div>
+        <DetailTicketInfo />
+        <DetailTabController />
+        <BottomDrawer
+          isOpen={isOpen}
+          onClose={closeDrawer}
+          onOpen={openDrawer}
+        />
+      </div>
+
+      <RightSticker />
+    </section>
   );
 };
 

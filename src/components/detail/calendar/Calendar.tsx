@@ -4,13 +4,12 @@ import ReactCalendar from "react-calendar";
 import "react-calendar/dist/Calendar.css";
 import style from "./calendarStyle.module.scss";
 
-const Calendar = () => {
-  const [date, setDate] = useState(new Date(2022, 4, 12));
+interface CalendarProps {
+  value: Date;
+  onChange: React.Dispatch<React.SetStateAction<Date>>;
+}
 
-  useEffect(() => {
-    console.log("date", date.getDate());
-  }, [date]);
-
+const Calendar = ({ value, onChange }: CalendarProps) => {
   return (
     <ReactCalendar
       calendarType="US"
@@ -23,8 +22,8 @@ const Calendar = () => {
       maxDate={new Date(2022, 4, 15)}
       showNeighboringMonth={false}
       className={style.calendar}
-      onChange={setDate}
-      value={date}
+      onChange={onChange}
+      value={value}
     />
   );
 };

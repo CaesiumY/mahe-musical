@@ -1,8 +1,9 @@
-import React, { useEffect, useMemo, useState } from "react";
+import React, { useMemo, useState } from "react";
 import Calendar from "./Calendar";
 import ButtonGroup from "./ButtonGroup";
 import OtherInfo from "./OtherInfo";
 import { castingTable, timeTable } from "@/constants/constants";
+import BookButton from "@/components/common/BookButton";
 
 const CalendarContainer = () => {
   const [date, setDate] = useState(new Date(2022, 4, 12));
@@ -29,6 +30,14 @@ const CalendarContainer = () => {
     [date, selectedTime]
   );
 
+  const onClickBookButton = () => {
+    const totalData = {
+      musicalDate: timeId,
+    };
+
+    console.log("totalData", totalData);
+  };
+
   return (
     <section>
       <Calendar value={date} onChange={onChangeDate} />
@@ -38,6 +47,10 @@ const CalendarContainer = () => {
         data={timeTableData}
       />
       <OtherInfo timeId={timeId} />
+
+      <div className="mt-5">
+        <BookButton onClick={onClickBookButton} />
+      </div>
     </section>
   );
 };

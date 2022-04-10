@@ -13,26 +13,21 @@ const CalendarContainer = () => {
   const onChangeDate: React.Dispatch<React.SetStateAction<Date>> = (e) => {
     const selectedDate = e as Date;
     const day = selectedDate.getDate().toString();
-
-    setSelectedTime(timeTable[day][0]);
+    if (!timeTable[day].includes(selectedTime))
+      setSelectedTime(timeTable[day][0]);
     setDate(e);
   };
-
-  // useEffect(() => {
-  //   const day = date.getDate().toString();
-  //   setSelectedTime(timeTable[day][0]);
-  // }, [date]);
 
   const onChangeRadio = (e: React.ChangeEvent<HTMLInputElement>) =>
     setSelectedTime(e.target.value);
 
   const timeTableData = useMemo(() => timeTable[date.getDate()], [date]);
 
-  useEffect(() => {
-    const combined = date.getDate().toString() + selectedTime;
-
-    console.log("combined :>> ", combined);
-  }, [date, selectedTime]);
+  const timeId = useMemo(
+    () =>
+      (date.getDate().toString() + selectedTime) as keyof typeof castingTable,
+    [date, selectedTime]
+  );
 
   return (
     <section>
@@ -42,7 +37,7 @@ const CalendarContainer = () => {
         onChangeRadio={onChangeRadio}
         data={timeTableData}
       />
-      <OtherInfo timeId={"141400"} />
+      <OtherInfo timeId={timeId} />
     </section>
   );
 };

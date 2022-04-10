@@ -2,6 +2,7 @@ import "../styles/globals.scss";
 import type { AppProps } from "next/app";
 import Header from "@/components/common/Header";
 import { useRouter } from "next/router";
+import "@/firebase/firebaseConfig";
 
 function MyApp({ Component, pageProps }: AppProps) {
   const { pathname } = useRouter();

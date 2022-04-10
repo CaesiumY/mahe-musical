@@ -1,11 +1,11 @@
-import React, { useState } from "react";
+import React from "react";
 
-const ButtonGroup = () => {
-  const [selected, setSelected] = useState(1400);
+interface ButtonGroupProps {
+  selected: number;
+  onChangeRadio: (e: React.ChangeEvent<HTMLInputElement>) => void;
+}
 
-  const onChangeRadio = (e: React.ChangeEvent<HTMLInputElement>) =>
-    setSelected(parseInt(e.target.value, 10));
-
+const ButtonGroup = ({ selected, onChangeRadio }: ButtonGroupProps) => {
   return (
     <section className="flex flex-row gap-3 my-6 font-semibold text-sm">
       <input

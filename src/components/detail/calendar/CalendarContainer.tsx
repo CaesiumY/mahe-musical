@@ -2,7 +2,7 @@ import React, { useEffect, useMemo, useState } from "react";
 import Calendar from "./Calendar";
 import ButtonGroup from "./ButtonGroup";
 import OtherInfo from "./OtherInfo";
-import { timeTable } from "@/constants/constants";
+import { castingTable, timeTable } from "@/constants/constants";
 
 const CalendarContainer = () => {
   const [date, setDate] = useState(new Date(2022, 4, 12));
@@ -10,10 +10,18 @@ const CalendarContainer = () => {
     timeTable[date.getDate().toString()][0]
   );
 
-  useEffect(() => {
-    const day = date.getDate().toString();
+  const onChangeDate: React.Dispatch<React.SetStateAction<Date>> = (e) => {
+    const selectedDate = e as Date;
+    const day = selectedDate.getDate().toString();
+
     setSelectedTime(timeTable[day][0]);
-  }, [date]);
+    setDate(e);
+  };
+
+  // useEffect(() => {
+  //   const day = date.getDate().toString();
+  //   setSelectedTime(timeTable[day][0]);
+  // }, [date]);
 
   const onChangeRadio = (e: React.ChangeEvent<HTMLInputElement>) =>
     setSelectedTime(e.target.value);
@@ -28,7 +36,7 @@ const CalendarContainer = () => {
 
   return (
     <section>
-      <Calendar value={date} onChange={setDate} />
+      <Calendar value={date} onChange={onChangeDate} />
       <ButtonGroup
         selected={selectedTime}
         onChangeRadio={onChangeRadio}

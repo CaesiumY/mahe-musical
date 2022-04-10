@@ -12,3 +12,10 @@ export const castingTable = {
 export const collectionNames = {
   MUSICAL_INFO: "musicalInfo",
 };
+
+export const timeTable = Object.keys(castingTable).reduce((acc, cur) => {
+  const key = cur.slice(0, 2);
+  const value = cur.slice(2);
+  acc[key] ? acc[key].push(value) : (acc[key] = [value]);
+  return acc;
+}, {} as { [key: string]: string[] });

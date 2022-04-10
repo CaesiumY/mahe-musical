@@ -1,49 +1,36 @@
 import React from "react";
 
 interface ButtonGroupProps {
-  selected: number;
+  selected: string;
   onChangeRadio: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  data: string[];
 }
 
-const ButtonGroup = ({ selected, onChangeRadio }: ButtonGroupProps) => {
+const ButtonGroup = ({ selected, onChangeRadio, data }: ButtonGroupProps) => {
   return (
     <section className="flex flex-row gap-3 my-6 font-semibold text-sm">
-      <input
-        type="radio"
-        name="time"
-        id="1400"
-        value="1400"
-        className="hidden"
-        onChange={onChangeRadio}
-      />
-      <label
-        htmlFor="1400"
-        className={`cursor-pointer basis-1/2 border-2 rounded-lg text-center py-3 ${
-          selected === 1400
-            ? "text-navy border-navy"
-            : "text-lightGray border-lightGray"
-        }`}
-      >
-        1회 14:00
-      </label>
-      <input
-        type="radio"
-        name="time"
-        id="1900"
-        value="1900"
-        className="hidden"
-        onChange={onChangeRadio}
-      />
-      <label
-        htmlFor="1900"
-        className={`cursor-pointer basis-1/2 border-2 rounded-lg text-center py-3 ${
-          selected === 1900
-            ? "text-navy border-navy"
-            : "text-lightGray border-lightGray"
-        }`}
-      >
-        2회 19:00
-      </label>
+      {data.map((time, index) => (
+        <React.Fragment key={time}>
+          <input
+            type="radio"
+            name="time"
+            id={time}
+            value={time}
+            className="hidden"
+            onChange={onChangeRadio}
+          />
+          <label
+            htmlFor={time}
+            className={`cursor-pointer basis-1/2 border-2 rounded-lg text-center py-3 ${
+              selected === time
+                ? "text-navy border-navy"
+                : "text-lightGray border-lightGray"
+            }`}
+          >
+            {`${index + 1}회 ${time.slice(0, 2)}:${time.slice(2)}`}
+          </label>
+        </React.Fragment>
+      ))}
     </section>
   );
 };

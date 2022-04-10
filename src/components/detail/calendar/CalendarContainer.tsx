@@ -6,8 +6,14 @@ import { timeTable } from "@/constants/constants";
 
 const CalendarContainer = () => {
   const [date, setDate] = useState(new Date(2022, 4, 12));
+  const [selectedTime, setSelectedTime] = useState(
+    timeTable[date.getDate().toString()][0]
+  );
 
-  const [selectedTime, setSelectedTime] = useState("1400");
+  useEffect(() => {
+    const day = date.getDate().toString();
+    setSelectedTime(timeTable[day][0]);
+  }, [date]);
 
   const onChangeRadio = (e: React.ChangeEvent<HTMLInputElement>) =>
     setSelectedTime(e.target.value);

@@ -33,7 +33,7 @@ const Header = ({ color = "ivory" }: HeaderProps) => {
         <nav className="transition-all duration-500 sm:mx-24 flex flex-col sm:flex-row">
           <div
             className={`flex text-[#667080] px-8 py-6 sm:p-0 z-50 ${
-              isOpen ? "bg-white" : "bg-transparent"
+              isOpen || color !== "ivory" ? "bg-white" : "bg-transparent"
             }`}
           >
             <Link href="/">

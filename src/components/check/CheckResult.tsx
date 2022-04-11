@@ -8,6 +8,20 @@ import React from "react";
 import StatusBanner from "./StatusBanner";
 import { TicketsType } from "./types/types";
 
+interface LineItemProps {
+  title: string;
+  children: React.ReactNode;
+}
+
+const LineItem = ({ title, children }: LineItemProps) => {
+  return (
+    <div className="flex flex-row w-full px-8">
+      <span className="basis-1/2 font-semibold">{title}</span>
+      <span className="basis-1/2 font-normal">{children}</span>
+    </div>
+  );
+};
+
 interface CheckResultProps {
   data: TicketsType;
 }
@@ -25,64 +39,35 @@ const CheckResult = ({ data }: CheckResultProps) => {
   } = data;
 
   const totalPrice =
-    (price.local ?? 0) * NOMAL_SEAT_PRICE +
+    (price.normal ?? 0) * NOMAL_SEAT_PRICE +
     (price.local ?? 0) * DISCOUNTED_SEAT_PRICE +
-    (price.local ?? 0) * DISCOUNTED_SEAT_PRICE;
+    (price.other ?? 0) * DISCOUNTED_SEAT_PRICE;
 
   return (
     <div className="bg-pink-bg w-full flex justify-center items-center">
       <div className="flex flex-col justify-center items-center gap-6 w-full my-11 py-5 border-ivory-bg border-t-4 border-b-4">
         <article className="flex flex-col justify-center items-center gap-6 h-4/5 w-full max-w-md">
-          <div className="flex flex-row w-full px-8">
-            <span className="basis-1/2 font-semibold">예매자명</span>
-            <span className="basis-1/2 font-normal">{name}</span>
-          </div>
-          <div className="flex flex-row w-full px-8">
-            <span className="basis-1/2 font-semibold">휴대폰 번호</span>
-            <span className="basis-1/2 font-normal">
-              {makeContactRegex(contact)}
-            </span>
-          </div>
-          <div className="flex flex-row w-full px-8">
-            <span className="basis-1/2 font-semibold">이용일</span>
-            <span className="basis-1/2 font-normal">
-              {`2022-05-${musicalDate.slice(0, 2)} ${musicalDate.slice(
-                2,
-                4
-              )}:${musicalDate.slice(-2)}`}
-            </span>
-          </div>
-          <div className="flex flex-row w-full px-8">
-            <span className="basis-1/2 font-semibold">매수</span>
-            <span className="basis-1/2 font-normal">
-              일반 {seats.normal ?? 0}매, 휠체어 {seats.wheelChair ?? 0}매,
-              배리어프리(자막) {seats.barrierFree ?? 0}매
-            </span>
-          </div>
-          <div className="flex flex-row w-full px-8">
-            <span className="basis-1/2 font-semibold">좌석</span>
-            <span className="basis-1/2 font-normal">
-              {seatCode?.toUpperCase() ?? "미정"}
-            </span>
-          </div>
-          <div className="flex flex-row w-full px-8">
-            <span className="basis-1/2 font-semibold">티켓 금액</span>
-            <span className="basis-1/2 font-normal">총 {totalPrice}원</span>
-          </div>
-          <div className="flex flex-row w-full px-8">
-            <span className="basis-1/2 font-semibold">입금 계좌번호</span>
-            <span className="basis-1/2 font-normal">{ACCOUNT_NUMBER}</span>
-          </div>
-          <div className="flex flex-row w-full px-8">
-            <span className="basis-1/2 font-semibold">취소 가능일</span>
-            <span className="basis-1/2 font-normal">
-              {new Date(limitedAt.seconds * 1000 - 1).toLocaleString()}
-            </span>
-          </div>
-          <div className="flex flex-row w-full px-8">
-            <span className="basis-1/2 font-semibold">예매 현황</span>
+          <LineItem title="예매자명">{name}</LineItem>
+          <LineItem title="휴대폰 번호">{makeContactRegex(contact)}</LineItem>
+          <LineItem title="이용일">{`2022-05-${musicalDate.slice(
+            0,
+            2
+          )} ${musicalDate.slice(2, 4)}:${musicalDate.slice(-2)}`}</LineItem>
+          <LineItem title="매수">
+            일반 {seats.normal ?? 0}매, 휠체어 {seats.wheelChair ?? 0}매,
+            배리어프리(자막) {seats.barrierFree ?? 0}매
+          </LineItem>
+          <LineItem title="좌석">
+            {seatCode?.map((s) => s.toUpperCase()) ?? "미정"}
+          </LineItem>
+          <LineItem title="티켓 금액">총 {totalPrice}원</LineItem>
+          <LineItem title="입금 계좌번호">{ACCOUNT_NUMBER}</LineItem>
+          <LineItem title="취소 가능일">
+            {new Date(limitedAt.seconds * 1000 - 1).toLocaleString()}
+          </LineItem>
+          <LineItem title="예매 현황">
             <StatusBanner status={status} />
-          </div>
+          </LineItem>
         </article>
       </div>
     </div>

@@ -7,7 +7,7 @@ export interface TicketsType {
   email: string;
   musicalDate: string;
   name: string;
-  seatCode?: string;
+  seatCode?: string[];
   price: {
     local?: number;
     normal?: number;

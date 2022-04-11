@@ -8,7 +8,11 @@ const CheckContainer = () => {
 
   return (
     <section className="h-screen flex justify-center items-center">
-      {userData ? <CheckResult /> : <CheckLogin setData={setUserData} />}
+      {userData ? (
+        <CheckResult data={userData} />
+      ) : (
+        <CheckLogin setData={setUserData} />
+      )}
     </section>
   );
 };

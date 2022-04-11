@@ -50,7 +50,7 @@ const IconGroup = ({ color }: IconGroupProps) => {
       }`}
     >
       {Object.entries(iconSet).map(([key, value]) => (
-        <a key={key} href={value.link}>
+        <a key={key} href={value.link} aria-label={key} rel="noopener">
           {value.icon}
         </a>
       ))}

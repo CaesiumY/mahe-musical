@@ -14,6 +14,7 @@ export const castingTable = {
 
 export const collectionNames = {
   MUSICAL_INFO: "musicalInfo",
+  TICKETS: "tickets",
 };
 
 export const timeTable = Object.keys(castingTable).reduce((acc, cur) => {

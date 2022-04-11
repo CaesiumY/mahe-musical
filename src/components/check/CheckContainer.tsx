@@ -1,14 +1,14 @@
-import React from "react";
+import React, { useState } from "react";
+import CheckLogin from "./CheckLogin";
 import CheckResult from "./CheckResult";
+import { TicketsType } from "./types/types";
 
 const CheckContainer = () => {
+  const [userData, setUserData] = useState<TicketsType>();
+
   return (
     <section className="h-screen flex justify-center items-center">
-      <div className="bg-pink-bg h-2/3 w-full flex justify-center items-center">
-        <div className="flex flex-col justify-center items-center gap-6 h-4/5 w-full border-ivory-bg border-t-4 border-b-4">
-          <CheckResult />
-        </div>
-      </div>
+      {userData ? <CheckResult /> : <CheckLogin setData={setUserData} />}
     </section>
   );
 };

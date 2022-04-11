@@ -5,22 +5,9 @@ import {
   NOMAL_SEAT_PRICE,
 } from "@/constants/constants";
 import React from "react";
+import LineItem from "../common/LineItem";
 import StatusBanner from "./StatusBanner";
 import { TicketsType } from "./types/types";
-
-interface LineItemProps {
-  title: string;
-  children: React.ReactNode;
-}
-
-const LineItem = ({ title, children }: LineItemProps) => {
-  return (
-    <div className="flex flex-row w-full px-8">
-      <span className="basis-1/2 font-semibold">{title}</span>
-      <span className="basis-1/2 font-normal">{children}</span>
-    </div>
-  );
-};
 
 interface CheckResultProps {
   data: TicketsType;

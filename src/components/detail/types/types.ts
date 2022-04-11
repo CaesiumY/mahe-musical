@@ -3,8 +3,14 @@ export type FirebaseDateType = {
   nanoseconds: number;
 };
 
+export interface MusicalSeatCount {
+  normal: number;
+  wheelChair: number;
+  barrierFree: number;
+}
+
 export interface MusicalInfoType {
-  customers: number;
+  customers: MusicalSeatCount;
   date: FirebaseDateType;
   seats?: string[];
 }

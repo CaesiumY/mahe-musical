@@ -1,4 +1,7 @@
-export const SEAT_COUNT = 203;
+export const TOTAL_SEAT_COUNT = 203;
+export const NORMAL_SEAT_COUNT = 195;
+export const WHEEL_CHARIR_SEAT_COUNT = 3;
+export const BARRIER_FREE_SEAT_COUNT = 5;
 
 export const castingTable = {
   "121930": "표영후 이예빈 김예준",

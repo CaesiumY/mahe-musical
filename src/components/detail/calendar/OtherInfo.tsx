@@ -24,15 +24,19 @@ const OtherInfo = ({ timeId }: OtherInfoProps) => {
 
   useEffect(() => {
     const getMusicalData = async () => {
-      const querySnapshot = await getDocs(musicalInfoRef.current);
+      try {
+        const querySnapshot = await getDocs(musicalInfoRef.current);
 
-      const nextData: MusicalDataType = {};
+        const nextData: MusicalDataType = {};
 
-      querySnapshot.forEach((doc) => {
-        nextData[doc.id] = doc.data() as MusicalInfoType;
-      });
+        querySnapshot.forEach((doc) => {
+          nextData[doc.id] = doc.data() as MusicalInfoType;
+        });
 
-      setMusicalData(nextData);
+        setMusicalData(nextData);
+      } catch (error) {
+        console.error(error);
+      }
     };
 
     getMusicalData();

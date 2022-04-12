@@ -1,13 +1,10 @@
 import { castingTable } from "@/constants/constants";
 import { useRouter } from "next/router";
 import React from "react";
+import { TicketCountType } from "./types/types";
 
 interface ProcessInfoBandProps {
-  ticketInfo: {
-    normal?: number;
-    wheelChair?: number;
-    barrierFree?: number;
-  };
+  ticketInfo: TicketCountType;
 }
 
 const ProcessInfoBand = ({ ticketInfo }: ProcessInfoBandProps) => {
@@ -25,13 +22,13 @@ const ProcessInfoBand = ({ ticketInfo }: ProcessInfoBandProps) => {
         </p>
         <span>|</span>
         <p>{castingTable[musicalDate as keyof typeof castingTable]}</p>
-        {Object.keys(ticketInfo).length ? <span>|</span> : ""}
+        {Object.values(ticketInfo).includes(0) ? "" : <span>|</span>}
         <p>
-          {normal && `일반석 ${normal}매`}
-          {normal && `, `}
-          {wheelChair && `휠체어석 ${wheelChair}매`}
-          {wheelChair && `, `}
-          {barrierFree && `배리어프리석 ${barrierFree}매`}
+          {normal ? `일반석 ${normal}매` : ""}
+          {normal ? `, ` : ""}
+          {wheelChair ? `휠체어석 ${wheelChair}매` : ""}
+          {wheelChair ? `, ` : ""}
+          {barrierFree ? `배리어프리석 ${barrierFree}매` : ""}
         </p>
       </div>
     </div>

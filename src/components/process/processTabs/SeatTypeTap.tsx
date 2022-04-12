@@ -22,6 +22,7 @@ const SeatTypeTap = ({ onChangeTicketCount }: SeatTypeTapProps) => {
     };
 
     onChangeTicketCount(totalTicketCount);
+    // TODO - 현재 탭 변경
   };
 
   const onPlusCount = (value: number) =>

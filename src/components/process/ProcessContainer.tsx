@@ -14,9 +14,11 @@ const ProcessContainer = () => {
     setTicketCount(ticketCount);
 
   return (
-    <section className="h-screen flex flex-col justify-center items-center gap-14">
-      <ProcessInfoBand ticketInfo={ticketCount} />
-      <SeatTypeTap onChangeTicketCount={onChangeTicketCount} />
+    <section className="h-screen flex flex-col justify-center items-center">
+      <div className="h-4/5 sm:h-2/3 w-full flex flex-col items-center gap-14">
+        <ProcessInfoBand ticketInfo={ticketCount} />
+        <SeatTypeTap onChangeTicketCount={onChangeTicketCount} />
+      </div>
     </section>
   );
 };

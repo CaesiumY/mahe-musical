@@ -18,15 +18,21 @@ const ProcessInfoBand = ({ ticketInfo }: ProcessInfoBandProps) => {
 
   return (
     <div className="bg-mint-bg text-dark w-full">
-      <div className="max-w-[80%] mx-auto py-8 flex flex-row gap-1">
-        <p>2022-05-{day}</p>
-        <span>|</span>
-        <p>
-          {hour === "14" || minute === "30" ? "1회" : "2회"} {hour}:{minute}
-        </p>
-        <span>|</span>
+      <div className="max-w-[80%] mx-auto py-4 sm:py-8 flex flex-col sm:flex-row gap-1">
+        <div className="flex flex-row gap-1">
+          <p>2022-05-{day}</p>
+          <span>|</span>
+          <p>
+            {hour === "14" || minute === "30" ? "1회" : "2회"} {hour}:{minute}
+          </p>
+        </div>
+        <span className="hidden sm:block">|</span>
         <p>{castingTable[musicalDate as keyof typeof castingTable]}</p>
-        {Object.values(ticketInfo).some((v) => v !== 0) ? <span>|</span> : ""}
+        {Object.values(ticketInfo).some((v) => v !== 0) ? (
+          <span className="hidden sm:block">|</span>
+        ) : (
+          ""
+        )}
         <p>
           {normal ? `일반석 ${normal}매` : ""}
           {normal && wheelChair ? `, ` : ""}

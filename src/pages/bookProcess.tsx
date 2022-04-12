@@ -15,7 +15,7 @@ const BookProcess: NextPage = () => {
     <>
       <MetaTags subTitle="예매 상세" pathname={pathname} />
 
-      <ProcessContainer musicalDate={query.musicalDate as string} />
+      <ProcessContainer />
     </>
   );
 };

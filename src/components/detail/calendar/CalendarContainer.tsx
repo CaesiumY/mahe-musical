@@ -4,8 +4,10 @@ import ButtonGroup from "./ButtonGroup";
 import OtherInfo from "./OtherInfo";
 import { castingTable, timeTable } from "@/constants/constants";
 import BookButton from "@/components/common/BookButton";
+import { useRouter } from "next/router";
 
 const CalendarContainer = () => {
+  const router = useRouter();
   const [date, setDate] = useState(new Date(2022, 4, 12));
   const [selectedTime, setSelectedTime] = useState(
     timeTable[date.getDate().toString()][0]
@@ -30,13 +32,13 @@ const CalendarContainer = () => {
     [date, selectedTime]
   );
 
-  const onClickBookButton = () => {
-    const totalData = {
-      musicalDate: timeId,
-    };
-
-    console.log("totalData", totalData);
-  };
+  const onClickBookButton = () =>
+    router.push({
+      pathname: "/bookProcess",
+      query: {
+        musicalDate: timeId,
+      },
+    });
 
   return (
     <section>

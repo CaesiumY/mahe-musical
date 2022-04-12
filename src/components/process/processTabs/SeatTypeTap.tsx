@@ -1,3 +1,4 @@
+import { MAX_TICKETS_PER_PERSON } from "@/constants/constants";
 import React, { useState } from "react";
 import { TicketCountType } from "../types/types";
 import TabButton from "./common/TabButton";
@@ -23,8 +24,9 @@ const SeatTypeTap = ({ onChangeTicketCount }: SeatTypeTapProps) => {
     onChangeTicketCount(totalTicketCount);
   };
 
-  const onPlusCount = (value: number) => value + 1;
-  const onMinusCount = (value: number) => value - 1;
+  const onPlusCount = (value: number) =>
+    value === MAX_TICKETS_PER_PERSON ? value : value + 1;
+  const onMinusCount = (value: number) => (value === 0 ? value : value - 1);
 
   return (
     <div className="p-8 flex flex-col w-full max-w-md">

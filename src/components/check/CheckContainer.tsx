@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import CheckLogin from "./CheckLogin";
 import CheckResult from "./CheckResult";
-import { TicketsType } from "./types/types";
+import { TicketsType } from "../../types/types";
 
 const CheckContainer = () => {
   const [userData, setUserData] = useState<TicketsType>();

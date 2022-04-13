@@ -1,5 +1,5 @@
 import React, { useMemo, useState } from "react";
-import { PriceType, SeatsType } from "../check/types/types";
+import { PriceType, SeatsType } from "../../types/types";
 import ProcessInfoBand from "./ProcessInfoBand";
 import DiscountSelect from "./processTabs/DiscountSelect";
 import SeatTypeSelect from "./processTabs/SeatTypeSelect";

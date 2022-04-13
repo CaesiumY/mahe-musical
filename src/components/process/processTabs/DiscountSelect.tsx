@@ -1,4 +1,4 @@
-import { PriceType } from "@/components/check/types/types";
+import { PriceType } from "@/types/types";
 import { DISCOUNTED_SEAT_PRICE, NOMAL_SEAT_PRICE } from "@/constants/constants";
 import React, { useState } from "react";
 import TabButton from "./common/TabButton";

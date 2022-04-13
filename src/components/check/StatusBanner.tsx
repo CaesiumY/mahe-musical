@@ -1,5 +1,5 @@
 import React from "react";
-import { BookStatus } from "./types/types";
+import { BookStatus } from "../../types/types";
 
 interface StatusBannerProps {
   status: BookStatus;

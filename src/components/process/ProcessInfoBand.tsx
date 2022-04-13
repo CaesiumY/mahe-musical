@@ -1,7 +1,7 @@
 import { castingTable } from "@/constants/constants";
+import { SeatsType } from "@/types/types";
 import { useRouter } from "next/router";
 import React from "react";
-import { SeatsType } from "./types/types";
 
 interface ProcessInfoBandProps {
   ticketInfo: SeatsType;

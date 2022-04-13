@@ -7,7 +7,7 @@ import {
 import React from "react";
 import LineItem from "../common/LineItem";
 import StatusBanner from "./StatusBanner";
-import { TicketsType } from "./types/types";
+import { TicketsType } from "../../types/types";
 
 interface CheckResultProps {
   data: TicketsType;

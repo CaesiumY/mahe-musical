@@ -2,7 +2,7 @@ import { collectionNames } from "@/constants/constants";
 import { db } from "@/firebase/firestore";
 import { collection, getDocs, query, where } from "firebase/firestore";
 import React, { useState } from "react";
-import { TicketsType } from "./types/types";
+import { TicketsType } from "../../types/types";
 
 interface CheckLoginProps {
   setData: (value: TicketsType) => void;

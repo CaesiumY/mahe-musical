@@ -8,7 +8,7 @@ import {
   NORMAL_SEAT_COUNT,
   WHEEL_CHARIR_SEAT_COUNT,
 } from "@/constants/constants";
-import { MusicalInfoType } from "../types/types";
+import { MusicalInfoType } from "@/types/types";
 
 interface OtherInfoProps {
   timeId: keyof typeof castingTable;

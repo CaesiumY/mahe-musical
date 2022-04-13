@@ -1,4 +1,4 @@
-import { SeatsType } from "@/components/check/types/types";
+import { SeatsType } from "@/types/types";
 import { MAX_TICKETS_PER_PERSON } from "@/constants/constants";
 import React, { useState } from "react";
 import TabButton from "./common/TabButton";

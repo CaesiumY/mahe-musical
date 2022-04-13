@@ -1,5 +1,15 @@
 import { FirebaseDateType } from "@/components/detail/types/types";
 
+export interface PriceType {
+  local?: number;
+  normal?: number;
+  other?: number;
+}
+export interface SeatsType {
+  normal?: number;
+  wheelChair?: number;
+  barrierFree?: number;
+}
 export interface TicketsType {
   createdAt: FirebaseDateType;
   limitedAt: FirebaseDateType;
@@ -8,16 +18,8 @@ export interface TicketsType {
   musicalDate: string;
   name: string;
   seatCode?: string[];
-  price: {
-    local?: number;
-    normal?: number;
-    other?: number;
-  };
-  seats: {
-    normal?: number;
-    barrierFree?: number;
-    wheelChair?: number;
-  };
+  price: PriceType;
+  seats: SeatsType;
   status: BookStatus;
 }
 

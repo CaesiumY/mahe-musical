@@ -15,7 +15,7 @@ const TabCounter = ({
   onClickMinus,
 }: TabCounterProps) => {
   return (
-    <div className="flex flex-row justify-between py-4 border-b border-lightGray">
+    <div className="flex flex-row justify-between items-center py-4 border-b border-lightGray">
       {children}
       <div className="flex flex-row">
         <button

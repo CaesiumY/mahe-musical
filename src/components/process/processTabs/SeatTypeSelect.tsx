@@ -1,27 +1,27 @@
+import { SeatsType } from "@/components/check/types/types";
 import { MAX_TICKETS_PER_PERSON } from "@/constants/constants";
 import React, { useState } from "react";
-import { TicketCountType } from "../types/types";
 import TabButton from "./common/TabButton";
 import TabCounter from "./common/TabCounter";
 import TabHeader from "./common/TabHeader";
 
 interface SeatTypeSelectProps {
-  onChangeTicketCount: (ticketCount: TicketCountType) => void;
+  onChangeSeatCount: (ticketCount: SeatsType) => void;
 }
 
-const SeatTypeSelect = ({ onChangeTicketCount }: SeatTypeSelectProps) => {
+const SeatTypeSelect = ({ onChangeSeatCount }: SeatTypeSelectProps) => {
   const [normal, setNomal] = useState(0);
   const [wheelChair, setWheelChair] = useState(0);
   const [barrierFree, setBarrierFree] = useState(0);
 
   const onClickTabButton = () => {
-    const totalTicketCount = {
+    const totalSeatCount: SeatsType = {
       normal,
       wheelChair,
       barrierFree,
     };
 
-    onChangeTicketCount(totalTicketCount);
+    onChangeSeatCount(totalSeatCount);
     // TODO - 현재 탭 변경
   };
 

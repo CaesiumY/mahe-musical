@@ -1,10 +1,10 @@
 import { castingTable } from "@/constants/constants";
 import { useRouter } from "next/router";
 import React from "react";
-import { TicketCountType } from "./types/types";
+import { SeatsType } from "./types/types";
 
 interface ProcessInfoBandProps {
-  ticketInfo: TicketCountType;
+  ticketInfo: SeatsType;
 }
 
 const ProcessInfoBand = ({ ticketInfo }: ProcessInfoBandProps) => {

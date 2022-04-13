@@ -14,16 +14,12 @@ const SeatTypeSelect = ({ onChangeSeatCount }: SeatTypeSelectProps) => {
   const [wheelChair, setWheelChair] = useState(0);
   const [barrierFree, setBarrierFree] = useState(0);
 
-  const onClickTabButton = () => {
-    const totalSeatCount: SeatsType = {
+  const onClickTabButton = () =>
+    onChangeSeatCount({
       normal,
       wheelChair,
       barrierFree,
-    };
-
-    onChangeSeatCount(totalSeatCount);
-    // TODO - 현재 탭 변경
-  };
+    });
 
   const onPlusCount = (value: number) =>
     value === MAX_TICKETS_PER_PERSON ? value : value + 1;

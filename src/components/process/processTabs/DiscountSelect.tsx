@@ -18,16 +18,12 @@ const DiscountSelect = ({
   const [local, setLocal] = useState(0);
   const [other, setOther] = useState(0);
 
-  const onClickTabButton = () => {
-    const totalSeatsCount: PriceType = {
+  const onClickTabButton = () =>
+    onChangePriceCount({
       normal,
       local,
       other,
-    };
-
-    // TODO - 현재 탭 변경
-    onChangePriceCount(totalSeatsCount);
-  };
+    });
 
   const onPlusCount = (value: number) =>
     normal + local + other === totalTickets ? value : value + 1;

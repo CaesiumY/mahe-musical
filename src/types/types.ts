@@ -20,13 +20,15 @@ export type BookStatus =
   | "cancelRequest"
   | "cancelled";
 
-export interface TicketsType {
-  createdAt: FirebaseDateType;
-  limitedAt: FirebaseDateType;
+export interface UserInfoType {
+  name: string;
   contact: string;
   email: string;
+}
+export interface TicketsType extends UserInfoType {
+  createdAt: FirebaseDateType;
+  limitedAt: FirebaseDateType;
   musicalDate: string;
-  name: string;
   seatCode?: string[];
   price: PriceType;
   seats: SeatsType;

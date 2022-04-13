@@ -5,7 +5,13 @@ import about from "@/images/about.jpg";
 const MusicalInfo = () => {
   return (
     <article>
-      <Image src={about} alt="공연 소개" placeholder="blur" quality={100} />
+      <Image
+        src={about}
+        alt="공연 소개"
+        placeholder="blur"
+        quality={100}
+        priority
+      />
     </article>
   );
 };

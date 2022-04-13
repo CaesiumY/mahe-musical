@@ -24,8 +24,6 @@ const ProcessContainer = () => {
   const [userInfo, setUserInfo] = useState<UserInfoType>();
 
   const toNextTab = () => setCurrentTab((value) => value + 1);
-  const sumValue = (payload: object) =>
-    Object.values(payload).reduce((a, b) => a + b, 0);
 
   // seat logic
   const totalTickets = useMemo(
@@ -34,16 +32,12 @@ const ProcessContainer = () => {
   );
 
   const onChangeSeatCount = (payload: SeatsType) => {
-    if (sumValue(payload) === 0) return alert("1개 이상의 티켓을 넣어주세요!");
     setSeatCount(payload);
     toNextTab();
   };
 
   // price logic
   const onChangePriceCount = (payload: PriceType) => {
-    if (sumValue(payload) !== totalTickets)
-      return alert("수량이 맞지 않습니다!");
-
     setPriceCount(payload);
     toNextTab();
   };

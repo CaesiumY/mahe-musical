@@ -18,12 +18,18 @@ const DiscountSelect = ({
   const [local, setLocal] = useState(0);
   const [other, setOther] = useState(0);
 
-  const onClickTabButton = () =>
+  const onClickTabButton = () => {
+    if (normal + local + other < totalTickets)
+      return alert(
+        `티켓 ${totalTickets - (normal + local + other)}장을 더 넣어주세요!`
+      );
+
     onChangePriceCount({
       normal,
       local,
       other,
     });
+  };
 
   const onPlusCount = (value: number) =>
     normal + local + other === totalTickets ? value : value + 1;

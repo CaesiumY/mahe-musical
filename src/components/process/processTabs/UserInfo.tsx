@@ -12,15 +12,19 @@ const UserInfo = ({ onChangeUserInfo }: UserInfoProps) => {
   const [contact, setContact] = useState("");
   const [email, setEmail] = useState("");
 
-  const formatContact = (value: string) =>
-    setContact(value.replace(/(\d{3})(\d{4})(\d)/, "$1-$2-$3"));
+  const formatContact = (value: string) => {
+    const regex = /^[0-9\b -]{0,13}$/;
+    if (regex.test(value)) {
+      setContact(value.replace(/(\d{3})(\d{4})(\d)/, "$1-$2-$3"));
+    }
+  };
 
   const onClickTabButton = () => {
-    const regex =
+    const emailRegex =
       /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/g;
 
     if (!name.length) return alert("이름을 입력해주세요!");
-    if (!regex.test(email)) return alert("잘못된 이메일 형식입니다!");
+    if (!emailRegex.test(email)) return alert("잘못된 이메일 형식입니다!");
     if (!contact.length) return alert("연락처를 입력해주세요!");
 
     const totalUserInfo = {

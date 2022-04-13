@@ -14,12 +14,15 @@ const SeatTypeSelect = ({ onChangeSeatCount }: SeatTypeSelectProps) => {
   const [wheelChair, setWheelChair] = useState(0);
   const [barrierFree, setBarrierFree] = useState(0);
 
-  const onClickTabButton = () =>
+  const onClickTabButton = () => {
+    if (normal + wheelChair + barrierFree === 0)
+      return alert("1개 이상의 티켓을 넣어주세요!");
     onChangeSeatCount({
       normal,
       wheelChair,
       barrierFree,
     });
+  };
 
   const onPlusCount = (value: number) =>
     value === MAX_TICKETS_PER_PERSON ? value : value + 1;

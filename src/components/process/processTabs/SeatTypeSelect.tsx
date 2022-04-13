@@ -5,11 +5,11 @@ import TabButton from "./common/TabButton";
 import TabCounter from "./common/TabCounter";
 import TabHeader from "./common/TabHeader";
 
-interface SeatTypeTapProps {
+interface SeatTypeSelectProps {
   onChangeTicketCount: (ticketCount: TicketCountType) => void;
 }
 
-const SeatTypeTap = ({ onChangeTicketCount }: SeatTypeTapProps) => {
+const SeatTypeSelect = ({ onChangeTicketCount }: SeatTypeSelectProps) => {
   const [normal, setNomal] = useState(0);
   const [wheelChair, setWheelChair] = useState(0);
   const [barrierFree, setBarrierFree] = useState(0);
@@ -61,4 +61,4 @@ const SeatTypeTap = ({ onChangeTicketCount }: SeatTypeTapProps) => {
   );
 };
 
-export default SeatTypeTap;
+export default SeatTypeSelect;

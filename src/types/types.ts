@@ -4,9 +4,9 @@ export type FirebaseDateType = {
 };
 
 export interface PriceType {
-  local?: number;
-  normal?: number;
-  other?: number;
+  local: number;
+  normal: number;
+  other: number;
 }
 export interface SeatsType {
   normal: number;

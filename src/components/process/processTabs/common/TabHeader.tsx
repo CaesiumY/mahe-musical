@@ -1,13 +1,13 @@
 import React from "react";
 
 interface TabHeaderProps {
-  title: string;
+  children: React.ReactNode;
 }
 
-const TabHeader = ({ title }: TabHeaderProps) => {
+const TabHeader = ({ children }: TabHeaderProps) => {
   return (
     <h2 className="font-bold text-xl border-b-2 border-lightGray pb-4">
-      {title}
+      {children}
     </h2>
   );
 };

@@ -1,3 +1,4 @@
+import { DISCOUNTED_SEAT_PRICE, NOMAL_SEAT_PRICE } from "@/constants/constants";
 import React, { useMemo, useState } from "react";
 import { PriceType, SeatsType } from "../../types/types";
 import ProcessInfoBand from "./ProcessInfoBand";
@@ -21,6 +22,7 @@ const ProcessContainer = () => {
 
   const toNextTab = () => setCurrentTab((value) => value + 1);
 
+  // seat logic
   const onChangeSeatCount = (payload: SeatsType) => {
     setSeatCount(payload);
     toNextTab();
@@ -31,11 +33,18 @@ const ProcessContainer = () => {
     [seatCount]
   );
 
+  // price logic
   const onChangePriceCount = (payload: PriceType) => {
-    console.log("payload", payload);
     setPriceCount(payload);
     toNextTab();
   };
+
+  const totalPrice = useMemo(
+    () =>
+      priceCount.normal * NOMAL_SEAT_PRICE +
+      (priceCount.local + priceCount.other) * DISCOUNTED_SEAT_PRICE,
+    [priceCount]
+  );
 
   const tabs = [
     <SeatTypeSelect

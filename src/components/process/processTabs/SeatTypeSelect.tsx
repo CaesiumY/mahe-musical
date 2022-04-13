@@ -31,7 +31,7 @@ const SeatTypeSelect = ({ onChangeSeatCount }: SeatTypeSelectProps) => {
 
   return (
     <div className="p-8 flex flex-col w-full max-w-md">
-      <TabHeader title="좌석 종류 선택" />
+      <TabHeader>좌석 종류 선택</TabHeader>
       <TabCounter
         value={normal}
         onClickPlus={() => setNomal(onPlusCount)}

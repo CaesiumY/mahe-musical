@@ -33,9 +33,18 @@ const DiscountSelect = ({
     normal + local + other === totalTickets ? value : value + 1;
   const onMinusCount = (value: number) => (value === 0 ? value : value - 1);
 
+  const totalPrice =
+    normal * NOMAL_SEAT_PRICE + (local + other) * DISCOUNTED_SEAT_PRICE;
+
   return (
     <div className="p-8 flex flex-col w-full max-w-md">
-      <TabHeader title="좌석 종류 선택" />
+      <TabHeader>
+        <p className="flex flex-row">
+          <span>할인 선택</span>
+          <span className="font-normal ml-7">총 {totalTickets}매</span>
+          <span className="font-normal ml-auto">{totalPrice}원</span>
+        </p>
+      </TabHeader>
       <TabCounter
         value={normal}
         onClickPlus={() => setNomal(onPlusCount)}

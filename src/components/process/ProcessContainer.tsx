@@ -4,6 +4,7 @@ import React, { useMemo, useState } from "react";
 import { PriceType, SeatsType, UserInfoType } from "../../types/types";
 import ProcessInfoBand from "./ProcessInfoBand";
 import DiscountSelect from "./processTabs/DiscountSelect";
+import EndOfProcess from "./processTabs/EndOfProcess";
 import ResultCheck from "./processTabs/ResultCheck";
 import SeatTypeSelect from "./processTabs/SeatTypeSelect";
 import UserInfo from "./processTabs/UserInfo";
@@ -76,6 +77,11 @@ const ProcessContainer = () => {
         price: priceCount,
         userInfo,
       }}
+    />,
+    <EndOfProcess
+      key="endOfProcess"
+      name={userInfo.name}
+      email={userInfo.email}
     />,
   ];
 

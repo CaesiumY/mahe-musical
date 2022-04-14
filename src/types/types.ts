@@ -38,8 +38,7 @@ export interface TicketsType extends UserInfoType {
 //   barrierFree: number;
 // }
 
-export interface MusicalInfoType {
-  customers: SeatsType;
+export interface MusicalInfoType extends SeatsType {
   date: Timestamp;
   seats?: string[];
 }

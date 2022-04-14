@@ -19,13 +19,14 @@ interface MusicalDataType {
 }
 
 const OtherInfo = ({ timeId }: OtherInfoProps) => {
-  const musicalInfoRef = useRef(collection(db, collectionNames.MUSICAL_INFO));
   const [musicalData, setMusicalData] = useState<MusicalDataType>({});
 
   useEffect(() => {
     const getMusicalData = async () => {
       try {
-        const querySnapshot = await getDocs(musicalInfoRef.current);
+        const querySnapshot = await getDocs(
+          collection(db, collectionNames.MUSICAL_INFO)
+        );
 
         const nextData: MusicalDataType = {};
 
@@ -44,11 +45,9 @@ const OtherInfo = ({ timeId }: OtherInfoProps) => {
 
   const remainedSeats = useMemo(
     () => ({
-      normal: NORMAL_SEAT_COUNT - musicalData[timeId]?.customers.normal,
-      wheelChair:
-        WHEEL_CHARIR_SEAT_COUNT - musicalData[timeId]?.customers.wheelChair,
-      barrierFree:
-        BARRIER_FREE_SEAT_COUNT - musicalData[timeId]?.customers.barrierFree,
+      normal: NORMAL_SEAT_COUNT - musicalData[timeId]?.normal,
+      wheelChair: WHEEL_CHARIR_SEAT_COUNT - musicalData[timeId]?.wheelChair,
+      barrierFree: BARRIER_FREE_SEAT_COUNT - musicalData[timeId]?.barrierFree,
     }),
     [musicalData, timeId]
   );

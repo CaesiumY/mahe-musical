@@ -7,7 +7,14 @@ import {
 } from "@/constants/constants";
 import { db } from "@/firebase/firestore";
 import { PriceType, SeatsType, TicketsType, UserInfoType } from "@/types/types";
-import { addDoc, collection, Timestamp } from "firebase/firestore";
+import {
+  addDoc,
+  collection,
+  doc,
+  increment,
+  Timestamp,
+  updateDoc,
+} from "firebase/firestore";
 import React, { useMemo, useState } from "react";
 import TabButton from "./common/TabButton";
 import TabHeader from "./common/TabHeader";
@@ -79,6 +86,14 @@ const ResultCheck = ({ toNextTab, bookResult }: ResultCheckProps) => {
       const docRef = await addDoc(
         collection(db, collectionNames.TICKETS),
         ticket
+      );
+      const musicalRef = await updateDoc(
+        doc(db, collectionNames.MUSICAL_INFO, musicalDate),
+        {
+          normal: increment(seats.normal),
+          wheelChair: increment(seats.wheelChair),
+          barrierFree: increment(seats.barrierFree),
+        }
       );
     } catch (error) {
     } finally {

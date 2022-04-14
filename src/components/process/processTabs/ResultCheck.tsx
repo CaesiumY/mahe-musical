@@ -1,10 +1,14 @@
 import {
   castingTable,
+  collectionNames,
   DISCOUNTED_SEAT_PRICE,
+  LIMIT_TICKET_DATE,
   NOMAL_SEAT_PRICE,
 } from "@/constants/constants";
-import { PriceType, SeatsType, UserInfoType } from "@/types/types";
-import React, { useMemo } from "react";
+import { db } from "@/firebase/firestore";
+import { PriceType, SeatsType, TicketsType, UserInfoType } from "@/types/types";
+import { addDoc, collection, Timestamp } from "firebase/firestore";
+import React, { useMemo, useState } from "react";
 import TabButton from "./common/TabButton";
 import TabHeader from "./common/TabHeader";
 
@@ -23,7 +27,7 @@ const LineItem = ({ title, children }: LineItemProps) => {
 };
 
 interface ResultCheckProps {
-  onClickTabButton: () => void;
+  toNextTab: () => void;
   bookResult: {
     musicalDate: keyof typeof castingTable;
     seats: SeatsType;
@@ -32,7 +36,9 @@ interface ResultCheckProps {
   };
 }
 
-const ResultCheck = ({ onClickTabButton, bookResult }: ResultCheckProps) => {
+const ResultCheck = ({ toNextTab, bookResult }: ResultCheckProps) => {
+  const [isLoading, setIsLoading] = useState(false);
+
   const { musicalDate, price, seats, userInfo } = bookResult;
   const { normal, wheelChair, barrierFree } = seats;
   const { name, contact, email } = userInfo;
@@ -47,6 +53,39 @@ const ResultCheck = ({ onClickTabButton, bookResult }: ResultCheckProps) => {
   const day = musicalDate.slice(0, 2);
   const hour = musicalDate.slice(2, 4);
   const minute = musicalDate.slice(-2);
+
+  const onClickMakeBook = async () => {
+    try {
+      setIsLoading(true);
+      const today = new Date().toLocaleDateString();
+      const ticket: TicketsType = {
+        ...userInfo,
+        musicalDate,
+        price,
+        seats,
+        status: "waiting",
+        createdAt: new Timestamp(Math.floor(new Date().getTime() / 1000), 0),
+        limitedAt: new Timestamp(
+          Math.floor(
+            (new Date(today).setDate(
+              new Date(today).getDate() + LIMIT_TICKET_DATE
+            ) -
+              1) /
+              1000
+          ),
+          0
+        ),
+      };
+      const docRef = await addDoc(
+        collection(db, collectionNames.TICKETS),
+        ticket
+      );
+    } catch (error) {
+    } finally {
+      setIsLoading(false);
+      toNextTab();
+    }
+  };
 
   return (
     <div className="p-8 flex flex-col w-full max-w-md gap-6">
@@ -80,7 +119,11 @@ const ResultCheck = ({ onClickTabButton, bookResult }: ResultCheckProps) => {
         <LineItem title="이메일">{email}</LineItem>
       </div>
       <div className="text-center mt-8">
-        <TabButton customTitle="예매하기" onClick={onClickTabButton} />
+        <TabButton
+          customTitle="예매하기"
+          disabled={isLoading}
+          onClick={onClickMakeBook}
+        />
       </div>
     </div>
   );

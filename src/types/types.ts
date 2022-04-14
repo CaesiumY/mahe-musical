@@ -1,7 +1,4 @@
-export type FirebaseDateType = {
-  seconds: number;
-  nanoseconds: number;
-};
+import { Timestamp } from "firebase/firestore";
 
 export interface PriceType {
   local: number;
@@ -26,8 +23,8 @@ export interface UserInfoType {
   email: string;
 }
 export interface TicketsType extends UserInfoType {
-  createdAt: FirebaseDateType;
-  limitedAt: FirebaseDateType;
+  createdAt: Timestamp;
+  limitedAt: Timestamp;
   musicalDate: string;
   seatCode?: string[];
   price: PriceType;
@@ -43,6 +40,6 @@ export interface TicketsType extends UserInfoType {
 
 export interface MusicalInfoType {
   customers: SeatsType;
-  date: FirebaseDateType;
+  date: Timestamp;
   seats?: string[];
 }

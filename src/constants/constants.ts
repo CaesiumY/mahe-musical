@@ -9,6 +9,7 @@ export const DISCOUNTED_SEAT_PRICE = 6000;
 export const ACCOUNT_NUMBER = "0123456789";
 
 export const MAX_TICKETS_PER_PERSON = 9;
+export const LIMIT_TICKET_DATE = 2;
 
 export const castingTable = {
   "121930": "표영후, 이예빈, 김예준",

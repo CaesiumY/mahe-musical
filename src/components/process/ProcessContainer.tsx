@@ -70,7 +70,7 @@ const ProcessContainer = () => {
     <UserInfo key="userInfo" onChangeUserInfo={onChangeUserInfo} />,
     <ResultCheck
       key="resultCheck"
-      onClickTabButton={toNextTab}
+      toNextTab={toNextTab}
       bookResult={{
         musicalDate,
         seats: seatCount,

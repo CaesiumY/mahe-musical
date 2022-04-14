@@ -7,7 +7,7 @@ interface LineItemProps {
 
 const LineItem = ({ title, children }: LineItemProps) => {
   return (
-    <div className="flex flex-row w-full px-8">
+    <div className="flex flex-row w-full">
       <span className="basis-1/2 font-semibold">{title}</span>
       <span className="basis-1/2 font-normal">{children}</span>
     </div>

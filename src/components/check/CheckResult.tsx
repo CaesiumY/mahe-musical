@@ -33,7 +33,7 @@ const CheckResult = ({ data }: CheckResultProps) => {
   return (
     <div className="bg-pink-bg w-full flex justify-center items-center">
       <div className="flex flex-col justify-center items-center gap-6 w-full my-11 py-5 border-ivory-bg border-t-4 border-b-4">
-        <article className="flex flex-col justify-center items-center gap-6 h-4/5 w-full max-w-md">
+        <article className="flex flex-col justify-center items-center gap-6 h-4/5 w-full max-w-md px-8">
           <LineItem title="예매자명">{name}</LineItem>
           <LineItem title="휴대폰 번호">{makeContactRegex(contact)}</LineItem>
           <LineItem title="이용일">{`2022-05-${musicalDate.slice(

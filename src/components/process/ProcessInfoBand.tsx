@@ -5,11 +5,10 @@ import React from "react";
 
 interface ProcessInfoBandProps {
   ticketInfo: SeatsType;
+  musicalDate: keyof typeof castingTable;
 }
 
-const ProcessInfoBand = ({ ticketInfo }: ProcessInfoBandProps) => {
-  const { query } = useRouter();
-  const { musicalDate } = query;
+const ProcessInfoBand = ({ ticketInfo, musicalDate }: ProcessInfoBandProps) => {
   const { normal, wheelChair, barrierFree } = ticketInfo;
 
   const day = musicalDate?.slice(0, 2);

@@ -1,12 +1,16 @@
-import { DISCOUNTED_SEAT_PRICE, NOMAL_SEAT_PRICE } from "@/constants/constants";
+import { castingTable } from "@/constants/constants";
+import { useRouter } from "next/router";
 import React, { useMemo, useState } from "react";
 import { PriceType, SeatsType, UserInfoType } from "../../types/types";
 import ProcessInfoBand from "./ProcessInfoBand";
 import DiscountSelect from "./processTabs/DiscountSelect";
+import ResultCheck from "./processTabs/ResultCheck";
 import SeatTypeSelect from "./processTabs/SeatTypeSelect";
 import UserInfo from "./processTabs/UserInfo";
 
 const ProcessContainer = () => {
+  const { query } = useRouter();
+  const { musicalDate } = query as { musicalDate: keyof typeof castingTable };
   const [currentTab, setCurrentTab] = useState(0);
 
   const [seatCount, setSeatCount] = useState<SeatsType>({
@@ -21,7 +25,11 @@ const ProcessContainer = () => {
     other: 0,
   });
 
-  const [userInfo, setUserInfo] = useState<UserInfoType>();
+  const [userInfo, setUserInfo] = useState<UserInfoType>({
+    name: "",
+    contact: "",
+    email: "",
+  });
 
   const toNextTab = () => setCurrentTab((value) => value + 1);
 
@@ -42,13 +50,6 @@ const ProcessContainer = () => {
     toNextTab();
   };
 
-  const totalPrice = useMemo(
-    () =>
-      priceCount.normal * NOMAL_SEAT_PRICE +
-      (priceCount.local + priceCount.other) * DISCOUNTED_SEAT_PRICE,
-    [priceCount]
-  );
-
   // userInfo logic
   const onChangeUserInfo = (payload: UserInfoType) => {
     setUserInfo(payload);
@@ -66,12 +67,24 @@ const ProcessContainer = () => {
       onChangePriceCount={onChangePriceCount}
     />,
     <UserInfo key="userInfo" onChangeUserInfo={onChangeUserInfo} />,
+    <ResultCheck
+      key="resultCheck"
+      onClickTabButton={toNextTab}
+      bookResult={{
+        musicalDate,
+        seats: seatCount,
+        price: priceCount,
+        userInfo,
+      }}
+    />,
   ];
 
   return (
     <section className="h-screen flex flex-col justify-center items-center">
-      <div className="h-4/5 sm:h-2/3 w-full flex flex-col items-center gap-14">
-        <ProcessInfoBand ticketInfo={seatCount} />
+      <div className="h-4/5 sm:h-3/4 w-full flex flex-col items-center gap-6 sm:gap-10">
+        {currentTab < 3 && (
+          <ProcessInfoBand ticketInfo={seatCount} musicalDate={musicalDate} />
+        )}
         {tabs[currentTab]}
       </div>
     </section>

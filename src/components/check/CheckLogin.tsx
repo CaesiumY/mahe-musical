@@ -1,7 +1,8 @@
 import { collectionNames } from "@/constants/constants";
 import { db } from "@/firebase/firestore";
 import { collection, getDocs, query, where } from "firebase/firestore";
-import React, { useState } from "react";
+import { useRouter } from "next/router";
+import React, { useCallback, useEffect, useState } from "react";
 import { TicketsType } from "../../types/types";
 import UserInput from "../common/UserInput";
 
@@ -10,6 +11,7 @@ interface CheckLoginProps {
 }
 
 const CheckLogin = ({ setData }: CheckLoginProps) => {
+  const router = useRouter();
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [isLoading, setIsLoading] = useState(false);
@@ -19,32 +21,35 @@ const CheckLogin = ({ setData }: CheckLoginProps) => {
     setEmail("");
   };
 
-  const onSearchUser = async (name: string, email: string) => {
-    try {
-      setIsLoading(true);
+  const onSearchUser = useCallback(
+    async (name: string, email: string) => {
+      try {
+        setIsLoading(true);
 
-      const ticketsRef = collection(db, collectionNames.TICKETS);
-      const userQuery = query(
-        ticketsRef,
-        where("name", "==", name),
-        where("email", "==", email)
-      );
-      const querySnapshot = await getDocs(userQuery);
+        const ticketsRef = collection(db, collectionNames.TICKETS);
+        const userQuery = query(
+          ticketsRef,
+          where("name", "==", name),
+          where("email", "==", email)
+        );
+        const querySnapshot = await getDocs(userQuery);
 
-      setIsLoading(false);
+        setIsLoading(false);
 
-      if (querySnapshot.empty) return alert("존재하지 않는 티켓입니다!");
-      if (querySnapshot.size > 1) throw new Error("중복된 사용자");
+        if (querySnapshot.empty) return alert("존재하지 않는 티켓입니다!");
+        if (querySnapshot.size > 1) throw new Error("중복된 사용자");
 
-      onReset();
+        onReset();
 
-      querySnapshot.forEach((doc) => {
-        setData(doc.data() as TicketsType);
-      });
-    } catch (error) {
-      console.error(error);
-    }
-  };
+        querySnapshot.forEach((doc) => {
+          setData(doc.data() as TicketsType);
+        });
+      } catch (error) {
+        console.error(error);
+      }
+    },
+    [setData]
+  );
 
   const onClickCheck = async () => {
     if (!name) return alert("이름을 입력해주세요!");
@@ -52,6 +57,20 @@ const CheckLogin = ({ setData }: CheckLoginProps) => {
 
     await onSearchUser(name, email);
   };
+
+  useEffect(() => {
+    const { name, email } = router.query;
+    if (
+      name &&
+      email &&
+      typeof name === "string" &&
+      typeof email === "string"
+    ) {
+      setName(name);
+      setEmail(email);
+      onSearchUser(name, email);
+    }
+  }, [router.query, onSearchUser]);
 
   return (
     <div className="flex flex-col gap-6 w-1/3 min-w-[300px] max-w-md">

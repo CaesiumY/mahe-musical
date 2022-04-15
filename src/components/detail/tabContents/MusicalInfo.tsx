@@ -1,6 +1,6 @@
 import Image from "next/image";
 import React from "react";
-import about from "@/images/about.jpg";
+import about from "@/images/about.webp";
 
 const MusicalInfo = () => {
   return (

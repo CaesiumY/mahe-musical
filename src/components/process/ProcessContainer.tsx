@@ -61,6 +61,7 @@ const ProcessContainer = () => {
     <SeatTypeSelect
       key="seatTypeSelect"
       onChangeSeatCount={onChangeSeatCount}
+      musicalDate={musicalDate}
     />,
     <DiscountSelect
       key="discountSelect"

@@ -27,7 +27,7 @@ const CastingPlan = () => {
       </div>
       <div className="mt-14 text-navy font-bold max-w-screen-md">
         <div className="pb-3 mb-3 border-b-2 border-lightGray flex flex-row">
-          <span className="basis-1/3">5/12(목)</span>
+          <span className="basis-1/3">5/11(수)</span>
           <div className="flex flex-col sm:flex-row gap-3 flex-grow">
             <p className="basis-1/2">저녁 7시 30분</p>
             <p>표영후 이예빈 김예준</p>
@@ -35,7 +35,7 @@ const CastingPlan = () => {
         </div>
 
         <div className="pb-3 mb-3 border-b-2 border-lightGray flex flex-row">
-          <span className="basis-1/3">5/13(금)</span>
+          <span className="basis-1/3">5/12(목)</span>
           <div className="flex flex-col sm:flex-row gap-3 flex-grow">
             <p className="basis-1/2">저녁 7시 30분</p>
             <p>최현우 이예진 김예준</p>
@@ -43,28 +43,28 @@ const CastingPlan = () => {
         </div>
 
         <div className="pb-3 mb-3 border-b-2 border-lightGray flex flex-row">
-          <span className="basis-1/3">5/14(토)</span>
+          <span className="basis-1/3">5/13(금)</span>
           <div className="flex flex-col flex-grow gap-3">
             <div className="flex flex-col gap-3 sm:flex-row">
-              <p className="basis-1/2">오후 2시</p>
+              <p className="basis-1/2">오후 2시 30분</p>
               <p>표형우 이예빈 김예준</p>
             </div>
             <div className="flex flex-col gap-3 sm:flex-row">
-              <p className="basis-1/2">저녁 7시</p>
+              <p className="basis-1/2">저녁 7시 30분</p>
               <p>최현우 이예진 김예준</p>
             </div>
           </div>
         </div>
 
         <div className="pb-3 mb-3 border-b-2 border-lightGray flex flex-row">
-          <span className="basis-1/3">5/15(일)</span>
+          <span className="basis-1/3">5/14(토)</span>
           <div className="flex flex-col flex-grow gap-3">
             <div className="flex flex-col gap-3 sm:flex-row">
-              <p className="basis-1/2">오후 2시</p>
+              <p className="basis-1/2">오후 2시 30분</p>
               <p>최현우 이예진 김예준</p>
             </div>
             <div className="flex flex-col gap-3 sm:flex-row">
-              <p className="basis-1/2">저녁 7시</p>
+              <p className="basis-1/2">저녁 7시 30분</p>
               <p>표형우 이예빈 김예준</p>
             </div>
           </div>

@@ -8,7 +8,7 @@ import { useRouter } from "next/router";
 
 const CalendarContainer = () => {
   const router = useRouter();
-  const [date, setDate] = useState(new Date(2022, 4, 12));
+  const [date, setDate] = useState(new Date(2022, 4, 11));
   const [selectedTime, setSelectedTime] = useState(
     timeTable[date.getDate().toString()][0]
   );

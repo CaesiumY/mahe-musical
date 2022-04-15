@@ -2,6 +2,7 @@ import Image from "next/image";
 import React from "react";
 import seatTable from "@/images/seat_table.svg";
 import discountTable from "@/images/discount_table.svg";
+import { NOMAL_SEAT_PRICE } from "@/constants/constants";
 
 const Title = ({ children }: { children: string }) => (
   <h2 className="mb-4 font-semibold text-xl">&lt;{children}&gt;</h2>
@@ -115,7 +116,7 @@ const MusicalGuide = () => {
               </li>
               <li>
                 <strong>
-                  5/12(목), 5/13(금) 공연에서는 배리어프리 자막 서비스를
+                  5/11(수), 5/12(목) 공연에서는 배리어프리 자막 서비스를
                   운영하지 않습니다.
                 </strong>
               </li>
@@ -228,6 +229,7 @@ const MusicalGuide = () => {
         <Image src={seatTable} alt="좌석 배치도" />
       </GuideBox>
       <GuideBox title="할인 정보">
+        <p className="mb-4">정가: 전석 {NOMAL_SEAT_PRICE.toLocaleString()}원</p>
         <Image src={discountTable} alt="할인 정보" />
       </GuideBox>
     </div>

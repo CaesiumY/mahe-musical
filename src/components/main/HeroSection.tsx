@@ -40,7 +40,7 @@ const HeroSection = () => {
           <div className="mx-20">
             <Image
               src={location}
-              alt="2022년 5월 12일 ~ 15일 북아현 아트홀"
+              alt="2022년 5월 11일 ~ 14일 북아현 아트홀"
               quality={100}
             />
           </div>

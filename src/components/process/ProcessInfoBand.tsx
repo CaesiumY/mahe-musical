@@ -22,7 +22,12 @@ const ProcessInfoBand = ({ ticketInfo, musicalDate }: ProcessInfoBandProps) => {
           <p>2022-05-{day}</p>
           <span>|</span>
           <p>
-            {hour === "14" || minute === "30" ? "1회" : "2회"} {hour}:{minute}
+            {hour === "14"
+              ? "1회"
+              : day === "11" || day === "12"
+              ? "1회"
+              : "2회"}{" "}
+            {hour}:{minute}
           </p>
         </div>
         <span className="hidden sm:block">|</span>

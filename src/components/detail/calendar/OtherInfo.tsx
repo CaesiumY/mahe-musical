@@ -22,6 +22,7 @@ const OtherInfo = ({ timeId }: OtherInfoProps) => {
   const [musicalData, setMusicalData] = useState<MusicalDataType>({});
 
   useEffect(() => {
+    // TODO - 리얼타임 데이터 베이스 변경
     const getMusicalData = async () => {
       try {
         const querySnapshot = await getDocs(

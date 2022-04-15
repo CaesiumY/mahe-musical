@@ -17,6 +17,9 @@ const SeatTypeSelect = ({ onChangeSeatCount }: SeatTypeSelectProps) => {
   const onClickTabButton = () => {
     if (normal + wheelChair + barrierFree === 0)
       return alert("1개 이상의 티켓을 넣어주세요!");
+
+    // TODO - 현재 남은 자리 파악
+
     onChangeSeatCount({
       normal,
       wheelChair,

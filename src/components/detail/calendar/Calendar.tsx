@@ -18,8 +18,8 @@ const Calendar = ({ value, onChange }: CalendarProps) => {
       navigationLabel={({ date }) =>
         `${date.getFullYear()}.0${date.getMonth() + 1}`
       }
-      minDate={new Date(2022, 4, 12)}
-      maxDate={new Date(2022, 4, 15)}
+      minDate={new Date(2022, 4, 11)}
+      maxDate={new Date(2022, 4, 14)}
       showNeighboringMonth={false}
       className={style.calendar}
       onChange={onChange}

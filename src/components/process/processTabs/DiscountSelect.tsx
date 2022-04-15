@@ -35,8 +35,10 @@ const DiscountSelect = ({
     normal + local + other === totalTickets ? value : value + 1;
   const onMinusCount = (value: number) => (value === 0 ? value : value - 1);
 
-  const totalPrice =
-    normal * NOMAL_SEAT_PRICE + (local + other) * DISCOUNTED_SEAT_PRICE;
+  const totalPrice = (
+    normal * NOMAL_SEAT_PRICE +
+    (local + other) * DISCOUNTED_SEAT_PRICE
+  ).toLocaleString();
 
   return (
     <div className="p-8 flex flex-col w-full max-w-md">
@@ -54,7 +56,7 @@ const DiscountSelect = ({
       >
         <div className="flex flex-col gap-3">
           <p>일반</p>
-          <p>{NOMAL_SEAT_PRICE}원</p>
+          <p>{NOMAL_SEAT_PRICE.toLocaleString()}원</p>
         </div>
       </TabCounter>
       <TabCounter
@@ -64,7 +66,7 @@ const DiscountSelect = ({
       >
         <div className="flex flex-col gap-3">
           <p>지역 할인</p>
-          <p>{DISCOUNTED_SEAT_PRICE}원</p>
+          <p>{DISCOUNTED_SEAT_PRICE.toLocaleString()}원</p>
         </div>
       </TabCounter>
       <TabCounter
@@ -78,7 +80,7 @@ const DiscountSelect = ({
             <br />
             (동반 1인 가능)
           </p>
-          <p>{DISCOUNTED_SEAT_PRICE}원</p>
+          <p>{DISCOUNTED_SEAT_PRICE.toLocaleString()}원</p>
         </div>
       </TabCounter>
 

@@ -52,8 +52,10 @@ const ResultCheck = ({ toNextTab, bookResult }: ResultCheckProps) => {
 
   const totalPrice = useMemo(
     () =>
-      price.normal * NOMAL_SEAT_PRICE +
-      (price.local + price.other) * DISCOUNTED_SEAT_PRICE,
+      (
+        price.normal * NOMAL_SEAT_PRICE +
+        (price.local + price.other) * DISCOUNTED_SEAT_PRICE
+      ).toLocaleString(),
     [price]
   );
 
@@ -83,18 +85,12 @@ const ResultCheck = ({ toNextTab, bookResult }: ResultCheckProps) => {
           0
         ),
       };
-      const docRef = await addDoc(
-        collection(db, collectionNames.TICKETS),
-        ticket
-      );
-      const musicalRef = await updateDoc(
-        doc(db, collectionNames.MUSICAL_INFO, musicalDate),
-        {
-          normal: increment(seats.normal),
-          wheelChair: increment(seats.wheelChair),
-          barrierFree: increment(seats.barrierFree),
-        }
-      );
+      await addDoc(collection(db, collectionNames.TICKETS), ticket);
+      await updateDoc(doc(db, collectionNames.MUSICAL_INFO, musicalDate), {
+        normal: increment(seats.normal),
+        wheelChair: increment(seats.wheelChair),
+        barrierFree: increment(seats.barrierFree),
+      });
     } catch (error) {
     } finally {
       setIsLoading(false);

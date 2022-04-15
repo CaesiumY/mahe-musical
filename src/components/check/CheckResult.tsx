@@ -47,7 +47,9 @@ const CheckResult = ({ data }: CheckResultProps) => {
           <LineItem title="좌석">
             {seatCode?.map((s) => s.toUpperCase()) ?? "미정"}
           </LineItem>
-          <LineItem title="티켓 금액">총 {totalPrice}원</LineItem>
+          <LineItem title="티켓 금액">
+            총 {totalPrice.toLocaleString()}원
+          </LineItem>
           <LineItem title="입금 계좌번호">{ACCOUNT_NUMBER}</LineItem>
           <LineItem title="취소 가능일">
             {new Date(limitedAt.seconds * 1000 - 1)

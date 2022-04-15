@@ -29,13 +29,13 @@ const Header = ({ color = "ivory" }: HeaderProps) => {
 
   return (
     <>
-      <header className="fixed top-0 left-0 right-0 z-50">
+      <header
+        className={`fixed top-0 left-0 right-0 z-50 ${
+          isOpen || color !== "ivory" ? "bg-white" : "bg-transparent"
+        }`}
+      >
         <nav className="transition-all duration-500 sm:mx-24 flex flex-col sm:flex-row">
-          <div
-            className={`flex text-[#667080] px-8 py-6 sm:p-0 z-50 ${
-              isOpen || color !== "ivory" ? "bg-white" : "bg-transparent"
-            }`}
-          >
+          <div className="flex text-[#667080] px-8 py-6 sm:p-0 z-50">
             <Link href="/">
               <a
                 className="flex items-center font-bold text-3xl"

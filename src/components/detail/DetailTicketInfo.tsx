@@ -2,13 +2,14 @@ import Image from "next/image";
 import React from "react";
 import IconGroup from "../common/IconGroup";
 import poster from "@/images/poster_mini.jpg";
+import { NOMAL_SEAT_PRICE } from "@/constants/constants";
 
 const ticketInfo = {
   장소: "북아현아트홀",
   공연기간: "2022.05.11 - 2022.05.14",
   공연시간: "110분",
   관람가: "14세 이상 관람가",
-  가격: "10,000원",
+  가격: `${NOMAL_SEAT_PRICE.toLocaleString()}원`,
   할인정보: "지역 할인, 장애인/국가유공자 할인",
 };
 

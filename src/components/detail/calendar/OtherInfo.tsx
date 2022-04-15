@@ -1,6 +1,4 @@
 import React, { useEffect, useMemo, useRef, useState } from "react";
-import { collection, getDocs } from "firebase/firestore";
-import { db } from "@/firebase/firestore";
 import {
   BARRIER_FREE_SEAT_COUNT,
   castingTable,
@@ -9,6 +7,8 @@ import {
   WHEEL_CHARIR_SEAT_COUNT,
 } from "@/constants/constants";
 import { MusicalInfoType } from "@/types/types";
+import { onValue, ref } from "firebase/database";
+import { realtime } from "@/firebase/realtime";
 
 interface OtherInfoProps {
   timeId: keyof typeof castingTable;
@@ -22,20 +22,13 @@ const OtherInfo = ({ timeId }: OtherInfoProps) => {
   const [musicalData, setMusicalData] = useState<MusicalDataType>({});
 
   useEffect(() => {
-    // TODO - 리얼타임 데이터 베이스 변경
     const getMusicalData = async () => {
       try {
-        const querySnapshot = await getDocs(
-          collection(db, collectionNames.MUSICAL_INFO)
-        );
-
-        const nextData: MusicalDataType = {};
-
-        querySnapshot.forEach((doc) => {
-          nextData[doc.id] = doc.data() as MusicalInfoType;
+        const starCountRef = ref(realtime);
+        onValue(starCountRef, (snapshot) => {
+          const data: MusicalDataType = snapshot.val();
+          setMusicalData(data);
         });
-
-        setMusicalData(nextData);
       } catch (error) {
         console.error(error);
       }

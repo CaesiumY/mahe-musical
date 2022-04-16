@@ -45,7 +45,7 @@ const CheckResult = ({ data }: CheckResultProps) => {
             배리어프리(자막) {seats.barrierFree ?? 0}매
           </LineItem>
           <LineItem title="좌석">
-            {seatCode?.map((s) => s.toUpperCase()) ?? "미정"}
+            {seatCode?.map((s) => s.toUpperCase()) ?? "FREE"}
           </LineItem>
           <LineItem title="티켓 금액">
             총 {totalPrice.toLocaleString()}원

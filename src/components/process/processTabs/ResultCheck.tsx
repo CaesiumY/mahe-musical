@@ -1,5 +1,5 @@
 import { addDoc, collection, Timestamp } from "firebase/firestore";
-import React, { useMemo, useState } from "react";
+import React, { useEffect, useMemo, useState } from "react";
 import {
   BARRIER_FREE_SEAT_COUNT,
   castingTable,
@@ -14,6 +14,8 @@ import { db } from "@/firebase/firestore";
 import { PriceType, SeatsType, TicketsType, UserInfoType } from "@/types/types";
 import TabButton from "./common/TabButton";
 import TabHeader from "./common/TabHeader";
+import { off, ref, update } from "firebase/database";
+import { realtime } from "@/firebase/realtime";
 
 interface LineItemProps {
   title: string;
@@ -111,12 +113,23 @@ const ResultCheck = ({ toNextTab, bookResult, data }: ResultCheckProps) => {
         ),
       };
       await addDoc(collection(db, collectionNames.TICKETS), ticket);
+      await update(ref(realtime, musicalDate), {
+        normal: data.normal + normal,
+        wheelChair: data.wheelChair + wheelChair,
+        barrierFree: data.barrierFree + barrierFree,
+      } as SeatsType);
       setIsLoading(false);
       toNextTab();
     } catch (error) {
       console.error(error);
     }
   };
+
+  useEffect(() => {
+    return () => {
+      off(ref(realtime, musicalDate));
+    };
+  }, [musicalDate]);
 
   return (
     <div className="p-8 flex flex-col w-full max-w-md gap-6">

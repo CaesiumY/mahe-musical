@@ -111,10 +111,10 @@ const ResultCheck = ({ toNextTab, bookResult, data }: ResultCheckProps) => {
         ),
       };
       await addDoc(collection(db, collectionNames.TICKETS), ticket);
+      setIsLoading(false);
       toNextTab();
     } catch (error) {
-    } finally {
-      setIsLoading(false);
+      console.error(error);
     }
   };
 

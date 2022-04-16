@@ -3,7 +3,7 @@ import React from "react";
 interface UserInputProps {
   label: string;
   id: string;
-  type: "text" | "email";
+  type: "text" | "email" | "password";
   placeholder: string;
   value: string;
   setValue: (payload: string) => void;

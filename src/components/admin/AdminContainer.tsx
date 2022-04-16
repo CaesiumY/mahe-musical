@@ -78,7 +78,7 @@ const AdminContainer = () => {
   const min = selectedDate.slice(-2);
 
   return (
-    <section className="mt-24">
+    <section>
       <div className="flex flex-row gap-4 justify-center">
         {Object.keys(castingTable).map((key) => (
           <button

@@ -23,8 +23,8 @@ interface LineItemProps {
 const LineItem = ({ title, children }: LineItemProps) => {
   return (
     <div className="flex flex-row w-full">
-      <span className="basis-1/4 font-semibold">{title}</span>
-      <span className="basis-3/4 font-normal">{children}</span>
+      <span className="basis-1/3 font-semibold">{title}</span>
+      <span className="basis-2/3 font-normal">{children}</span>
     </div>
   );
 };

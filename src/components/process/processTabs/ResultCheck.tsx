@@ -30,7 +30,7 @@ const LineItem = ({ title, children }: LineItemProps) => {
 };
 
 interface ResultCheckProps {
-  toNextTab: () => void;
+  toNextTab: (toFirst?: boolean) => void;
   bookResult: {
     musicalDate: keyof typeof castingTable;
     seats: SeatsType;
@@ -72,7 +72,7 @@ const ResultCheck = ({ toNextTab, bookResult, data }: ResultCheckProps) => {
 
       if (data.normal + normal > NORMAL_SEAT_COUNT) {
         makeAlert("일반", normal, NORMAL_SEAT_COUNT - data.normal);
-        return;
+        return toNextTab(true);
       }
       if (data.wheelChair + wheelChair > WHEEL_CHARIR_SEAT_COUNT) {
         makeAlert(
@@ -80,7 +80,7 @@ const ResultCheck = ({ toNextTab, bookResult, data }: ResultCheckProps) => {
           wheelChair,
           WHEEL_CHARIR_SEAT_COUNT - data.wheelChair
         );
-        return;
+        return toNextTab(true);
       }
       if (data.barrierFree + barrierFree > BARRIER_FREE_SEAT_COUNT) {
         makeAlert(
@@ -88,7 +88,7 @@ const ResultCheck = ({ toNextTab, bookResult, data }: ResultCheckProps) => {
           barrierFree,
           BARRIER_FREE_SEAT_COUNT - data.barrierFree
         );
-        return;
+        return toNextTab(true);
       }
 
       const today = new Date().toLocaleDateString();

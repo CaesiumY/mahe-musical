@@ -39,7 +39,8 @@ const ProcessContainer = () => {
     email: "",
   });
 
-  const toNextTab = () => setCurrentTab((value) => value + 1);
+  const toNextTab = (toFirst?: boolean) =>
+    setCurrentTab((value) => (toFirst ? 0 : value + 1));
 
   // seat logic
   const totalTickets = useMemo(

@@ -47,7 +47,7 @@ const CastingPlan = () => {
           <div className="flex flex-col flex-grow gap-3">
             <div className="flex flex-col gap-3 sm:flex-row">
               <p className="basis-1/2">오후 2시 30분</p>
-              <p>표형우 이예빈 김예준</p>
+              <p>표영후 이예빈 김예준</p>
             </div>
             <div className="flex flex-col gap-3 sm:flex-row">
               <p className="basis-1/2">저녁 7시 30분</p>
@@ -65,7 +65,7 @@ const CastingPlan = () => {
             </div>
             <div className="flex flex-col gap-3 sm:flex-row">
               <p className="basis-1/2">저녁 7시 30분</p>
-              <p>표형우 이예빈 김예준</p>
+              <p>표영후 이예빈 김예준</p>
             </div>
           </div>
         </div>

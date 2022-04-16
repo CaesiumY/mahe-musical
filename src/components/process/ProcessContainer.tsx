@@ -1,7 +1,9 @@
-import { castingTable } from "@/constants/constants";
+import { off, onValue, ref } from "firebase/database";
 import { useRouter } from "next/router";
-import React, { useMemo, useState } from "react";
-import { PriceType, SeatsType, UserInfoType } from "../../types/types";
+import React, { useEffect, useMemo, useState } from "react";
+import { castingTable } from "@/constants/constants";
+import { realtime } from "@/firebase/realtime";
+import { PriceType, SeatsType, UserInfoType } from "@/types/types";
 import ProcessInfoBand from "./ProcessInfoBand";
 import DiscountSelect from "./processTabs/DiscountSelect";
 import EndOfProcess from "./processTabs/EndOfProcess";
@@ -13,6 +15,11 @@ const ProcessContainer = () => {
   const { query } = useRouter();
   const { musicalDate } = query as { musicalDate: keyof typeof castingTable };
   const [currentTab, setCurrentTab] = useState(0);
+  const [musicalData, setMusicalData] = useState<SeatsType>({
+    normal: 0,
+    barrierFree: 0,
+    wheelChair: 0,
+  });
 
   const [seatCount, setSeatCount] = useState<SeatsType>({
     normal: 0,
@@ -57,11 +64,26 @@ const ProcessContainer = () => {
     toNextTab();
   };
 
+  useEffect(() => {
+    try {
+      const ticketCountRef = ref(realtime, musicalDate);
+      onValue(ticketCountRef, (snapshot) => {
+        const data: SeatsType = snapshot.val();
+        setMusicalData(data);
+      });
+    } catch (error) {
+      console.error(error);
+    }
+    return () => {
+      off(ref(realtime));
+    };
+  }, [musicalDate]);
+
   const tabs = [
     <SeatTypeSelect
       key="seatTypeSelect"
       onChangeSeatCount={onChangeSeatCount}
-      musicalDate={musicalDate}
+      data={musicalData}
     />,
     <DiscountSelect
       key="discountSelect"
@@ -78,6 +100,7 @@ const ProcessContainer = () => {
         price: priceCount,
         userInfo,
       }}
+      data={musicalData}
     />,
     <EndOfProcess
       key="endOfProcess"

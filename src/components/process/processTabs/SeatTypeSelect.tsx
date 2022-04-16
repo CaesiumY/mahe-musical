@@ -1,65 +1,72 @@
+import React, { useState } from "react";
 import { SeatsType } from "@/types/types";
 import {
   BARRIER_FREE_SEAT_COUNT,
-  castingTable,
   MAX_TICKETS_PER_PERSON,
   NORMAL_SEAT_COUNT,
   WHEEL_CHARIR_SEAT_COUNT,
 } from "@/constants/constants";
-import React, { useState } from "react";
 import TabButton from "./common/TabButton";
 import TabCounter from "./common/TabCounter";
 import TabHeader from "./common/TabHeader";
-import { onValue, ref } from "firebase/database";
-import { realtime } from "@/firebase/realtime";
 
 interface SeatTypeSelectProps {
   onChangeSeatCount: (ticketCount: SeatsType) => void;
-  musicalDate: keyof typeof castingTable;
+  data: SeatsType;
 }
 
-const SeatTypeSelect = ({
-  onChangeSeatCount,
-  musicalDate,
-}: SeatTypeSelectProps) => {
+const SeatTypeSelect = ({ onChangeSeatCount, data }: SeatTypeSelectProps) => {
   const [normal, setNomal] = useState(0);
   const [wheelChair, setWheelChair] = useState(0);
   const [barrierFree, setBarrierFree] = useState(0);
-  const [isLoading, setIsLoading] = useState(false);
-
-  const makeAlert = (seat: string, remained: number) =>
-    alert(
-      `${seat}은 현재 ${remained}석 남았습니다! ${remained}장 이하로 수량을 변경해주세요.`
-    );
+  const [error, setError] = useState({
+    isError: false,
+    seat: "",
+    remained: 0,
+  });
 
   const onClickTabButton = () => {
     if (normal + wheelChair + barrierFree === 0)
       return alert("1개 이상의 티켓을 넣어주세요!");
 
-    try {
-      setIsLoading(true);
-      const starCountRef = ref(realtime, musicalDate);
-      onValue(starCountRef, (snapshot) => {
-        const data: SeatsType = snapshot.val();
-
-        if (data.normal + normal > NORMAL_SEAT_COUNT)
-          return makeAlert("일반석", NORMAL_SEAT_COUNT - data.normal);
-        if (data.wheelChair + wheelChair > WHEEL_CHARIR_SEAT_COUNT)
-          return makeAlert(
-            "장애인석",
-            WHEEL_CHARIR_SEAT_COUNT - data.wheelChair
-          );
-        if (data.barrierFree + barrierFree > BARRIER_FREE_SEAT_COUNT)
-          return makeAlert(
-            "배리어프리석",
-            BARRIER_FREE_SEAT_COUNT - data.barrierFree
-          );
-      });
-    } catch (error) {
-      console.error(error);
-    } finally {
-      setIsLoading(false);
+    if (data.normal + normal > NORMAL_SEAT_COUNT) {
+      const remained = NORMAL_SEAT_COUNT - data.normal;
+      setError((value) => ({
+        ...value,
+        isError: true,
+        seat: "일반석",
+        remained,
+      }));
+      setNomal(remained);
+      return;
     }
+    if (data.wheelChair + wheelChair > WHEEL_CHARIR_SEAT_COUNT) {
+      const remained = WHEEL_CHARIR_SEAT_COUNT - data.wheelChair;
+      setError((value) => ({
+        ...value,
+        isError: true,
+        seat: "휠체어석",
+        remained,
+      }));
+      setWheelChair(remained);
+      return;
+    }
+    if (data.barrierFree + barrierFree > BARRIER_FREE_SEAT_COUNT) {
+      const remained = BARRIER_FREE_SEAT_COUNT - data.barrierFree;
+      setError((value) => ({
+        ...value,
+        isError: true,
+        seat: "배리어프리석",
+        remained,
+      }));
+      setBarrierFree(remained);
+      return;
+    }
+
+    setError((value) => ({
+      ...value,
+      isError: false,
+    }));
 
     onChangeSeatCount({
       normal,
@@ -71,6 +78,8 @@ const SeatTypeSelect = ({
   const onPlusCount = (value: number) =>
     value === MAX_TICKETS_PER_PERSON ? value : value + 1;
   const onMinusCount = (value: number) => (value === 0 ? value : value - 1);
+
+  const { isError, seat, remained } = error;
 
   return (
     <div className="p-8 flex flex-col w-full max-w-md">
@@ -96,9 +105,15 @@ const SeatTypeSelect = ({
       >
         <p>배리어프리석</p>
       </TabCounter>
+      {isError && (
+        <h4 className="mt-4 text-red-500 text-center">
+          {seat}은 현재 {remained}석 남았습니다! <br /> {remained}장 이하로
+          수량을 변경해주세요.
+        </h4>
+      )}
 
       <div className="text-center mt-14">
-        <TabButton onClick={onClickTabButton} disabled={isLoading} />
+        <TabButton onClick={onClickTabButton} />
       </div>
     </div>
   );

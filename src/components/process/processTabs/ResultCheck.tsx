@@ -1,21 +1,17 @@
+import { addDoc, collection, Timestamp } from "firebase/firestore";
+import React, { useMemo, useState } from "react";
 import {
+  BARRIER_FREE_SEAT_COUNT,
   castingTable,
   collectionNames,
   DISCOUNTED_SEAT_PRICE,
   LIMIT_TICKET_DATE,
   NOMAL_SEAT_PRICE,
+  NORMAL_SEAT_COUNT,
+  WHEEL_CHARIR_SEAT_COUNT,
 } from "@/constants/constants";
 import { db } from "@/firebase/firestore";
 import { PriceType, SeatsType, TicketsType, UserInfoType } from "@/types/types";
-import {
-  addDoc,
-  collection,
-  doc,
-  increment,
-  Timestamp,
-  updateDoc,
-} from "firebase/firestore";
-import React, { useMemo, useState } from "react";
 import TabButton from "./common/TabButton";
 import TabHeader from "./common/TabHeader";
 
@@ -41,9 +37,10 @@ interface ResultCheckProps {
     price: PriceType;
     userInfo: UserInfoType;
   };
+  data: SeatsType;
 }
 
-const ResultCheck = ({ toNextTab, bookResult }: ResultCheckProps) => {
+const ResultCheck = ({ toNextTab, bookResult, data }: ResultCheckProps) => {
   const [isLoading, setIsLoading] = useState(false);
 
   const { musicalDate, price, seats, userInfo } = bookResult;
@@ -63,9 +60,37 @@ const ResultCheck = ({ toNextTab, bookResult }: ResultCheckProps) => {
   const hour = musicalDate.slice(2, 4);
   const minute = musicalDate.slice(-2);
 
+  const makeAlert = (seat: string, userTickets: number, remained: number) =>
+    alert(
+      `${seat}석의 수량이 부족합니다. 다시 예매해주세요.
+예매 신청 수량 ${userTickets}석 / 남은 수량 ${remained}석`
+    );
+
   const onClickMakeBook = async () => {
     try {
       setIsLoading(true);
+
+      if (data.normal + normal > NORMAL_SEAT_COUNT) {
+        makeAlert("일반", normal, NORMAL_SEAT_COUNT - data.normal);
+        return;
+      }
+      if (data.wheelChair + wheelChair > WHEEL_CHARIR_SEAT_COUNT) {
+        makeAlert(
+          "휠체어",
+          wheelChair,
+          WHEEL_CHARIR_SEAT_COUNT - data.wheelChair
+        );
+        return;
+      }
+      if (data.barrierFree + barrierFree > BARRIER_FREE_SEAT_COUNT) {
+        makeAlert(
+          "배리어프리",
+          barrierFree,
+          BARRIER_FREE_SEAT_COUNT - data.barrierFree
+        );
+        return;
+      }
+
       const today = new Date().toLocaleDateString();
       const ticket: TicketsType = {
         ...userInfo,
@@ -86,15 +111,10 @@ const ResultCheck = ({ toNextTab, bookResult }: ResultCheckProps) => {
         ),
       };
       await addDoc(collection(db, collectionNames.TICKETS), ticket);
-      await updateDoc(doc(db, collectionNames.MUSICAL_INFO, musicalDate), {
-        normal: increment(seats.normal),
-        wheelChair: increment(seats.wheelChair),
-        barrierFree: increment(seats.barrierFree),
-      });
+      toNextTab();
     } catch (error) {
     } finally {
       setIsLoading(false);
-      toNextTab();
     }
   };
 

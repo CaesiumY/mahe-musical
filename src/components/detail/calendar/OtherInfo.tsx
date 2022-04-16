@@ -1,4 +1,5 @@
-import React, { useEffect, useMemo, useRef, useState } from "react";
+import React, { useEffect, useMemo, useState } from "react";
+import { off, onValue, ref } from "firebase/database";
 import {
   BARRIER_FREE_SEAT_COUNT,
   castingTable,
@@ -6,7 +7,6 @@ import {
   WHEEL_CHARIR_SEAT_COUNT,
 } from "@/constants/constants";
 import { SeatsType } from "@/types/types";
-import { onValue, ref } from "firebase/database";
 import { realtime } from "@/firebase/realtime";
 
 type CastingTableType = keyof typeof castingTable;
@@ -25,8 +25,8 @@ const OtherInfo = ({ timeId }: OtherInfoProps) => {
   useEffect(() => {
     const getMusicalData = async () => {
       try {
-        const starCountRef = ref(realtime);
-        onValue(starCountRef, (snapshot) => {
+        const ticketCountRef = ref(realtime);
+        onValue(ticketCountRef, (snapshot) => {
           const data: MusicalDataType = snapshot.val();
           setMusicalData(data);
         });
@@ -36,6 +36,10 @@ const OtherInfo = ({ timeId }: OtherInfoProps) => {
     };
 
     getMusicalData();
+
+    return () => {
+      off(ref(realtime));
+    };
   }, []);
 
   const remainedSeats = useMemo(

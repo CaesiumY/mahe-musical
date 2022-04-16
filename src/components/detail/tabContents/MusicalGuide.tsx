@@ -17,7 +17,7 @@ const GuideBox = ({ title, children }: GuideBox) => {
   return (
     <article className="my-14">
       <Title>{title}</Title>
-      <div className="text-navy leading-6">{children}</div>
+      <div className="text-dark leading-6">{children}</div>
     </article>
   );
 };

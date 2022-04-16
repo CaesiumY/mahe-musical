@@ -13,7 +13,9 @@ const MetaTags = ({ subTitle, pathname }: MetaTagsProps) => {
   );
 
   const siteUrl =
-    process.env.SITE_URL || "https://musical-ticketing.vercel.app";
+    process.env.SITE_URL ||
+    "https://www.mahemusical.com/" ||
+    "https://musical-ticketing.vercel.app";
 
   const DEFAULT_DESCRIPTION =
     "연세대학교 뮤지컬 소모임 ma:he 마헤 봄 공연 뮤지컬 어쩌면 해피엔딩 2022.05.11 - 2022.05.14 북아현아트홀";

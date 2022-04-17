@@ -30,6 +30,7 @@ const EnhancedTable = ({
       { title: "name", field: "name" },
       { title: "contact", field: "contact" },
       { title: "email", field: "email" },
+      { title: "seatCode", field: "seatCode", emptyValue: "미정" },
       {
         title: "limitedAt",
         field: "limitedAt",
@@ -80,7 +81,9 @@ const EnhancedTable = ({
       }}
       cellEditable={{
         isCellEditable: (_, columnDef: Column<TableDataType>) =>
-          columnDef.title === "status" ? true : false,
+          columnDef.title === "status" || columnDef.title === "seatCode"
+            ? true
+            : false,
         onCellEditApproved: async (
           newValue: string,
           _,

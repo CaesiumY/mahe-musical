@@ -1,6 +1,8 @@
 import { castingTable } from "@/constants/constants";
 import { Timestamp } from "firebase/firestore";
 
+export type MusicalTimePlan = keyof typeof castingTable;
+
 export interface PriceType {
   local: number;
   normal: number;
@@ -23,10 +25,11 @@ export interface UserInfoType {
   contact: string;
   email: string;
 }
+
 export interface TicketsType extends UserInfoType {
   createdAt: Timestamp;
   limitedAt: Timestamp;
-  musicalDate: string;
+  musicalDate: MusicalTimePlan;
   seatCode?: string[];
   price: PriceType;
   seats: SeatsType;
@@ -41,5 +44,3 @@ export interface MusicalInfoType extends SeatsType {
   date: Timestamp;
   seats?: string[];
 }
-
-export type MusicalTimePlan = keyof typeof castingTable;

@@ -1,8 +1,10 @@
+import dynamic from "next/dynamic";
 import React, { useEffect, useState } from "react";
-import BottomDrawer from "./BottomDrawer";
-import DetailTabController from "./DetailTabController";
+
 import DetailTicketInfo from "./DetailTicketInfo";
-import RightSticker from "./RightSticker";
+const DetailTabController = dynamic(() => import("./DetailTabController"));
+const BottomDrawer = dynamic(() => import("./BottomDrawer"));
+const RightSticker = dynamic(() => import("./RightSticker"));
 
 const DetailContainer = () => {
   const [isOpen, setIsOpen] = useState(false);

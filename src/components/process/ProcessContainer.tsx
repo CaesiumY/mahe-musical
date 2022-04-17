@@ -1,15 +1,18 @@
-import { off, onValue, ref } from "firebase/database";
 import { useRouter } from "next/router";
+import dynamic from "next/dynamic";
+import { off, onValue, ref } from "firebase/database";
 import React, { useEffect, useMemo, useState } from "react";
+
 import { castingTable } from "@/constants/constants";
 import { realtime } from "@/firebase/realtime";
 import { PriceType, SeatsType, UserInfoType } from "@/types/types";
-import ProcessInfoBand from "./ProcessInfoBand";
-import DiscountSelect from "./processTabs/DiscountSelect";
-import EndOfProcess from "./processTabs/EndOfProcess";
-import ResultCheck from "./processTabs/ResultCheck";
-import SeatTypeSelect from "./processTabs/SeatTypeSelect";
-import UserInfo from "./processTabs/UserInfo";
+
+const ProcessInfoBand = dynamic(() => import("./ProcessInfoBand"));
+const DiscountSelect = dynamic(() => import("./processTabs/DiscountSelect"));
+const EndOfProcess = dynamic(() => import("./processTabs/EndOfProcess"));
+const ResultCheck = dynamic(() => import("./processTabs/ResultCheck"));
+const SeatTypeSelect = dynamic(() => import("./processTabs/SeatTypeSelect"));
+const UserInfo = dynamic(() => import("./processTabs/UserInfo"));
 
 const ProcessContainer = () => {
   const { query } = useRouter();

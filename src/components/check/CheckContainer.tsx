@@ -1,7 +1,9 @@
 import React, { useState } from "react";
-import CheckLogin from "./CheckLogin";
-import CheckResult from "./CheckResult";
+import dynamic from "next/dynamic";
+
 import { TicketsType } from "../../types/types";
+const CheckResult = dynamic(() => import("./CheckResult"));
+const CheckLogin = dynamic(() => import("./CheckLogin"));
 
 const CheckContainer = () => {
   const [userData, setUserData] = useState<TicketsType>();

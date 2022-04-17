@@ -1,13 +1,14 @@
+import React from "react";
+import dynamic from "next/dynamic";
 import {
   ACCOUNT_NUMBER,
   DISCOUNTED_SEAT_PRICE,
   makeContactRegex,
   NOMAL_SEAT_PRICE,
 } from "@/constants/constants";
-import React from "react";
-import LineItem from "../common/LineItem";
-import StatusBanner from "./StatusBanner";
 import { TicketsType } from "../../types/types";
+import LineItem from "../common/LineItem";
+const StatusBanner = dynamic(() => import("./StatusBanner"));
 
 interface CheckResultProps {
   data: TicketsType;

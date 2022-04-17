@@ -1,10 +1,14 @@
+import React from "react";
+import { useRouter } from "next/router";
+import dynamic from "next/dynamic";
+
 import MetaTags from "@/components/common/MetaTags";
-import ProcessContainer from "@/components/process/ProcessContainer";
 import ToMain from "@/components/process/ToMain";
 import { castingTable } from "@/constants/constants";
 import { NextPage } from "next";
-import { useRouter } from "next/router";
-import React from "react";
+const ProcessContainer = dynamic(
+  () => import("@/components/process/ProcessContainer")
+);
 
 const BookProcess: NextPage = () => {
   const { pathname, query } = useRouter();

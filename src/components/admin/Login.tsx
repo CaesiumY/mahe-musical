@@ -1,18 +1,32 @@
+import { auth } from "@/firebase/auth";
+import { signInWithEmailAndPassword } from "firebase/auth";
 import React, { useState } from "react";
 import UserInput from "../common/UserInput";
 import TabButton from "../process/processTabs/common/TabButton";
 
 interface LoginProps {
-  submitLogin: (email: string, password: string) => void;
-  isLoading: boolean;
+  setIsAuth: (flag: boolean) => void;
 }
 
-const Login = ({ submitLogin, isLoading }: LoginProps) => {
+const Login = ({ setIsAuth }: LoginProps) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
 
-  const onClickTabButton = () => {
-    submitLogin(email, password);
+  const onClickTabButton = async () => {
+    try {
+      setIsLoading(true);
+
+      await signInWithEmailAndPassword(auth, email, password);
+      setIsAuth(true);
+    } catch (error) {
+      if (error instanceof Error) {
+        console.error(error.message);
+        alert(error.message);
+      }
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   return (

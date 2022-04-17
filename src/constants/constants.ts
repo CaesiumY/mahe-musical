@@ -21,7 +21,6 @@ export const castingTable = {
 };
 
 export const collectionNames = {
-  MUSICAL_INFO: "musicalInfo",
   TICKETS: "tickets",
 };
 

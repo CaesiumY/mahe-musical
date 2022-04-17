@@ -3,6 +3,7 @@ import { db } from "@/firebase/firestore";
 import { TicketsType } from "@/types/types";
 import { collection, getDocs, query, where } from "firebase/firestore";
 import React, { useEffect, useState } from "react";
+import { Column } from "react-table";
 import EnhancedTable from "./table/EnhancedTable";
 
 type MusicalTimePlan = keyof typeof castingTable;
@@ -12,7 +13,7 @@ const AdminContainer = () => {
   const [selectedDate, setSelectedDate] = useState<MusicalTimePlan>("111930");
   const [isLoading, setIsLoading] = useState(false);
 
-  const columns = React.useMemo(
+  const columns = React.useMemo<Column<TicketsType>[]>(
     () => [
       {
         Header: "name",
@@ -58,11 +59,14 @@ const AdminContainer = () => {
 
         if (querySnapshot.empty) return alert("데이터가 없습니다");
 
+        let tempData: TicketsType[] = [];
         querySnapshot.forEach((doc) => {
           const nextValue = doc.data() as TicketsType;
-
-          setData((value) => [...value, nextValue]);
+          tempData.push(nextValue);
         });
+
+        setData(tempData);
+        // console.log("tempData", tempData);
       } catch (error) {
         console.error(error);
       } finally {
@@ -90,7 +94,7 @@ const AdminContainer = () => {
           </button>
         ))}
       </div>
-      <h1 className="font-bold text-center text-4xl mt-4">
+      <h1 className="font-bold text-center text-4xl my-4">
         5월 {day}일 {hour}시 {min}분 공연 티켓 데이터
       </h1>
       {isLoading && (

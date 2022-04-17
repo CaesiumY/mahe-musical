@@ -13,7 +13,6 @@ const Admin = () => {
       setIsLoading(true);
 
       const user = await signInWithEmailAndPassword(auth, email, password);
-      console.log("user", user);
       setIsAuth(true);
     } catch (error) {
       if (error instanceof Error) {

@@ -32,11 +32,9 @@ export interface TicketsType extends UserInfoType {
   status: BookStatus;
 }
 
-// export interface MusicalSeatCount {
-//   normal: number;
-//   wheelChair: number;
-//   barrierFree: number;
-// }
+export interface TableDataType extends TicketsType {
+  id: string;
+}
 
 export interface MusicalInfoType extends SeatsType {
   date: Timestamp;

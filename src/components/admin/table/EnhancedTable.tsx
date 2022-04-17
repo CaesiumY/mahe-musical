@@ -1,27 +1,40 @@
-import { TicketsType } from "@/types/types";
-import React, { useMemo, useRef } from "react";
-import MaterialTable from "@material-table/core";
+import { TableDataType, TicketsType } from "@/types/types";
+import React, { useMemo } from "react";
+import MaterialTable, { Column } from "@material-table/core";
 
 interface EnhancedTableProps {
-  data: TicketsType[];
+  data: TableDataType[];
 }
 
 const EnhancedTable = ({ data }: EnhancedTableProps) => {
-  const columns = useMemo(
+  const makeLocaleDate = (sec: number) =>
+    new Date(sec * 1000).toLocaleString().slice(5, -3);
+
+  const columns: Column<TableDataType>[] = useMemo(
     () => [
+      { title: "id", field: "id" },
       { title: "name", field: "name" },
       { title: "contact", field: "contact" },
       { title: "email", field: "email" },
-      { title: "musicalDate", field: "musicalDate" },
       {
         title: "limitedAt",
         field: "limitedAt",
-        render: (rowData: TicketsType) =>
-          new Date(rowData.limitedAt.seconds * 1000)
-            .toLocaleString()
-            .slice(5, -3),
+        render: (rowData: TableDataType) =>
+          makeLocaleDate(rowData.limitedAt.seconds),
+        customFilterAndSearch: (term: string, rowData: TableDataType) =>
+          makeLocaleDate(rowData.limitedAt.seconds).indexOf(term) !== -1,
       },
-      { title: "status", field: "status" },
+      {
+        title: "status",
+        field: "status",
+        lookup: {
+          waiting: "waiting",
+          confirmed: "confirmed",
+          cancelRequest: "cancelRequest",
+          cancelled: "cancelled",
+          unknown: "unknown",
+        },
+      },
     ],
     []
   );
@@ -33,6 +46,7 @@ const EnhancedTable = ({ data }: EnhancedTableProps) => {
       options={{
         sorting: true,
         filtering: true,
+        paging: false,
       }}
     />
   );

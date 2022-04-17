@@ -1,6 +1,6 @@
 import { castingTable, collectionNames } from "@/constants/constants";
 import { db } from "@/firebase/firestore";
-import { TicketsType } from "@/types/types";
+import { TableDataType, TicketsType } from "@/types/types";
 import { collection, getDocs, query, where } from "firebase/firestore";
 import React, { useEffect, useState } from "react";
 import EnhancedTable from "./table/EnhancedTable";
@@ -8,7 +8,7 @@ import EnhancedTable from "./table/EnhancedTable";
 type MusicalTimePlan = keyof typeof castingTable;
 
 const AdminContainer = () => {
-  const [data, setData] = useState<TicketsType[]>([]);
+  const [data, setData] = useState<TableDataType[]>([]);
   const [selectedDate, setSelectedDate] = useState<MusicalTimePlan>("111930");
   const [isLoading, setIsLoading] = useState(false);
 
@@ -28,9 +28,9 @@ const AdminContainer = () => {
 
         if (querySnapshot.empty) return alert("데이터가 없습니다");
 
-        let tempData: TicketsType[] = [];
+        let tempData: TableDataType[] = [];
         querySnapshot.forEach((doc) => {
-          const nextValue = doc.data() as TicketsType;
+          const nextValue = { id: doc.id, ...(doc.data() as TicketsType) };
           tempData.push(nextValue);
         });
 
@@ -52,7 +52,7 @@ const AdminContainer = () => {
 
   return (
     <section className="px-8">
-      <div className="flex flex-row gap-4 justify-center">
+      <div className="flex flex-row gap-4 justify-center flex-wrap">
         {Object.keys(castingTable).map((key) => (
           <button
             key={key}

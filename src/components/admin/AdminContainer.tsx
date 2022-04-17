@@ -3,7 +3,6 @@ import { db } from "@/firebase/firestore";
 import { TicketsType } from "@/types/types";
 import { collection, getDocs, query, where } from "firebase/firestore";
 import React, { useEffect, useState } from "react";
-import { Column } from "react-table";
 import EnhancedTable from "./table/EnhancedTable";
 
 type MusicalTimePlan = keyof typeof castingTable;
@@ -12,36 +11,6 @@ const AdminContainer = () => {
   const [data, setData] = useState<TicketsType[]>([]);
   const [selectedDate, setSelectedDate] = useState<MusicalTimePlan>("111930");
   const [isLoading, setIsLoading] = useState(false);
-
-  const columns = React.useMemo<Column<TicketsType>[]>(
-    () => [
-      {
-        Header: "name",
-        accessor: "name",
-      },
-      {
-        Header: "Email",
-        accessor: "email",
-      },
-      {
-        Header: "Contact",
-        accessor: "contact",
-      },
-      {
-        Header: "MusicalDate",
-        accessor: "musicalDate",
-      },
-      {
-        Header: "LimitedAt",
-        accessor: "limitedAt",
-      },
-      {
-        Header: "Status",
-        accessor: "status",
-      },
-    ],
-    []
-  );
 
   useEffect(() => {
     const getMusicalData = async () => {
@@ -82,7 +51,7 @@ const AdminContainer = () => {
   const min = selectedDate.slice(-2);
 
   return (
-    <section>
+    <section className="px-8">
       <div className="flex flex-row gap-4 justify-center">
         {Object.keys(castingTable).map((key) => (
           <button
@@ -100,7 +69,7 @@ const AdminContainer = () => {
       {isLoading && (
         <h3 className="font-bold text-center text-4xl mt-8">로딩 중...</h3>
       )}
-      {!isLoading && <EnhancedTable columns={columns} data={data} />}
+      {!isLoading && <EnhancedTable data={data} />}
     </section>
   );
 };

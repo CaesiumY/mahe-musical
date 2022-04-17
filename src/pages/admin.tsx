@@ -12,7 +12,7 @@ const Admin = () => {
     try {
       setIsLoading(true);
 
-      const user = await signInWithEmailAndPassword(auth, email, password);
+      await signInWithEmailAndPassword(auth, email, password);
       setIsAuth(true);
     } catch (error) {
       if (error instanceof Error) {

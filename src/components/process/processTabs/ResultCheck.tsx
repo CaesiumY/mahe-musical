@@ -8,10 +8,17 @@ import {
   LIMIT_TICKET_DATE,
   NOMAL_SEAT_PRICE,
   NORMAL_SEAT_COUNT,
+  NO_BARRIER_FREE_TOTAL_SEAT_COUNT,
   WHEEL_CHARIR_SEAT_COUNT,
 } from "@/constants/constants";
 import { db } from "@/firebase/firestore";
-import { PriceType, SeatsType, TicketsType, UserInfoType } from "@/types/types";
+import {
+  MusicalTimePlan,
+  PriceType,
+  SeatsType,
+  TicketsType,
+  UserInfoType,
+} from "@/types/types";
 import TabButton from "./common/TabButton";
 import TabHeader from "./common/TabHeader";
 import { off, ref, update } from "firebase/database";
@@ -34,7 +41,7 @@ const LineItem = ({ title, children }: LineItemProps) => {
 interface ResultCheckProps {
   toNextTab: (toFirst?: boolean) => void;
   bookResult: {
-    musicalDate: keyof typeof castingTable;
+    musicalDate: MusicalTimePlan;
     seats: SeatsType;
     price: PriceType;
     userInfo: UserInfoType;
@@ -72,6 +79,17 @@ const ResultCheck = ({ toNextTab, bookResult, data }: ResultCheckProps) => {
     try {
       setIsLoading(true);
 
+      if (
+        ["11", "12"].includes(day) &&
+        data.normal + normal > NO_BARRIER_FREE_TOTAL_SEAT_COUNT
+      ) {
+        makeAlert(
+          "일반",
+          normal,
+          NO_BARRIER_FREE_TOTAL_SEAT_COUNT - data.normal
+        );
+        return toNextTab(true);
+      }
       if (data.normal + normal > NORMAL_SEAT_COUNT) {
         makeAlert("일반", normal, NORMAL_SEAT_COUNT - data.normal);
         return toNextTab(true);

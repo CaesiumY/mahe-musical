@@ -1,9 +1,10 @@
 import React, { useState } from "react";
-import { SeatsType } from "@/types/types";
+import { MusicalTimePlan, SeatsType } from "@/types/types";
 import {
   BARRIER_FREE_SEAT_COUNT,
   MAX_TICKETS_PER_PERSON,
   NORMAL_SEAT_COUNT,
+  NO_BARRIER_FREE_TOTAL_SEAT_COUNT,
   WHEEL_CHARIR_SEAT_COUNT,
 } from "@/constants/constants";
 import TabButton from "./common/TabButton";
@@ -13,9 +14,14 @@ import TabHeader from "./common/TabHeader";
 interface SeatTypeSelectProps {
   onChangeSeatCount: (ticketCount: SeatsType) => void;
   data: SeatsType;
+  musicalDate: MusicalTimePlan;
 }
 
-const SeatTypeSelect = ({ onChangeSeatCount, data }: SeatTypeSelectProps) => {
+const SeatTypeSelect = ({
+  onChangeSeatCount,
+  data,
+  musicalDate,
+}: SeatTypeSelectProps) => {
   const [normal, setNomal] = useState(0);
   const [wheelChair, setWheelChair] = useState(0);
   const [barrierFree, setBarrierFree] = useState(0);
@@ -29,6 +35,20 @@ const SeatTypeSelect = ({ onChangeSeatCount, data }: SeatTypeSelectProps) => {
     if (normal + wheelChair + barrierFree === 0)
       return alert("1개 이상의 티켓을 넣어주세요!");
 
+    if (
+      ["11", "12"].includes(musicalDate.slice(0, 2)) &&
+      data.normal + normal > NO_BARRIER_FREE_TOTAL_SEAT_COUNT
+    ) {
+      const remained = NO_BARRIER_FREE_TOTAL_SEAT_COUNT - data.normal;
+      setError((value) => ({
+        ...value,
+        isError: true,
+        seat: "일반석",
+        remained,
+      }));
+      setNomal(remained);
+      return;
+    }
     if (data.normal + normal > NORMAL_SEAT_COUNT) {
       const remained = NORMAL_SEAT_COUNT - data.normal;
       setError((value) => ({

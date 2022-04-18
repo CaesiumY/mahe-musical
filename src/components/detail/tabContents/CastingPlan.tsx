@@ -15,7 +15,6 @@ const castings = {
   이예진: claire2,
   이예빈: claire,
 };
-// TODO: 캐스팅 테이블 연동
 const CastingPlan = () => {
   return (
     <section>

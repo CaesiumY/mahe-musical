@@ -88,11 +88,13 @@ const ProcessContainer = () => {
       key="seatTypeSelect"
       onChangeSeatCount={onChangeSeatCount}
       data={musicalData}
+      musicalDate={musicalDate}
     />,
     <DiscountSelect
       key="discountSelect"
       totalTickets={totalTickets}
       onChangePriceCount={onChangePriceCount}
+      musicalDate={musicalDate}
     />,
     <UserInfo key="userInfo" onChangeUserInfo={onChangeUserInfo} />,
     <ResultCheck

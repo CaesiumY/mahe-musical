@@ -9,7 +9,6 @@ interface IconGroupProps {
   color?: string;
   isLeft?: boolean;
 }
-// TODO: 예매하기에서 아이콘 좌측 정렬
 const IconGroup = ({ color, isLeft }: IconGroupProps) => {
   const iconSet = useMemo(
     () => ({

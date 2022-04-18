@@ -4,6 +4,7 @@ import {
   BARRIER_FREE_SEAT_COUNT,
   castingTable,
   NORMAL_SEAT_COUNT,
+  NO_BARRIER_FREE_TOTAL_SEAT_COUNT,
   WHEEL_CHARIR_SEAT_COUNT,
 } from "@/constants/constants";
 import { SeatsType } from "@/types/types";
@@ -46,7 +47,10 @@ const OtherInfo = ({ timeId }: OtherInfoProps) => {
     () =>
       musicalData
         ? {
-            normal: NORMAL_SEAT_COUNT - musicalData[timeId]?.normal,
+            normal:
+              (["11", "12"].includes(timeId.slice(0, 2))
+                ? NO_BARRIER_FREE_TOTAL_SEAT_COUNT
+                : NORMAL_SEAT_COUNT) - musicalData[timeId]?.normal,
             wheelChair:
               WHEEL_CHARIR_SEAT_COUNT - musicalData[timeId]?.wheelChair,
             barrierFree:

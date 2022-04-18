@@ -4,6 +4,7 @@ import {
   ACCOUNT_NUMBER,
   DISCOUNTED_SEAT_PRICE,
   makeContactRegex,
+  MATINEE_SEAT_PRICE,
   NOMAL_SEAT_PRICE,
 } from "@/constants/constants";
 import { TicketsType } from "../../types/types";
@@ -29,7 +30,8 @@ const CheckResult = ({ data }: CheckResultProps) => {
   const totalPrice =
     (price.normal ?? 0) * NOMAL_SEAT_PRICE +
     (price.local ?? 0) * DISCOUNTED_SEAT_PRICE +
-    (price.other ?? 0) * DISCOUNTED_SEAT_PRICE;
+    (price.other ?? 0) * DISCOUNTED_SEAT_PRICE +
+    (price.matinee ?? 0) * MATINEE_SEAT_PRICE;
 
   return (
     <div className="bg-pink-bg w-full flex justify-center items-center">

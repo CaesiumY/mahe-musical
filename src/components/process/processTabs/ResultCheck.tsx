@@ -6,6 +6,7 @@ import {
   collectionNames,
   DISCOUNTED_SEAT_PRICE,
   LIMIT_TICKET_DATE,
+  MATINEE_SEAT_PRICE,
   NOMAL_SEAT_PRICE,
   NORMAL_SEAT_COUNT,
   NO_BARRIER_FREE_TOTAL_SEAT_COUNT,
@@ -60,7 +61,8 @@ const ResultCheck = ({ toNextTab, bookResult, data }: ResultCheckProps) => {
     () =>
       (
         price.normal * NOMAL_SEAT_PRICE +
-        (price.local + price.other) * DISCOUNTED_SEAT_PRICE
+        (price.local + price.other) * DISCOUNTED_SEAT_PRICE +
+        price.matinee * MATINEE_SEAT_PRICE
       ).toLocaleString(),
     [price]
   );

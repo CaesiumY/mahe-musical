@@ -7,6 +7,7 @@ export interface PriceType {
   local: number;
   normal: number;
   other: number;
+  matinee: number;
 }
 export interface SeatsType {
   normal: number;

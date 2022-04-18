@@ -1,5 +1,9 @@
-import { PriceType } from "@/types/types";
-import { DISCOUNTED_SEAT_PRICE, NOMAL_SEAT_PRICE } from "@/constants/constants";
+import { MusicalTimePlan, PriceType } from "@/types/types";
+import {
+  DISCOUNTED_SEAT_PRICE,
+  MATINEE_SEAT_PRICE,
+  NOMAL_SEAT_PRICE,
+} from "@/constants/constants";
 import React, { useState } from "react";
 import TabButton from "./common/TabButton";
 import TabCounter from "./common/TabCounter";
@@ -8,36 +12,43 @@ import TabHeader from "./common/TabHeader";
 interface DiscountSelectProps {
   totalTickets: number;
   onChangePriceCount: (payload: PriceType) => void;
+  musicalDate: MusicalTimePlan;
 }
 
 const DiscountSelect = ({
   totalTickets,
   onChangePriceCount,
+  musicalDate,
 }: DiscountSelectProps) => {
   const [normal, setNomal] = useState(0);
   const [local, setLocal] = useState(0);
   const [other, setOther] = useState(0);
+  const [matinee, setMatinee] = useState(0);
 
   const onClickTabButton = () => {
-    if (normal + local + other < totalTickets)
+    if (normal + local + other + matinee < totalTickets)
       return alert(
-        `티켓 ${totalTickets - (normal + local + other)}장을 더 넣어주세요!`
+        `티켓 ${
+          totalTickets - (normal + local + other + matinee)
+        }장을 더 넣어주세요!`
       );
 
     onChangePriceCount({
       normal,
       local,
       other,
+      matinee,
     });
   };
 
   const onPlusCount = (value: number) =>
-    normal + local + other === totalTickets ? value : value + 1;
+    normal + local + other + matinee === totalTickets ? value : value + 1;
   const onMinusCount = (value: number) => (value === 0 ? value : value - 1);
 
   const totalPrice = (
     normal * NOMAL_SEAT_PRICE +
-    (local + other) * DISCOUNTED_SEAT_PRICE
+    (local + other) * DISCOUNTED_SEAT_PRICE +
+    matinee * MATINEE_SEAT_PRICE
   ).toLocaleString();
 
   return (
@@ -83,7 +94,18 @@ const DiscountSelect = ({
           <p>{DISCOUNTED_SEAT_PRICE.toLocaleString()}원</p>
         </div>
       </TabCounter>
-
+      {musicalDate === "131430" && (
+        <TabCounter
+          value={matinee}
+          onClickPlus={() => setMatinee(1)}
+          onClickMinus={() => setMatinee(onMinusCount)}
+        >
+          <div className="flex flex-col gap-3">
+            <p>마티네 할인</p>
+            <p>{MATINEE_SEAT_PRICE.toLocaleString()}원</p>
+          </div>
+        </TabCounter>
+      )}
       <div className="text-center mt-14">
         <TabButton onClick={onClickTabButton} />
       </div>

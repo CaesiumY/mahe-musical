@@ -100,7 +100,7 @@ const Header = ({ color = "ivory" }: HeaderProps) => {
                     className="py-2 sm:hover:text-gold transition-colors"
                     onClick={closeDrawer}
                   >
-                    팜플렛
+                    마헤 이야기
                   </a>
                 </Link>
               </li>

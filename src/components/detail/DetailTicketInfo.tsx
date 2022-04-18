@@ -10,7 +10,7 @@ const ticketInfo = {
   공연시간: "110분",
   관람가: "14세 이상 관람가",
   가격: `${NOMAL_SEAT_PRICE.toLocaleString()}원`,
-  할인정보: "지역 할인, 장애인/국가유공자 할인",
+  할인정보: "지역 할인, 장애인/국가유공자 할인, 마티네 할인",
 };
 
 const DetailTicketInfo = () => {

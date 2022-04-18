@@ -61,6 +61,7 @@ const EnhancedTable = ({
 
   const onChangeStatus = async (id: string, field: string, value: string) => {
     try {
+      if (!value) return;
       await updateDoc(doc(db, collectionNames.TICKETS, id), {
         [field]: value,
       });

@@ -32,7 +32,7 @@ export interface TicketsType extends UserInfoType {
   createdAt: Timestamp;
   limitedAt: Timestamp;
   musicalDate: MusicalTimePlan;
-  seatCode?: string[];
+  seatCode?: string;
   price: PriceType;
   seats: SeatsType;
   status: BookStatus;

@@ -10,7 +10,7 @@ module.exports = {
         dark: "#1D1E1F",
         navy: "#193052",
         gold: "#f2cb03",
-        pink: "#f4cede",
+        pink: "#EB95B9",
         mint: "#bed8d5",
         lightGray: "#c9ccd0",
         "pink-bg": "#f9f0f4",

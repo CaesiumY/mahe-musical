@@ -43,7 +43,9 @@ const DetailTicketInfo = () => {
               ))}
             </div>
           </article>
-          <IconGroup color="lightGray" />
+          <div className="-ml-2">
+            <IconGroup color="lightGray" isLeft />
+          </div>
         </div>
       </div>
     </section>

@@ -18,14 +18,13 @@ const Login = ({ setIsAuth }: LoginProps) => {
       setIsLoading(true);
 
       await signInWithEmailAndPassword(auth, email, password);
+      setIsLoading(false);
       setIsAuth(true);
     } catch (error) {
       if (error instanceof Error) {
         console.error(error.message);
         alert(error.message);
       }
-    } finally {
-      setIsLoading(false);
     }
   };
 

@@ -55,7 +55,21 @@ const MusicalGuide = () => {
               </li>
               <li>
                 입금 후 1일이 지나도 예매 확정 연락이 오지 않는다면, 반드시
-                문의해주세요.(wearemahe@gmail.com / 인스타그램 : mahe_musical)
+                문의해주세요. <br /> (
+                <a
+                  className="hover:underline text-navy"
+                  href="mailto:wearemahe@gmail.com"
+                >
+                  wearemahe@gmail.com
+                </a>
+                /{" "}
+                <a
+                  className="hover:underline text-navy"
+                  href="https://www.instagram.com/mahe_musical/"
+                >
+                  인스타그램 : mahe_musical
+                </a>
+                )
               </li>
             </ul>
           </li>
@@ -67,9 +81,16 @@ const MusicalGuide = () => {
             <ul>
               <li>공연일 기준 8일 전까지 100% 환불</li>
               <li>공연일 기준 4일 전까지 50% 환불</li>
+              <li>이후 예매 취소 및 변경 불가</li>
               <li>
-                이후 예매 취소 및 변경 불가 (wearemahe@gmail.com / 인스타그램 :
-                mahe_musical)
+                예매 취소, 환불, 변경 관련해서는 카카오톡 채널 &lsquo;연세대학교
+                뮤지컬 소모임 마헤&rsquo;로 문의해주시기 바랍니다.
+                <a
+                  className="hover:underline text-navy"
+                  href="http://pf.kakao.com/_xmxmxcDb"
+                >
+                  (http://pf.kakao.com/_xmxmxcDb)
+                </a>
               </li>
             </ul>
           </li>
@@ -78,7 +99,7 @@ const MusicalGuide = () => {
       <GuideBox title="좌석 배정 및 티켓 수령 안내">
         <ul>
           <li>
-            <strong>공연 시간 1시간 30분 전부터 티켓 수령이 가능합니다.</strong>
+            <strong>공연 시간 1시간 전부터 티켓 수령이 가능합니다.</strong>
           </li>
           <li>
             <strong>좌석은 예매 확정 순으로 앞자리부터 배정</strong>되며 공연

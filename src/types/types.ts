@@ -16,9 +16,11 @@ export interface SeatsType {
 
 export type BookStatus =
   | "waiting"
+  | "checking"
   | "confirmed"
   | "cancelRequest"
-  | "cancelled";
+  | "cancelled"
+  | "expired";
 
 export interface UserInfoType {
   name: string;

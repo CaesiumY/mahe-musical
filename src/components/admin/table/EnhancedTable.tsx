@@ -43,11 +43,13 @@ const EnhancedTable = ({
         title: "status",
         field: "status",
         lookup: {
-          waiting: "waiting",
-          confirmed: "confirmed",
-          cancelRequest: "cancelRequest",
-          cancelled: "cancelled",
-          unknown: "unknown",
+          waiting: "입금대기",
+          checking: "입금 확인 중",
+          confirmed: "예매확정",
+          cancelRequest: "취소신청",
+          cancelled: "취소완료",
+          expired: "입금 기한 만료",
+          unknown: "알 수 없음",
         },
         render: (rowData: TableDataType) => (
           <StatusBanner status={rowData.status} />

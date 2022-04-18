@@ -6,6 +6,7 @@ import claire2 from "@/images/castings/claire2.png";
 import oliver from "@/images/castings/oliver.png";
 import oliver2 from "@/images/castings/oliver2.png";
 import james from "@/images/castings/james.png";
+import { castingTable } from "@/constants/constants";
 
 const castings = {
   최현우: oliver2,
@@ -14,7 +15,7 @@ const castings = {
   이예진: claire2,
   이예빈: claire,
 };
-
+// TODO: 캐스팅 테이블 연동
 const CastingPlan = () => {
   return (
     <section>
@@ -30,7 +31,7 @@ const CastingPlan = () => {
           <span className="basis-1/3">5/11(수)</span>
           <div className="flex flex-col sm:flex-row gap-3 flex-grow">
             <p className="basis-1/2">저녁 7시 30분</p>
-            <p>표영후 이예빈 김예준</p>
+            <p>{castingTable[111930].replace(/,/g, "")}</p>
           </div>
         </div>
 
@@ -38,7 +39,7 @@ const CastingPlan = () => {
           <span className="basis-1/3">5/12(목)</span>
           <div className="flex flex-col sm:flex-row gap-3 flex-grow">
             <p className="basis-1/2">저녁 7시 30분</p>
-            <p>최현우 이예진 김예준</p>
+            <p>{castingTable[121930].replace(/,/g, "")}</p>
           </div>
         </div>
 
@@ -47,11 +48,11 @@ const CastingPlan = () => {
           <div className="flex flex-col flex-grow gap-3">
             <div className="flex flex-col gap-3 sm:flex-row">
               <p className="basis-1/2">오후 2시 30분</p>
-              <p>표영후 이예빈 김예준</p>
+              <p>{castingTable[131430].replace(/,/g, "")}</p>
             </div>
             <div className="flex flex-col gap-3 sm:flex-row">
               <p className="basis-1/2">저녁 7시 30분</p>
-              <p>최현우 이예진 김예준</p>
+              <p>{castingTable[131930].replace(/,/g, "")}</p>
             </div>
           </div>
         </div>
@@ -61,11 +62,11 @@ const CastingPlan = () => {
           <div className="flex flex-col flex-grow gap-3">
             <div className="flex flex-col gap-3 sm:flex-row">
               <p className="basis-1/2">오후 2시 30분</p>
-              <p>최현우 이예진 김예준</p>
+              <p>{castingTable[141430].replace(/,/g, "")}</p>
             </div>
             <div className="flex flex-col gap-3 sm:flex-row">
               <p className="basis-1/2">저녁 7시 30분</p>
-              <p>표영후 이예빈 김예준</p>
+              <p>{castingTable[141930].replace(/,/g, "")}</p>
             </div>
           </div>
         </div>

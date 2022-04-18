@@ -22,7 +22,7 @@ import {
 } from "@/types/types";
 import TabButton from "./common/TabButton";
 import TabHeader from "./common/TabHeader";
-import { off, ref, update } from "firebase/database";
+import { increment, off, ref, update } from "firebase/database";
 import { realtime } from "@/firebase/realtime";
 
 interface LineItemProps {
@@ -134,10 +134,10 @@ const ResultCheck = ({ toNextTab, bookResult, data }: ResultCheckProps) => {
       };
       await addDoc(collection(db, collectionNames.TICKETS), ticket);
       await update(ref(realtime, musicalDate), {
-        normal: data.normal + normal,
-        wheelChair: data.wheelChair + wheelChair,
-        barrierFree: data.barrierFree + barrierFree,
-      } as SeatsType);
+        normal: increment(normal),
+        wheelChair: increment(wheelChair),
+        barrierFree: increment(barrierFree),
+      });
       setIsLoading(false);
       toNextTab();
     } catch (error) {

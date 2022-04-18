@@ -21,7 +21,8 @@ export type BookStatus =
   | "confirmed"
   | "cancelRequest"
   | "cancelled"
-  | "expired";
+  | "expired"
+  | "unknown";
 
 export interface UserInfoType {
   name: string;

@@ -34,6 +34,7 @@ const ProcessContainer = () => {
     normal: 0,
     local: 0,
     other: 0,
+    matinee: 0,
   });
 
   const [userInfo, setUserInfo] = useState<UserInfoType>({

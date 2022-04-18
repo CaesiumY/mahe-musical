@@ -1,10 +1,17 @@
 import { MusicalTimePlan, TableDataType } from "@/types/types";
-import React, { useMemo } from "react";
+import React, { useCallback, useEffect, useMemo } from "react";
 import MaterialTable, { Column } from "@material-table/core";
 import { doc, updateDoc } from "firebase/firestore";
+import { increment, off, ref, update } from "firebase/database";
 import { db } from "@/firebase/firestore";
-import { collectionNames } from "@/constants/constants";
+import {
+  collectionNames,
+  DISCOUNTED_SEAT_PRICE,
+  MATINEE_SEAT_PRICE,
+  NOMAL_SEAT_PRICE,
+} from "@/constants/constants";
 import StatusBanner from "@/components/check/StatusBanner";
+import { realtime } from "@/firebase/realtime";
 
 interface EnhancedTableProps {
   data: TableDataType[];
@@ -30,14 +37,30 @@ const EnhancedTable = ({
       { title: "name", field: "name" },
       { title: "contact", field: "contact" },
       { title: "email", field: "email" },
+      {
+        title: "totalSeats",
+        field: "seats",
+        render: ({ seats }: TableDataType) =>
+          `n${seats.normal}/w${seats.wheelChair}/b${seats.barrierFree}`,
+      },
       { title: "seatCode", field: "seatCode", emptyValue: "미정" },
       {
         title: "limitedAt",
         field: "limitedAt",
-        render: (rowData: TableDataType) =>
-          makeLocaleDate(rowData.limitedAt.seconds),
-        customFilterAndSearch: (term: string, rowData: TableDataType) =>
-          makeLocaleDate(rowData.limitedAt.seconds).indexOf(term) !== -1,
+        render: ({ limitedAt }: TableDataType) =>
+          makeLocaleDate(limitedAt.seconds),
+        customFilterAndSearch: (term: string, { limitedAt }: TableDataType) =>
+          makeLocaleDate(limitedAt.seconds).indexOf(term) !== -1,
+      },
+      {
+        title: "totalPrice",
+        field: "price",
+        render: ({ price }: TableDataType) =>
+          (
+            price.normal * NOMAL_SEAT_PRICE +
+            (price.local + price.other) * DISCOUNTED_SEAT_PRICE +
+            (price?.matinee ?? 0) * MATINEE_SEAT_PRICE
+          ).toLocaleString(),
       },
       {
         title: "status",
@@ -51,25 +74,67 @@ const EnhancedTable = ({
           expired: "입금 기한 만료",
           unknown: "알 수 없음",
         },
-        render: (rowData: TableDataType) => (
-          <StatusBanner status={rowData.status} />
-        ),
+        render: ({ status }: TableDataType) => <StatusBanner status={status} />,
       },
     ],
     []
   );
 
-  const onChangeStatus = async (id: string, field: string, value: string) => {
-    try {
-      if (!value) return;
-      await updateDoc(doc(db, collectionNames.TICKETS, id), {
-        [field]: value,
-      });
-      updateData(id, field, value);
-    } catch (error) {
-      console.error(error);
-    }
-  };
+  const onChangeStatus = useCallback(
+    async (
+      rowData: TableDataType,
+      field: string,
+      value: string,
+      oldValue: string
+    ) => {
+      const { id, seats } = rowData;
+      try {
+        if (!value) return;
+        await updateDoc(doc(db, collectionNames.TICKETS, id), {
+          [field]: value,
+        });
+
+        if (
+          ["cancelled", "expired", "unknown"].includes(value) &&
+          !["취소완료", "입금 기한 만료", "알 수 없음"].includes(oldValue)
+        ) {
+          const { normal, wheelChair, barrierFree } = seats;
+          await update(ref(realtime, selectedDate), {
+            normal: increment(-normal ?? 0),
+            wheelChair: increment(-wheelChair ?? 0),
+            barrierFree: increment(-barrierFree ?? 0),
+          });
+        }
+
+        if (
+          ["waiting", "checking", "confirmed", "cancelRequest"].includes(
+            value
+          ) &&
+          !["입금대기", "입금 확인 중", "예매확정", "취소신청"].includes(
+            oldValue
+          )
+        ) {
+          const { normal, wheelChair, barrierFree } = seats;
+          await update(ref(realtime, selectedDate), {
+            normal: increment(normal ?? 0),
+            wheelChair: increment(wheelChair ?? 0),
+            barrierFree: increment(barrierFree ?? 0),
+          });
+        }
+
+        updateData(id, field, value);
+      } catch (error) {
+        console.error(error);
+      }
+    },
+    [selectedDate, updateData]
+  );
+
+  useEffect(() => {
+    return () => {
+      off(ref(realtime));
+    };
+  }, []);
 
   return (
     <MaterialTable
@@ -89,10 +154,16 @@ const EnhancedTable = ({
             : false,
         onCellEditApproved: async (
           newValue: string,
-          _,
+          oldValue: string,
           rowData: TableDataType,
           columnDef: Column<TableDataType>
-        ) => onChangeStatus(rowData.id, columnDef.title as string, newValue),
+        ) =>
+          onChangeStatus(
+            rowData,
+            columnDef.title as string,
+            newValue,
+            oldValue
+          ),
       }}
     />
   );

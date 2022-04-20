@@ -65,20 +65,31 @@ const CheckResult = ({ data }: CheckResultProps) => {
             <StatusBanner status={status} />
           </LineItem>
           {data.length > 1 && (
-            <div className="flex flex-row w-full mt-4 gap-4 text-white ">
+            <div className="flex flex-row w-full mt-4 gap-4 justify-center ">
               <button
-                className="basis-1/2 border rounded-lg py-2 bg-pink hover:bg-red-400 disabled:bg-lightGray"
-                disabled={dataIndex === 0}
                 onClick={() => setDataIndex((value) => value - 1)}
+                disabled={dataIndex === 0}
+                className={`p-2 text-xl disabled:text-lightGray`}
               >
-                &lt;&lt; 이전 티켓
+                &lt;&lt;
               </button>
+              {data.map((_, index) => (
+                <button
+                  key={index}
+                  onClick={() => setDataIndex(index)}
+                  className={`hover:underline p-2 text-xl ${
+                    dataIndex === index ? "underline" : ""
+                  }`}
+                >
+                  {index + 1}
+                </button>
+              ))}
               <button
-                className="basis-1/2 border rounded-lg py-2 bg-pink hover:bg-red-400 disabled:bg-lightGray"
-                disabled={dataIndex === data.length - 1}
                 onClick={() => setDataIndex((value) => value + 1)}
+                disabled={dataIndex === data.length - 1}
+                className={`p-2 text-xl disabled:text-lightGray`}
               >
-                다음 티켓 &gt;&gt;
+                &gt;&gt;
               </button>
             </div>
           )}

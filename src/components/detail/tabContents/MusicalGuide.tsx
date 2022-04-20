@@ -41,13 +41,17 @@ const MusicalGuide = () => {
           <li>
             <p className="mb-[7px]">
               입금 순서대로 예매가 확정되며,{" "}
-              <strong>입금 후 1일 이내에 예매 확정 카카오톡</strong>을 보내드릴
+              <strong>입금 후 1일 이내에 예매 확정 메일</strong>을 보내드릴
               예정입니다.
             </p>
             <ul>
-              <li>예매 확정 카카오톡이 왔는지 확인해주세요.</li>
               <li>
-                예매 페이지 폼에 <strong>전화번호</strong>를 정확하게
+                입금 기한은 <strong>예매 다음날 23시 59분까지</strong>입니다.
+                입금 기한이 지난 예매 내역은 자동으로 취소됩니다.
+              </li>
+              <li>예매 확정 메일이 왔는지 확인해주세요.</li>
+              <li>
+                예매 페이지 폼에 <strong>이메일 주소</strong>를 정확하게
                 기재해주세요.
               </li>
               <li>
@@ -62,14 +66,15 @@ const MusicalGuide = () => {
                 >
                   wearemahe@gmail.com
                 </a>
-                /{" "}
+                {" / "}
                 <a
                   className="hover:underline text-navy"
                   href="https://www.instagram.com/mahe_musical/"
                 >
                   인스타그램 : mahe_musical
                 </a>
-                )
+                {" / "}
+                카카오톡 채널 : @mahe_musical)
               </li>
             </ul>
           </li>
@@ -184,8 +189,8 @@ const MusicalGuide = () => {
           </li>
           <li>
             객석 내 물을 포함한 모든 음식물 및 꽃다발 등 공연 관람에 방해가 되는
-            물품의 반입이 불가합니다.*공연 당일 로비에서 꽃다발 보관 서비스를
-            제공합니다.
+            물품의 반입이 불가합니다. <br />
+            *공연 당일 로비에서 꽃다발 보관 서비스를 제공합니다.
           </li>
         </ul>
       </GuideBox>

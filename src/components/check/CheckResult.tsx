@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import dynamic from "next/dynamic";
 import {
   ACCOUNT_NUMBER,
@@ -12,10 +12,12 @@ import LineItem from "../common/LineItem";
 const StatusBanner = dynamic(() => import("./StatusBanner"));
 
 interface CheckResultProps {
-  data: TicketsType;
+  data: TicketsType[];
 }
 
 const CheckResult = ({ data }: CheckResultProps) => {
+  const [dataIndex, setDataIndex] = useState(0);
+
   const {
     name,
     contact,
@@ -25,7 +27,7 @@ const CheckResult = ({ data }: CheckResultProps) => {
     price,
     limitedAt,
     status,
-  } = data;
+  } = data[dataIndex];
 
   const totalPrice =
     (price.normal ?? 0) * NOMAL_SEAT_PRICE +
@@ -62,6 +64,24 @@ const CheckResult = ({ data }: CheckResultProps) => {
           <LineItem title="예매 현황">
             <StatusBanner status={status} />
           </LineItem>
+          {data.length > 1 && (
+            <div className="flex flex-row w-full mt-4 gap-4 text-white ">
+              <button
+                className="basis-1/2 border rounded-lg py-2 bg-pink hover:bg-red-400 disabled:bg-lightGray"
+                disabled={dataIndex === 0}
+                onClick={() => setDataIndex((value) => value - 1)}
+              >
+                &lt;&lt; 이전 티켓
+              </button>
+              <button
+                className="basis-1/2 border rounded-lg py-2 bg-pink hover:bg-red-400 disabled:bg-lightGray"
+                disabled={dataIndex === data.length - 1}
+                onClick={() => setDataIndex((value) => value + 1)}
+              >
+                다음 티켓 &gt;&gt;
+              </button>
+            </div>
+          )}
         </article>
       </div>
     </div>

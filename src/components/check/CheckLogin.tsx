@@ -1,13 +1,13 @@
 import { collectionNames } from "@/constants/constants";
 import { db } from "@/firebase/firestore";
-import { collection, getDocs, query, where } from "firebase/firestore";
+import { collection, getDocs, orderBy, query, where } from "firebase/firestore";
 import { useRouter } from "next/router";
 import React, { useCallback, useEffect, useState } from "react";
 import { TicketsType } from "../../types/types";
 import UserInput from "../common/UserInput";
 
 interface CheckLoginProps {
-  setData: (value: TicketsType) => void;
+  setData: (value: TicketsType[]) => void;
 }
 
 const CheckLogin = ({ setData }: CheckLoginProps) => {
@@ -30,20 +30,23 @@ const CheckLogin = ({ setData }: CheckLoginProps) => {
         const userQuery = query(
           ticketsRef,
           where("name", "==", name),
-          where("email", "==", email)
+          where("email", "==", email),
+          orderBy("createdAt", "desc")
         );
         const querySnapshot = await getDocs(userQuery);
 
         setIsLoading(false);
 
         if (querySnapshot.empty) return alert("존재하지 않는 티켓입니다!");
-        if (querySnapshot.size > 1) throw new Error("중복된 사용자");
 
         onReset();
 
+        let temp: TicketsType[] = [];
         querySnapshot.forEach((doc) => {
-          setData(doc.data() as TicketsType);
+          temp.push(doc.data() as TicketsType);
         });
+
+        setData(temp);
       } catch (error) {
         console.error(error);
       }

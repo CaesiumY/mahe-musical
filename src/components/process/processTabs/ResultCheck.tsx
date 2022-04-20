@@ -142,6 +142,11 @@ const ResultCheck = ({ toNextTab, bookResult, data }: ResultCheckProps) => {
       toNextTab();
     } catch (error) {
       console.error(error);
+      if (error instanceof Error) {
+        throw new Error(
+          `ResultCheck 티켓 발행 오류 발생 ${error.name} - ${error.message}`
+        );
+      }
     }
   };
 

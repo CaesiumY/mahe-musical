@@ -33,6 +33,11 @@ const OtherInfo = ({ timeId }: OtherInfoProps) => {
         });
       } catch (error) {
         console.error(error);
+        if (error instanceof Error) {
+          throw new Error(
+            `OtherInfo 실시간 좌석 수 가져오기 오류 발생 ${error.name} - ${error.message}`
+          );
+        }
       }
     };
 

@@ -49,6 +49,11 @@ const CheckLogin = ({ setData }: CheckLoginProps) => {
         setData(temp);
       } catch (error) {
         console.error(error);
+        if (error instanceof Error) {
+          throw new Error(
+            `CheckLogin 유저 티켓 데이터 가져오기 오류 발생 ${error.name} - ${error.message}`
+          );
+        }
       }
     },
     [setData]

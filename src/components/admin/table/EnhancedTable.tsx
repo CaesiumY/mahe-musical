@@ -125,6 +125,11 @@ const EnhancedTable = ({
         updateData(id, field, value);
       } catch (error) {
         console.error(error);
+        if (error instanceof Error) {
+          throw new Error(
+            `어드민 - 유저의 스테이터스 변경 중 오류 발생 ${error.name} - ${error.message}`
+          );
+        }
       }
     },
     [selectedDate, updateData]

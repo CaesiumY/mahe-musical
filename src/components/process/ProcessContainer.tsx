@@ -78,6 +78,11 @@ const ProcessContainer = () => {
       });
     } catch (error) {
       console.error(error);
+      if (error instanceof Error) {
+        throw new Error(
+          `ProcessContainer 실시간 좌석 수 데이터 가져오기 오류 발생 ${error.name} - ${error.message}`
+        );
+      }
     }
     return () => {
       off(ref(realtime));

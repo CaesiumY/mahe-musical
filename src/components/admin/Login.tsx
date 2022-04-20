@@ -21,9 +21,11 @@ const Login = ({ setIsAuth }: LoginProps) => {
       setIsLoading(false);
       setIsAuth(true);
     } catch (error) {
+      console.error(error);
       if (error instanceof Error) {
-        console.error(error.message);
-        alert(error.message);
+        throw new Error(
+          `어드민 로그인 오류 발생 ${error.name} - ${error.message}`
+        );
       }
     }
   };

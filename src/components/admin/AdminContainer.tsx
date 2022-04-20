@@ -35,6 +35,11 @@ const AdminContainer = () => {
         setData(tempData);
       } catch (error) {
         console.error(error);
+        if (error instanceof Error) {
+          throw new Error(
+            `Admin 뮤지컬 데이터 가져오기 오류 발생 ${error.name} - ${error.message}`
+          );
+        }
       } finally {
         setIsLoading(false);
       }

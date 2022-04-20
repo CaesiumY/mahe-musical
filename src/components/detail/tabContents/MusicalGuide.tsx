@@ -61,20 +61,25 @@ const MusicalGuide = () => {
                 입금 후 1일이 지나도 예매 확정 연락이 오지 않는다면, 반드시
                 문의해주세요. <br /> (
                 <a
-                  className="hover:underline text-navy"
+                  className="text-navy underline"
                   href="mailto:wearemahe@gmail.com"
                 >
                   wearemahe@gmail.com
                 </a>
                 {" / "}
                 <a
-                  className="hover:underline text-navy"
+                  className="text-navy underline"
                   href="https://www.instagram.com/mahe_musical/"
                 >
                   인스타그램 : mahe_musical
                 </a>
                 {" / "}
-                카카오톡 채널 : @mahe_musical)
+                <a
+                  className="text-navy underline"
+                  href="http://pf.kakao.com/_xmxmxcDb"
+                >
+                  카카오톡 채널 : @mahe_musical)
+                </a>
               </li>
             </ul>
           </li>
@@ -88,14 +93,14 @@ const MusicalGuide = () => {
               <li>공연일 기준 4일 전까지 50% 환불</li>
               <li>이후 예매 취소 및 변경 불가</li>
               <li>
-                예매 취소, 환불, 변경 관련해서는 카카오톡 채널 &lsquo;연세대학교
-                뮤지컬 소모임 마헤&rsquo;로 문의해주시기 바랍니다.
+                예매 취소, 환불, 변경 관련해서는{" "}
                 <a
-                  className="hover:underline text-navy"
+                  className="text-navy underline"
                   href="http://pf.kakao.com/_xmxmxcDb"
                 >
-                  (http://pf.kakao.com/_xmxmxcDb)
+                  카카오톡 채널 &lsquo;연세대학교 뮤지컬 소모임 마헤&rsquo;
                 </a>
+                로 문의해주시기 바랍니다.
               </li>
             </ul>
           </li>

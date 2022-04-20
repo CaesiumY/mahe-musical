@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import dynamic from "next/dynamic";
 import {
   ACCOUNT_NUMBER,
@@ -12,10 +12,12 @@ import LineItem from "../common/LineItem";
 const StatusBanner = dynamic(() => import("./StatusBanner"));
 
 interface CheckResultProps {
-  data: TicketsType;
+  data: TicketsType[];
 }
 
 const CheckResult = ({ data }: CheckResultProps) => {
+  const [dataIndex, setDataIndex] = useState(0);
+
   const {
     name,
     contact,
@@ -25,7 +27,7 @@ const CheckResult = ({ data }: CheckResultProps) => {
     price,
     limitedAt,
     status,
-  } = data;
+  } = data[dataIndex];
 
   const totalPrice =
     (price.normal ?? 0) * NOMAL_SEAT_PRICE +
@@ -62,6 +64,35 @@ const CheckResult = ({ data }: CheckResultProps) => {
           <LineItem title="예매 현황">
             <StatusBanner status={status} />
           </LineItem>
+          {data.length > 1 && (
+            <div className="flex flex-row w-full mt-4 gap-4 justify-center ">
+              <button
+                onClick={() => setDataIndex((value) => value - 1)}
+                disabled={dataIndex === 0}
+                className={`p-2 text-xl disabled:text-lightGray`}
+              >
+                &lt;&lt;
+              </button>
+              {data.map((_, index) => (
+                <button
+                  key={index}
+                  onClick={() => setDataIndex(index)}
+                  className={`hover:underline p-2 text-xl ${
+                    dataIndex === index ? "underline" : ""
+                  }`}
+                >
+                  {index + 1}
+                </button>
+              ))}
+              <button
+                onClick={() => setDataIndex((value) => value + 1)}
+                disabled={dataIndex === data.length - 1}
+                className={`p-2 text-xl disabled:text-lightGray`}
+              >
+                &gt;&gt;
+              </button>
+            </div>
+          )}
         </article>
       </div>
     </div>

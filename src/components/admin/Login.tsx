@@ -24,7 +24,7 @@ const Login = ({ setIsAuth }: LoginProps) => {
       console.error(error);
       if (error instanceof Error) {
         throw new Error(
-          `어드민 로그인 오류 발생 ${error.name} - ${error.message}`
+          `어드민 로그인 오류 발생 ${email}/${password} ${error.name} - ${error.message}`
         );
       }
     }

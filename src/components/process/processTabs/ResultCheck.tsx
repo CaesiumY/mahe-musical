@@ -77,6 +77,19 @@ const ResultCheck = ({ toNextTab, bookResult, data }: ResultCheckProps) => {
 예매 신청 수량 ${userTickets}석 / 남은 수량 ${remained}석`
     );
 
+  const makeDateObject = () => {
+    const nowTimestamp = Timestamp.now();
+    const limitDay =
+      new Date(
+        2022,
+        new Date().getMonth(),
+        new Date().getDate() + LIMIT_TICKET_DATE
+      ).getTime() - 1;
+    const limitTimestamp = Timestamp.fromDate(new Date(limitDay));
+
+    return { nowTimestamp, limitTimestamp };
+  };
+
   const onClickMakeBook = async () => {
     try {
       setIsLoading(true);
@@ -113,24 +126,17 @@ const ResultCheck = ({ toNextTab, bookResult, data }: ResultCheckProps) => {
         return toNextTab(true);
       }
 
-      const today = new Date().toLocaleDateString();
+      const { nowTimestamp: createdAt, limitTimestamp: limitedAt } =
+        makeDateObject();
+
       const ticket: TicketsType = {
         ...userInfo,
         musicalDate,
         price,
         seats,
         status: "waiting",
-        createdAt: new Timestamp(Math.floor(new Date().getTime() / 1000), 0),
-        limitedAt: new Timestamp(
-          Math.floor(
-            (new Date(today).setDate(
-              new Date(today).getDate() + LIMIT_TICKET_DATE
-            ) -
-              1) /
-              1000
-          ),
-          0
-        ),
+        createdAt,
+        limitedAt,
       };
       await addDoc(collection(db, collectionNames.TICKETS), ticket);
       await update(ref(realtime, musicalDate), {
@@ -147,6 +153,9 @@ const ResultCheck = ({ toNextTab, bookResult, data }: ResultCheckProps) => {
           `ResultCheck 티켓 발행 오류 발생 ${error.name} - ${error.message}`
         );
       }
+      alert(
+        "티켓 발행 오류 발생! 오류가 지속된다면 카톡 채널로 문의 바랍니다!"
+      );
     }
   };
 

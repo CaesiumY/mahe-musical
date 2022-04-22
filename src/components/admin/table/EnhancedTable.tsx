@@ -1,11 +1,18 @@
-import { MusicalTimePlan, TableDataType } from "@/types/types";
+import {
+  EmailType,
+  MusicalTimePlan,
+  SeatsType,
+  TableDataType,
+} from "@/types/types";
 import React, { useCallback, useEffect, useMemo } from "react";
 import MaterialTable, { Column } from "@material-table/core";
-import { doc, updateDoc } from "firebase/firestore";
+import { addDoc, collection, doc, updateDoc } from "firebase/firestore";
 import { increment, off, ref, update } from "firebase/database";
 import { db } from "@/firebase/firestore";
 import {
   collectionNames,
+  completedEmailString,
+  completedEmailTitle,
   DISCOUNTED_SEAT_PRICE,
   MATINEE_SEAT_PRICE,
   NOMAL_SEAT_PRICE,
@@ -80,6 +87,38 @@ const EnhancedTable = ({
     []
   );
 
+  const sendCompletedEmail = useCallback(
+    async (name: string, email: string, seats: SeatsType) => {
+      try {
+        const musicalDate = `5월 ${day}일 ${hour}시 ${min}분`;
+        const tickets = seats.normal + seats.wheelChair + seats.barrierFree;
+
+        const emailContent: EmailType = {
+          to: [email],
+          message: {
+            subject: completedEmailTitle,
+            html: completedEmailString({
+              username: name,
+              email,
+              musicalDate,
+              tickets,
+            }),
+          },
+        };
+
+        await addDoc(collection(db, collectionNames.EMAIL), emailContent);
+      } catch (error) {
+        console.error(error);
+        if (error instanceof Error) {
+          const errorMessage = `예매 완료 이메일 보내기 오류 발생 ${error.name} - ${error.message}`;
+          alert(errorMessage);
+          throw new Error(errorMessage);
+        }
+      }
+    },
+    [day, hour, min]
+  );
+
   const onChangeStatus = useCallback(
     async (
       rowData: TableDataType,
@@ -87,7 +126,7 @@ const EnhancedTable = ({
       value: string,
       oldValue: string
     ) => {
-      const { id, seats } = rowData;
+      const { id, seats, name, email } = rowData;
       try {
         if (!value) return;
         await updateDoc(doc(db, collectionNames.TICKETS, id), {
@@ -123,6 +162,10 @@ const EnhancedTable = ({
         }
 
         updateData(id, field, value);
+
+        if (value === "confirmed") {
+          await sendCompletedEmail(name, email, seats);
+        }
       } catch (error) {
         console.error(error);
         if (error instanceof Error) {
@@ -132,7 +175,7 @@ const EnhancedTable = ({
         }
       }
     },
-    [selectedDate, updateData]
+    [selectedDate, updateData, sendCompletedEmail]
   );
 
   useEffect(() => {

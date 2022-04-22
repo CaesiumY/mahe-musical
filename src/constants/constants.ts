@@ -40,7 +40,10 @@ export const makeContactRegex = (str: string) =>
   str.replace(contactRegex, `$1-$2-$3`);
 
 export const requestEmailTitle =
-  '[마헤_입금요청] "어쩌면 해피엔딩 by ma:he" 예매 완료를 위해 입금 부탁드립니다';
+  '[마헤_입금요청] "어쩌면 해피엔딩 by ma:he" 예매 완료를 위해 입금 부탁드립니다.';
+
+export const completedEmailTitle =
+  '[마헤_예매확정] "어쩌면 해피엔딩 by ma:he" 예매가 완료되었습니다.';
 
 export const requestEmailString = ({
   username,
@@ -78,6 +81,39 @@ alt="어쩌면 해피엔딩"
 <p>▷ 입금액: ${totalPrice}원</p>
 <p>
   <a href="https://www.mahemusical.com/bookCheck?name=${username}&email=${email}"
+    >* 나의 예매내역 확인하기</a
+  >
+</p>
+</div>`;
+
+export const completedEmailString = ({
+  username,
+  email,
+  musicalDate,
+  tickets,
+}: {
+  username: string;
+  email: string;
+  musicalDate: string;
+  tickets: number;
+}) => `
+<img
+src="https://raw.githubusercontent.com/CaesiumY/mahe-musical/main/src/constants/email/images/image1.png"
+alt="어쩌면 해피엔딩"
+/>
+<div style="border: 1px solid gray; padding: 0.5rem">
+<p>
+  안녕하세요 ${username}님, "어쩌면 해피엔딩 by ma:he” 예매가
+  확정되었습니다.
+</p>
+<p>설레는 마음으로 공연날 만나뵙기를 기대하겠습니다 :)</p>
+
+<p>▷ 예매자명: ${username}</p>
+<p>▷ 공연 일시: ${musicalDate}</p>
+<p>▷ 매수: ${tickets}매</p>
+<p>
+  <a
+    href="https://www.mahemusical.com/bookCheck?name=${username}&email=${email}"
     >* 나의 예매내역 확인하기</a
   >
 </p>

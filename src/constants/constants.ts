@@ -46,10 +46,12 @@ export const requestEmailString = ({
   username,
   limitDate,
   totalPrice,
+  email,
 }: {
   username: string;
   limitDate: string;
   totalPrice: string;
+  email: string;
 }) => `
 <img
 src="https://raw.githubusercontent.com/CaesiumY/mahe-musical/main/src/constants/email/images/image1.png"
@@ -75,7 +77,7 @@ alt="어쩌면 해피엔딩"
 
 <p>▷ 입금액: ${totalPrice}원</p>
 <p>
-  <a href="https://www.mahemusical.com/bookCheck"
+  <a href="https://www.mahemusical.com/bookCheck?name=${username}&email=${email}"
     >* 나의 예매내역 확인하기</a
   >
 </p>

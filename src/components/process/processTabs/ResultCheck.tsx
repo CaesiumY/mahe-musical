@@ -10,6 +10,7 @@ import {
   NOMAL_SEAT_PRICE,
   NORMAL_SEAT_COUNT,
   NO_BARRIER_FREE_TOTAL_SEAT_COUNT,
+  requestEmailString,
   requestEmailTitle,
   WHEEL_CHARIR_SEAT_COUNT,
 } from "@/constants/constants";
@@ -89,23 +90,27 @@ const ResultCheck = ({ toNextTab, bookResult, data }: ResultCheckProps) => {
       ).getTime() - 1;
     const limitTimestamp = Timestamp.fromDate(new Date(limitDay));
 
-    return { nowTimestamp, limitTimestamp };
+    return { nowTimestamp, limitTimestamp, limitDay };
   };
 
   const sendEmailtoUser = async () => {
-    const { name, email } = userInfo;
+    const { name: username, email } = userInfo;
+    const { limitDay } = makeDateObject();
 
     try {
-      const email: EmailType = {
-        to: ["dbs2636@gmail.com"],
+      const emailContent: EmailType = {
+        to: [email],
         message: {
           subject: requestEmailTitle,
-          html: "this is html",
+          html: requestEmailString({
+            username,
+            email,
+            limitDate: new Date(limitDay).toLocaleString(),
+            totalPrice,
+          }),
         },
       };
-
-      await addDoc(collection(db, collectionNames.EMAIL), email);
-      console.log("email sent");
+      await addDoc(collection(db, collectionNames.EMAIL), emailContent);
     } catch (error) {
       console.error(error);
       if (error instanceof Error) {
@@ -162,15 +167,15 @@ const ResultCheck = ({ toNextTab, bookResult, data }: ResultCheckProps) => {
         createdAt,
         limitedAt,
       };
-      // await addDoc(collection(db, collectionNames.TICKETS), ticket);
-      // await update(ref(realtime, musicalDate), {
-      //   normal: increment(normal),
-      //   wheelChair: increment(wheelChair),
-      //   barrierFree: increment(barrierFree),
-      // });
+      await addDoc(collection(db, collectionNames.TICKETS), ticket);
+      await update(ref(realtime, musicalDate), {
+        normal: increment(normal),
+        wheelChair: increment(wheelChair),
+        barrierFree: increment(barrierFree),
+      });
       await sendEmailtoUser();
       setIsLoading(false);
-      // toNextTab();
+      toNextTab();
     } catch (error) {
       console.error(error);
       if (error instanceof Error) {

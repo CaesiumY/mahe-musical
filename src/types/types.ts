@@ -48,3 +48,12 @@ export interface MusicalInfoType extends SeatsType {
   date: Timestamp;
   seats?: string[];
 }
+
+export interface EmailType {
+  to: string[];
+  message: {
+    subject: string;
+    text?: string;
+    html: string;
+  };
+}

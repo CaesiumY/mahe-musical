@@ -10,10 +10,12 @@ import {
   NOMAL_SEAT_PRICE,
   NORMAL_SEAT_COUNT,
   NO_BARRIER_FREE_TOTAL_SEAT_COUNT,
+  requestEmailTitle,
   WHEEL_CHARIR_SEAT_COUNT,
 } from "@/constants/constants";
 import { db } from "@/firebase/firestore";
 import {
+  EmailType,
   MusicalTimePlan,
   PriceType,
   SeatsType,
@@ -90,6 +92,28 @@ const ResultCheck = ({ toNextTab, bookResult, data }: ResultCheckProps) => {
     return { nowTimestamp, limitTimestamp };
   };
 
+  const sendEmailtoUser = async () => {
+    const { name, email } = userInfo;
+
+    try {
+      const email: EmailType = {
+        to: ["dbs2636@gmail.com"],
+        message: {
+          subject: requestEmailTitle,
+          html: "this is html",
+        },
+      };
+
+      await addDoc(collection(db, collectionNames.EMAIL), email);
+      console.log("email sent");
+    } catch (error) {
+      console.error(error);
+      if (error instanceof Error) {
+        `확인 이메일 보내기 오류 발생 ${error.name} - ${error.message}`;
+      }
+    }
+  };
+
   const onClickMakeBook = async () => {
     try {
       setIsLoading(true);
@@ -138,14 +162,15 @@ const ResultCheck = ({ toNextTab, bookResult, data }: ResultCheckProps) => {
         createdAt,
         limitedAt,
       };
-      await addDoc(collection(db, collectionNames.TICKETS), ticket);
-      await update(ref(realtime, musicalDate), {
-        normal: increment(normal),
-        wheelChair: increment(wheelChair),
-        barrierFree: increment(barrierFree),
-      });
+      // await addDoc(collection(db, collectionNames.TICKETS), ticket);
+      // await update(ref(realtime, musicalDate), {
+      //   normal: increment(normal),
+      //   wheelChair: increment(wheelChair),
+      //   barrierFree: increment(barrierFree),
+      // });
+      await sendEmailtoUser();
       setIsLoading(false);
-      toNextTab();
+      // toNextTab();
     } catch (error) {
       console.error(error);
       if (error instanceof Error) {

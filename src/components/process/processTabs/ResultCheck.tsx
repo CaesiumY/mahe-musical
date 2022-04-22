@@ -1,5 +1,8 @@
-import { addDoc, collection, Timestamp } from "firebase/firestore";
 import React, { useEffect, useMemo, useState } from "react";
+import { addDoc, collection, Timestamp } from "firebase/firestore";
+import { increment, off, ref, update } from "firebase/database";
+import { db } from "@/firebase/firestore";
+import { realtime } from "@/firebase/realtime";
 import {
   BARRIER_FREE_SEAT_COUNT,
   castingTable,
@@ -14,7 +17,6 @@ import {
   requestEmailTitle,
   WHEEL_CHARIR_SEAT_COUNT,
 } from "@/constants/constants";
-import { db } from "@/firebase/firestore";
 import {
   EmailType,
   MusicalTimePlan,
@@ -25,8 +27,6 @@ import {
 } from "@/types/types";
 import TabButton from "./common/TabButton";
 import TabHeader from "./common/TabHeader";
-import { increment, off, ref, update } from "firebase/database";
-import { realtime } from "@/firebase/realtime";
 
 interface LineItemProps {
   title: string;

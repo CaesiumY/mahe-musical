@@ -25,6 +25,7 @@ export const castingTable = {
 
 export const collectionNames = {
   TICKETS: "tickets",
+  EMAIL: "mail",
 };
 
 export const timeTable = Object.keys(castingTable).reduce((acc, cur) => {
@@ -37,3 +38,83 @@ export const timeTable = Object.keys(castingTable).reduce((acc, cur) => {
 export const contactRegex = /^(\d{2,3})(\d{3,4})(\d{4})$/;
 export const makeContactRegex = (str: string) =>
   str.replace(contactRegex, `$1-$2-$3`);
+
+export const requestEmailTitle =
+  '[마헤_입금요청] "어쩌면 해피엔딩 by ma:he" 예매 완료를 위해 입금 부탁드립니다.';
+
+export const completedEmailTitle =
+  '[마헤_예매확정] "어쩌면 해피엔딩 by ma:he" 예매가 완료되었습니다.';
+
+export const requestEmailString = ({
+  username,
+  limitDate,
+  totalPrice,
+  email,
+}: {
+  username: string;
+  limitDate: string;
+  totalPrice: string;
+  email: string;
+}) => `
+<img
+src="https://raw.githubusercontent.com/CaesiumY/mahe-musical/main/src/constants/email/images/image1.png"
+alt="어쩌면 해피엔딩"
+/>
+<div style="border: 1px solid gray; padding: 0.5rem">
+<p>
+  안녕하세요 ${username}님, "어쩌면 해피엔딩 by ma:he" 공연을 예매해주셔서
+  감사합니다 :)
+</p>
+<p>예매 확정을 위해 입금 부탁 드립니다.</p>
+
+<p>
+  ▷ 예매자명: ${username} <br />
+  (입금 시 <strong>'입금자명'을 '예매자명'과 동일하게</strong> 해주세요.)
+</p>
+<p>
+  ▷ 입금 기한: <span style="color: red"><i>${limitDate}</i></span> <br />
+  (입금 기한이 지난 예매 내역은 자동으로 취소됩니다.)
+</p>
+<p>▷ 계좌번호: 3333182842778 카카오뱅크</p>
+<p>▷ 예금주: 이예진</p>
+
+<p>▷ 입금액: ${totalPrice}원</p>
+<p>
+  <a href="https://www.mahemusical.com/bookCheck?name=${username}&email=${email}"
+    >* 나의 예매내역 확인하기</a
+  >
+</p>
+</div>`;
+
+export const completedEmailString = ({
+  username,
+  email,
+  musicalDate,
+  tickets,
+}: {
+  username: string;
+  email: string;
+  musicalDate: string;
+  tickets: number;
+}) => `
+<img
+src="https://raw.githubusercontent.com/CaesiumY/mahe-musical/main/src/constants/email/images/image1.png"
+alt="어쩌면 해피엔딩"
+/>
+<div style="border: 1px solid gray; padding: 0.5rem">
+<p>
+  안녕하세요 ${username}님, "어쩌면 해피엔딩 by ma:he” 예매가
+  확정되었습니다.
+</p>
+<p>설레는 마음으로 공연날 만나뵙기를 기대하겠습니다 :)</p>
+
+<p>▷ 예매자명: ${username}</p>
+<p>▷ 공연 일시: ${musicalDate}</p>
+<p>▷ 매수: ${tickets}매</p>
+<p>
+  <a
+    href="https://www.mahemusical.com/bookCheck?name=${username}&email=${email}"
+    >* 나의 예매내역 확인하기</a
+  >
+</p>
+</div>`;

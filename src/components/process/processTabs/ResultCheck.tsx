@@ -1,5 +1,8 @@
-import { addDoc, collection, Timestamp } from "firebase/firestore";
 import React, { useEffect, useMemo, useState } from "react";
+import { addDoc, collection, Timestamp } from "firebase/firestore";
+import { increment, off, ref, update } from "firebase/database";
+import { db } from "@/firebase/firestore";
+import { realtime } from "@/firebase/realtime";
 import {
   BARRIER_FREE_SEAT_COUNT,
   castingTable,
@@ -10,10 +13,12 @@ import {
   NOMAL_SEAT_PRICE,
   NORMAL_SEAT_COUNT,
   NO_BARRIER_FREE_TOTAL_SEAT_COUNT,
+  requestEmailString,
+  requestEmailTitle,
   WHEEL_CHARIR_SEAT_COUNT,
 } from "@/constants/constants";
-import { db } from "@/firebase/firestore";
 import {
+  EmailType,
   MusicalTimePlan,
   PriceType,
   SeatsType,
@@ -22,8 +27,6 @@ import {
 } from "@/types/types";
 import TabButton from "./common/TabButton";
 import TabHeader from "./common/TabHeader";
-import { increment, off, ref, update } from "firebase/database";
-import { realtime } from "@/firebase/realtime";
 
 interface LineItemProps {
   title: string;
@@ -87,7 +90,33 @@ const ResultCheck = ({ toNextTab, bookResult, data }: ResultCheckProps) => {
       ).getTime() - 1;
     const limitTimestamp = Timestamp.fromDate(new Date(limitDay));
 
-    return { nowTimestamp, limitTimestamp };
+    return { nowTimestamp, limitTimestamp, limitDay };
+  };
+
+  const sendEmailtoUser = async () => {
+    const { name: username, email } = userInfo;
+    const { limitDay } = makeDateObject();
+
+    try {
+      const emailContent: EmailType = {
+        to: [email],
+        message: {
+          subject: requestEmailTitle,
+          html: requestEmailString({
+            username,
+            email,
+            limitDate: new Date(limitDay).toLocaleString(),
+            totalPrice,
+          }),
+        },
+      };
+      await addDoc(collection(db, collectionNames.EMAIL), emailContent);
+    } catch (error) {
+      console.error(error);
+      if (error instanceof Error) {
+        `확인 이메일 보내기 오류 발생 ${error.name} - ${error.message}`;
+      }
+    }
   };
 
   const onClickMakeBook = async () => {
@@ -144,6 +173,7 @@ const ResultCheck = ({ toNextTab, bookResult, data }: ResultCheckProps) => {
         wheelChair: increment(wheelChair),
         barrierFree: increment(barrierFree),
       });
+      await sendEmailtoUser();
       setIsLoading(false);
       toNextTab();
     } catch (error) {

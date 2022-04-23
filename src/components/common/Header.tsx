@@ -73,7 +73,7 @@ const Header = ({ color = "ivory" }: HeaderProps) => {
           </div>
           <div
             className={`${
-              isOpen ? "" : "translate-y-[-250px] sm:translate-y-0"
+              isOpen ? "" : "translate-y-[-150%] sm:translate-y-0"
             } sm:ml-auto transition-transform absolute sm:static top-[68px] left-[0] right-[0] z-40 bg-white sm:bg-inherit px-8 pb-4 sm:p-4 rounded-b-3xl`}
           >
             <ul

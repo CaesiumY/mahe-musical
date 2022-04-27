@@ -8,7 +8,10 @@ interface MetaTagsProps {
 
 const MetaTags = ({ subTitle, pathname }: MetaTagsProps) => {
   const title = useMemo(
-    () => (subTitle ? `MA:HE | ${subTitle}` : "MA:HE"),
+    () =>
+      subTitle
+        ? `${subTitle} | MA:HE 연세대 뮤지컬 소모임 - 어쩌면 해피엔딩`
+        : "MA:HE 연세대 뮤지컬 소모임 - 어쩌면 해피엔딩",
     [subTitle]
   );
 

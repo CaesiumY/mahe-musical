@@ -9,7 +9,7 @@ const BookDetail = () => {
 
   return (
     <>
-      <MetaTags subTitle="예매 상세" pathname={pathname} />
+      <MetaTags subTitle="예매하기" pathname={pathname} />
       <ScrollUpButton />
 
       <DetailContainer />

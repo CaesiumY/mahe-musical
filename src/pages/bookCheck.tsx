@@ -8,7 +8,7 @@ const BookCheck = () => {
 
   return (
     <>
-      <MetaTags subTitle="예매 확인" pathname={pathname} />
+      <MetaTags subTitle="예매내역 확인" pathname={pathname} />
       <CheckContainer />
     </>
   );

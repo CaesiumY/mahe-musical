@@ -20,7 +20,7 @@ const BookProcess: NextPage = () => {
 
   return (
     <>
-      <MetaTags subTitle="예매 상세" pathname={pathname} />
+      <MetaTags subTitle="예매 하는 중" pathname={pathname} />
 
       {isValidQuery && <ProcessContainer />}
       {!isValidQuery && <ToMain />}

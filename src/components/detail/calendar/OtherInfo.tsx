@@ -64,10 +64,7 @@ const OtherInfo = ({ timeId }: OtherInfoProps) => {
         : {},
     [musicalData, timeId]
   );
-  const totalRemainedSeats = useMemo(
-    () => Object.values(remainedSeats).reduce((a, b) => a + b, 0),
-    [remainedSeats]
-  );
+
   const currentCasting = useMemo(() => castingTable[timeId], [timeId]);
 
   return (
@@ -75,7 +72,9 @@ const OtherInfo = ({ timeId }: OtherInfoProps) => {
       <div className="flex flex-row text-xs mb-2">
         <span className="font-bold basis-1/4">잔여좌석</span>
         <span className="basis-3/4">
-          {totalRemainedSeats !== 0
+          {remainedSeats.normal ||
+          remainedSeats.wheelChair ||
+          remainedSeats.barrierFree
             ? `일반석 ${remainedSeats.normal} | 휠체어석 ${remainedSeats.wheelChair} | 배리어프리석(자막) ${remainedSeats.barrierFree}`
             : "불러오는 중..."}
         </span>

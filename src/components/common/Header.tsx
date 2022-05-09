@@ -95,7 +95,7 @@ const Header = ({ color = "ivory" }: HeaderProps) => {
               ))}
               <div className="bg-[#c9ccd0] w-full h-px sm:hidden" />
               <li className="py-2">
-                <Link href={`/comingSoon`}>
+                <Link href={`/mahestory`}>
                   <a
                     className="py-2 sm:hover:text-gold transition-colors"
                     onClick={closeDrawer}

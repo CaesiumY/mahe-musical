@@ -4,7 +4,6 @@ import {
   BARRIER_FREE_SEAT_COUNT,
   castingTable,
   NORMAL_SEAT_COUNT,
-  NO_BARRIER_FREE_TOTAL_SEAT_COUNT,
   WHEEL_CHARIR_SEAT_COUNT,
 } from "@/constants/constants";
 import { SeatsType } from "@/types/types";
@@ -52,10 +51,7 @@ const OtherInfo = ({ timeId }: OtherInfoProps) => {
     () =>
       musicalData
         ? {
-            normal:
-              (["11", "12"].includes(timeId.slice(0, 2))
-                ? NO_BARRIER_FREE_TOTAL_SEAT_COUNT
-                : NORMAL_SEAT_COUNT) - musicalData[timeId]?.normal,
+            normal: NORMAL_SEAT_COUNT - musicalData[timeId]?.normal,
             wheelChair:
               WHEEL_CHARIR_SEAT_COUNT - musicalData[timeId]?.wheelChair,
             barrierFree:
@@ -72,9 +68,9 @@ const OtherInfo = ({ timeId }: OtherInfoProps) => {
       <div className="flex flex-row text-xs mb-2">
         <span className="font-bold basis-1/4">잔여좌석</span>
         <span className="basis-3/4">
-          {remainedSeats.normal ||
-          remainedSeats.wheelChair ||
-          remainedSeats.barrierFree
+          {typeof remainedSeats.normal === "number" ||
+          typeof remainedSeats.wheelChair === "number" ||
+          typeof remainedSeats.barrierFree === "number"
             ? `일반석 ${remainedSeats.normal} | 휠체어석 ${remainedSeats.wheelChair} | 배리어프리석(자막) ${remainedSeats.barrierFree}`
             : "불러오는 중..."}
         </span>

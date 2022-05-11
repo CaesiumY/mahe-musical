@@ -13,7 +13,7 @@ const MaheStory = () => {
     <>
       <MetaTags subTitle="마헤 이야기" pathname={pathname} />
 
-      <section className="max-w-xl mx-auto mt-24 flex flex-col">
+      <section className="max-w-xl mx-auto mt-24">
         <Image
           src={storyOne}
           alt="마헤 스토리 첫번째"
@@ -28,6 +28,7 @@ const MaheStory = () => {
           quality={100}
           placeholder="blur"
           layout="responsive"
+          priority
         />
         <Image
           src={storyThree}
@@ -35,6 +36,7 @@ const MaheStory = () => {
           quality={100}
           placeholder="blur"
           layout="responsive"
+          priority
         />
       </section>
     </>

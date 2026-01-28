@@ -4,7 +4,7 @@
 
 연세대학교 뮤지컬 소모임 ma:he 봄 공연 - 어쩌면 해피엔딩 홈페이지
 
-## [**홈페이지 링크**](https://www.mahemusical.com/) - https://www.mahemusical.com/
+## [**홈페이지 링크**](https://musical-ticketing.vercel.app/) - https://musical-ticketing.vercel.app/
 
 <details>
   <summary>포스터</summary>

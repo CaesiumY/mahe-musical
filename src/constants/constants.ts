@@ -1,3 +1,6 @@
+export const SITE_URL =
+  process.env.NEXT_PUBLIC_SITE_URL || "https://musical-ticketing.vercel.app";
+
 export const TOTAL_SEAT_COUNT = 203;
 export const NORMAL_SEAT_COUNT = 195;
 export const WHEEL_CHARIR_SEAT_COUNT = 3;
@@ -80,7 +83,7 @@ alt="어쩌면 해피엔딩"
 
 <p>▷ 입금액: ${totalPrice}원</p>
 <p>
-  <a href="https://www.mahemusical.com/bookCheck?name=${username}&email=${email}"
+  <a href="${SITE_URL}/bookCheck?name=${username}&email=${email}"
     >* 나의 예매내역 확인하기</a
   >
 </p>
@@ -113,7 +116,7 @@ alt="어쩌면 해피엔딩"
 <p>▷ 매수: ${tickets}매</p>
 <p>
   <a
-    href="https://www.mahemusical.com/bookCheck?name=${username}&email=${email}"
+    href="${SITE_URL}/bookCheck?name=${username}&email=${email}"
     >* 나의 예매내역 확인하기</a
   >
 </p>

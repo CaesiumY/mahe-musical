@@ -16,8 +16,7 @@ const MetaTags = ({ subTitle, pathname }: MetaTagsProps) => {
   );
 
   const siteUrl =
-    process.env.SITE_URL ||
-    "https://www.mahemusical.com" ||
+    process.env.NEXT_PUBLIC_SITE_URL ||
     "https://musical-ticketing.vercel.app";
 
   const DEFAULT_DESCRIPTION =
